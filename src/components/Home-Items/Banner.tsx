@@ -1,4 +1,4 @@
-import { Carousel, Col, Image, Row, Space } from "antd";
+import { Button, Carousel, Col, Form, Image, Input, Row, Space } from "antd";
 
 const Banner = () => {
   const onChange = (currentSlide: number) => {
@@ -27,6 +27,33 @@ const Banner = () => {
               us connect you with the best options available. Wherever you're
               headed, Quick Trip ensures a smooth ride every time.
             </p>
+
+            <div
+              style={{
+                display: "flex",
+                gap: "16px",
+              }}
+            >
+              <Form
+                layout="vertical"
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "16px",
+                  alignItems: "center",
+                  justifyItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Form.Item name={"From"} label={"From"} style={{ flex: 1 }}>
+                  <Input />
+                </Form.Item>
+                <Form.Item name={"To"} label={"To"} style={{ flex: 1 }}>
+                  <Input />
+                </Form.Item>
+                <Button>Search Car</Button>
+              </Form>
+            </div>
           </Space>
         </Row>
       </Col>
