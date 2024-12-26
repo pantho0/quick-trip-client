@@ -1,9 +1,9 @@
-import SliderSection from "../components/Home-Items/Slider";
+import Banner from "../components/Home-Items/Banner";
 
 const Home = () => {
   return (
     <>
-      <SliderSection />
+      <Banner />
     </>
   );
 };
