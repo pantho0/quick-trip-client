@@ -1,0 +1,64 @@
+.responsive-title {
+  color: #eb2f06;
+  font-size: 45px; /* Default for desktop */
+  line-height: 1.2;
+}
+
+.responsive-subtitle {
+  color: #e55039;
+  font-size: 20px;
+}
+
+.responsive-paragraph {
+  font-size: 16px;
+  width: 80%;
+}
+
+.responsive-form {
+  display: flex;
+  flex-direction: row;
+  gap: inherit;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+}
+
+.reponsive-bannerImage {
+  width: 600px;
+  height: 450px;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .responsive-title {
+    font-size: 36px; /* Tablet size */
+    text-align: center;
+  }
+  .responsive-subtitle {
+    color: #e55039;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .responsive-paragraph {
+    font-size: 13px;
+    width: 100%;
+    text-align: justify;
+  }
+
+  .responsive-form {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .reponsive-bannerImage {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+  }
+}
+@media (max-width: 768px) {
+  .responsive-title {
+    font-size: 24px; /* Mobile size */
+  }
+}
