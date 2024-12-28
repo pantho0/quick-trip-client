@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser } from "../redux/features/auth/authSlice";
+import { verifyToken } from "../utils/verifyToken";
 
 const Login = () => {
   const { register, handleSubmit } = useForm({
@@ -17,7 +18,8 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     const res = await login(data).unwrap();
-    dispatch(setUser({ user: {}, token: res.data.token }));
+    const decodedUser = await verifyToken(res?.data?.token);
+    dispatch(setUser({ user: decodedUser, token: res.data.token }));
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
