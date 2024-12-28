@@ -2,8 +2,21 @@ import { Button, Col, Flex } from "antd";
 import BaseForm from "../../../components/Form/BaseForm";
 import BaseInput from "../../../components/Form/BaseInput";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import BaseSelect from "../../../components/Form/BaseSelect";
+import BaseCustomSelect from "../../../components/Form/BaseCustomSelect";
 
 const AddCar = () => {
+  const isElectricOptions = [
+    {
+      value: true,
+      label: "Yes",
+    },
+    {
+      value: false,
+      label: "No",
+    },
+  ];
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
   };
@@ -21,8 +34,12 @@ const AddCar = () => {
               label="Description"
             />
             <BaseInput type="text" name="color" label="Color" />
-            <BaseInput type="text" name="isElectric" label="Electric or Nor?" />
-            <BaseInput type="text" name="features" label="Features" />
+            <BaseSelect
+              name="isElectric"
+              label="Electric or Not?"
+              options={isElectricOptions}
+            />
+            <BaseCustomSelect name="Features" />
             <BaseInput type="text" name="pricePerHour" label="Price per hour" />
             <div
               style={{
