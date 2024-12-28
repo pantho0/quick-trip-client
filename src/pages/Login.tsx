@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button } from "antd";
+import { Button, Row } from "antd";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
@@ -7,14 +7,16 @@ import { setUser, TUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import BaseForm from "../components/Form/BaseForm";
+import BaseInput from "../components/Form/BaseInput";
 
 const Login = () => {
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      email: "admin@example.com",
-      password: "password123",
-    },
-  });
+  // const { register, handleSubmit } = useForm({
+  //   defaultValues: {
+  //     email: "admin@example.com",
+  //     password: "password123",
+  //   },
+  // });
 
   const [login] = useLoginMutation();
   const dispatch = useAppDispatch();
@@ -33,17 +35,13 @@ const Login = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="email">email</label>
-        <input type="text" id="email" {...register("email")} />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input type="text" id="password" {...register("password")} />
-      </div>
-      <Button htmlType="submit">login</Button>
-    </form>
+    <Row justify="center" align="middle" style={{ height: "100vh" }}>
+      <BaseForm onSubmit={onSubmit}>
+        <BaseInput type="text" name="email" label="Email : " />
+        <BaseInput type="text" name="password" label="Password : " />
+        <Button htmlType="submit">login</Button>
+      </BaseForm>
+    </Row>
   );
 };
 

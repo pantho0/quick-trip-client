@@ -53,6 +53,7 @@ const Sidebar = () => {
       >
         QuickTrip
       </div>
+
       <Menu
         theme="dark"
         mode="inline"

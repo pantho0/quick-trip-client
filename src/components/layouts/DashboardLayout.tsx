@@ -1,10 +1,18 @@
-import { Layout, theme } from "antd";
+import { Button, Layout, theme } from "antd";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import { useAppDispatch } from "../../redux/hooks";
+import { logout } from "../../redux/features/auth/authSlice";
 
 const { Header, Content, Footer } = Layout;
 
 const DashboardLayout = () => {
+  const dispatch = useAppDispatch();
+
+  const signOut = () => {
+    dispatch(logout());
+  };
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -12,7 +20,18 @@ const DashboardLayout = () => {
     <Layout style={{ height: "100vh" }}>
       <Sidebar />
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }} />
+        <Header style={{ padding: 0, background: colorBgContainer }}>
+          <div
+            style={{
+              width: "full",
+              display: "flex",
+              justifyContent: "flex-end",
+              padding: "20px",
+            }}
+          >
+            <Button onClick={() => signOut()}>Logout</Button>
+          </div>
+        </Header>
         <Content style={{ margin: "24px 16px 0" }}>
           <div
             style={{
