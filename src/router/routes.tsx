@@ -3,8 +3,8 @@ import App from "../App";
 import { globalPaths } from "./global.routes";
 import { routeGenerator } from "../utils/routeGenerator";
 import Login from "../pages/Login";
-import Dashboard from "../pages/Dashboard";
 import DashboardLayout from "../components/layouts/DashboardLayout";
+import { adminPaths } from "./admin.route";
 
 const router = createBrowserRouter([
   {
@@ -13,14 +13,14 @@ const router = createBrowserRouter([
     children: routeGenerator(globalPaths),
   },
   {
-    path: "/dashboard",
+    path: "/admin",
     element: <DashboardLayout />,
-    children: [
-      {
-        path: "/dashboard",
-        element: <Dashboard />,
-      },
-    ],
+    children: routeGenerator(adminPaths),
+  },
+  {
+    path: "/user",
+    element: <DashboardLayout />,
+    children: routeGenerator(adminPaths),
   },
   {
     path: "/login",
