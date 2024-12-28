@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "antd";
 import { useForm } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
-import { setUser } from "../redux/features/auth/authSlice";
+import { setUser, TUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const Login = () => {
   const { register, handleSubmit } = useForm({
@@ -15,11 +18,19 @@ const Login = () => {
 
   const [login, { error }] = useLoginMutation();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    const res = await login(data).unwrap();
-    const decodedUser = await verifyToken(res?.data?.token);
-    dispatch(setUser({ user: decodedUser, token: res.data.token }));
+    try {
+      const toastId = toast.loading("Logging in...");
+      const res = await login(data).unwrap();
+      const decodedUser = verifyToken(res?.data?.token) as TUser;
+      dispatch(setUser({ user: decodedUser, token: res.data.token }));
+      toast.success("User Logged In", { id: toastId, duration: 2000 });
+      navigate(`/${decodedUser?.role}/dashboard`);
+    } catch (error: any) {
+      toast.success(error?.message);
+    }
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
