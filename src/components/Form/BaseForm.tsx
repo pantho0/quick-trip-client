@@ -5,6 +5,7 @@ import {
   useForm,
 } from "react-hook-form";
 import { ReactNode } from "react";
+import { Form } from "antd";
 
 type TFormConfig = {
   defaultValues?: Record<string, any>;
@@ -25,7 +26,9 @@ const BaseForm = ({ children, onSubmit, defaultValues }: TFormProps) => {
   const methods = useForm(formConfig);
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>{children}</form>
+      <Form layout="vertical" onFinish={methods.handleSubmit(onSubmit)}>
+        {children}
+      </Form>
     </FormProvider>
   );
 };

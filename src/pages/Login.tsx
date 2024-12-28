@@ -21,15 +21,15 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const toastId = toast.loading("Logging in...");
     try {
-      const toastId = toast.loading("Logging in...");
       const res = await login(data).unwrap();
       const decodedUser = verifyToken(res?.data?.token) as TUser;
       dispatch(setUser({ user: decodedUser, token: res.data.token }));
       toast.success("User Logged In", { id: toastId, duration: 2000 });
       navigate(`/${decodedUser?.role}/dashboard`);
     } catch (error: any) {
-      toast.success(error?.message);
+      toast.success(error?.message, { id: toastId, duration: 2000 });
     }
   };
   return (

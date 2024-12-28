@@ -17,7 +17,7 @@ const DashboardLayout = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout>
       <Sidebar />
       <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }}>
@@ -32,7 +32,7 @@ const DashboardLayout = () => {
             <Button onClick={() => signOut()}>Logout</Button>
           </div>
         </Header>
-        <Content style={{ margin: "24px 16px 0" }}>
+        <Content style={{ margin: "24px 16px 0", minHeight: "100vh" }}>
           <div
             style={{
               padding: 24,
