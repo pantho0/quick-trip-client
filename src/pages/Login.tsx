@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Row } from "antd";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser, TUser } from "../redux/features/auth/authSlice";
@@ -11,12 +11,10 @@ import BaseForm from "../components/Form/BaseForm";
 import BaseInput from "../components/Form/BaseInput";
 
 const Login = () => {
-  // const { register, handleSubmit } = useForm({
-  //   defaultValues: {
-  //     email: "admin@example.com",
-  //     password: "password123",
-  //   },
-  // });
+  const defaultValues = {
+    email: "admin@example.com",
+    password: "password123",
+  };
 
   const [login] = useLoginMutation();
   const dispatch = useAppDispatch();
@@ -36,7 +34,7 @@ const Login = () => {
   };
   return (
     <Row justify="center" align="middle" style={{ height: "100vh" }}>
-      <BaseForm onSubmit={onSubmit}>
+      <BaseForm onSubmit={onSubmit} defaultValues={defaultValues}>
         <BaseInput type="text" name="email" label="Email : " />
         <BaseInput type="text" name="password" label="Password : " />
         <Button htmlType="submit">login</Button>
