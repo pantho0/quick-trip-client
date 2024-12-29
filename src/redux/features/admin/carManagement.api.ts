@@ -1,3 +1,5 @@
+import { TCarManagement } from "../../../types/carManagement.type";
+import { TResponseRedux } from "../../../types/global.types";
 import { baseApi } from "../../api/baseApi";
 
 const carManagementApi = baseApi.injectEndpoints({
@@ -7,6 +9,11 @@ const carManagementApi = baseApi.injectEndpoints({
         url: "/cars",
         method: "GET",
       }),
+      transformResponse: (response: TResponseRedux<TCarManagement[]>) => {
+        return {
+          data: response.data,
+        };
+      },
     }),
     addCar: builder.mutation({
       query: (carData) => ({

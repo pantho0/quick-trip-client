@@ -89,7 +89,7 @@ const AllCars = () => {
     },
   ];
 
-  const carData = cars?.data.map(
+  const carData = cars?.data!.map(
     ({ _id, name, color, status, pricePerHour }) => ({
       key: _id,
       name: name,
