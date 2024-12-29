@@ -4,21 +4,38 @@ import BaseInput from "../../../components/Form/BaseInput";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import BaseSelect from "../../../components/Form/BaseSelect";
 import BaseCustomSelect from "../../../components/Form/BaseCustomSelect";
+import { useAddCarMutation } from "../../../redux/features/admin/carManagement.api";
+import { toast } from "sonner";
+
+const isElectricOptions = [
+  {
+    value: true,
+    label: "Yes",
+  },
+  {
+    value: false,
+    label: "No",
+  },
+];
 
 const AddCar = () => {
-  const isElectricOptions = [
-    {
-      value: true,
-      label: "Yes",
-    },
-    {
-      value: false,
-      label: "No",
-    },
-  ];
+  const [addCar] = useAddCarMutation();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const toastId = toast.loading("Adding Car...");
+
+    const carData = {
+      ...data,
+      status: "available",
+      isDeleted: false,
+    };
+
+    const res = await addCar(carData);
+    if (!res?.error?.data?.success) {
+      toast.error(res?.error?.data?.message, { id: toastId, duration: 2000 });
+    } else {
+      toast.success("Car added successfully", { id: toastId, duration: 2000 });
+    }
   };
 
   return (

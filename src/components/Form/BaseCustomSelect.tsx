@@ -1,13 +1,12 @@
 import React, { useRef, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
-import { Button, Divider, Input, Select, Space } from "antd";
-import { Controller, useFormContext } from "react-hook-form";
+import { Button, Divider, Input, Select } from "antd";
+import { Controller } from "react-hook-form";
 import type { InputRef } from "antd";
 
 let index = 0;
 
 const BaseCustomSelect = ({ name }) => {
-  const { control } = useFormContext(); // Access form context
   const [items, setItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [nameInput, setNameInput] = useState("");
@@ -29,7 +28,7 @@ const BaseCustomSelect = ({ name }) => {
   };
 
   const handleSelectChange = (value) => {
-    setSelectedItems(value); // Update selected items
+    setSelectedItems(value);
   };
 
   return (

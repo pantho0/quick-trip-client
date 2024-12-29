@@ -29,7 +29,7 @@ const Login = () => {
       toast.success("User Logged In", { id: toastId, duration: 2000 });
       navigate(`/${decodedUser?.role}/dashboard`);
     } catch (error: any) {
-      toast.success(error?.message, { id: toastId, duration: 2000 });
+      toast.error(error?.message, { id: toastId, duration: 2000 });
     }
   };
   return (
