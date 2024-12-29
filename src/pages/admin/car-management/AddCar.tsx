@@ -36,7 +36,7 @@ const AddCar = () => {
     try {
       const res = (await addCar(carData)) as TResponse;
       if (res?.error) {
-        toast.error(res?.error?.data?.message);
+        toast.error(res?.error?.data?.message, { id: toastId, duration: 2000 });
       } else {
         toast.success("Car Added Successfully");
       }
