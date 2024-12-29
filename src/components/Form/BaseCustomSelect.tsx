@@ -6,7 +6,12 @@ import type { InputRef } from "antd";
 
 let index = 0;
 
-const BaseCustomSelect = ({ name, label }) => {
+type TBaseSelectProps = {
+  name: string;
+  label: string;
+};
+
+const BaseCustomSelect = ({ name, label }: TBaseSelectProps) => {
   const [items, setItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [nameInput, setNameInput] = useState("");

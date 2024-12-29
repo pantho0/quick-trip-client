@@ -8,6 +8,7 @@ import { useAddCarMutation } from "../../../redux/features/admin/carManagement.a
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { TResponse } from "../../../types/global.types";
 
 const isElectricOptions = [
   {
@@ -32,11 +33,15 @@ const AddCar = () => {
       isDeleted: false,
     };
 
-    const res = await addCar(carData);
-    if (!res?.error?.data?.success) {
-      toast.error(res?.error?.data?.message, { id: toastId, duration: 2000 });
-    } else {
-      toast.success("Car added successfully", { id: toastId, duration: 2000 });
+    try {
+      const res = (await addCar(carData)) as TResponse;
+      if (res?.error) {
+        toast.error(res?.error?.data?.message);
+      } else {
+        toast.success("Car Added Successfully");
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
     }
   };
 
