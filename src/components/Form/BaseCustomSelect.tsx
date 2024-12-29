@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
-import { Button, Divider, Input, Select } from "antd";
+import { Button, Divider, Form, Input, Select } from "antd";
 import { Controller } from "react-hook-form";
 import type { InputRef } from "antd";
 
 let index = 0;
 
-const BaseCustomSelect = ({ name }) => {
+const BaseCustomSelect = ({ name, label }) => {
   const [items, setItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [nameInput, setNameInput] = useState("");
@@ -34,37 +34,40 @@ const BaseCustomSelect = ({ name }) => {
   return (
     <Controller
       name={name}
-      render={({ field }) => (
-        <Select
-          {...field}
-          mode="multiple"
-          value={selectedItems}
-          onChange={(value) => {
-            handleSelectChange(value);
-            field.onChange(value);
-          }}
-          style={{ width: "100%" }}
-          size="large"
-          placeholder="custom dropdown render"
-          dropdownRender={(menu) => (
-            <>
-              {menu}
-              <Divider style={{ margin: "8px 0" }} />
+      render={({ field, fieldState: { error } }) => (
+        <Form.Item label={label}>
+          <Select
+            {...field}
+            mode="multiple"
+            value={selectedItems}
+            onChange={(value) => {
+              handleSelectChange(value);
+              field.onChange(value);
+            }}
+            style={{ width: "100%" }}
+            size="large"
+            placeholder="custom dropdown render"
+            dropdownRender={(menu) => (
+              <>
+                {menu}
+                <Divider style={{ margin: "8px 0" }} />
 
-              <Input
-                placeholder="Please enter item"
-                ref={inputRef}
-                value={nameInput}
-                onChange={onNameChange}
-                onKeyDown={(e) => e.stopPropagation()}
-              />
-              <Button type="text" icon={<PlusOutlined />} onClick={addItem}>
-                Add item
-              </Button>
-            </>
-          )}
-          options={items.map((item) => ({ label: item, value: item }))}
-        />
+                <Input
+                  placeholder="Please enter item"
+                  ref={inputRef}
+                  value={nameInput}
+                  onChange={onNameChange}
+                  onKeyDown={(e) => e.stopPropagation()}
+                />
+                <Button type="text" icon={<PlusOutlined />} onClick={addItem}>
+                  Add item
+                </Button>
+              </>
+            )}
+            options={items.map((item) => ({ label: item, value: item }))}
+          />
+          {error && <small style={{ color: "red" }}>{error?.message}</small>}
+        </Form.Item>
       )}
     />
   );

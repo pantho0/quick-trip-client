@@ -32,7 +32,7 @@ const DashboardLayout = () => {
             <Button onClick={() => signOut()}>Logout</Button>
           </div>
         </Header>
-        <Content style={{ margin: "24px 16px 0", minHeight: "100vh" }}>
+        <Content style={{ margin: "24px 16px 0" }}>
           <div
             style={{
               padding: 24,
