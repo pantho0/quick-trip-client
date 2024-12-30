@@ -1,6 +1,7 @@
 import { Table } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
 import { useGetAllCarQuery } from "../../../redux/features/admin/carManagement.api";
+import { useState } from "react";
 
 interface DataType {
   key: string;
@@ -11,36 +12,20 @@ interface DataType {
 }
 
 const AllCars = () => {
-  const { data: cars, isFetching } = useGetAllCarQuery(undefined);
+  const [params, setParams] = useState([]);
+  const { data: cars, isFetching } = useGetAllCarQuery(params);
+
+  const carFilterOptions = cars?.data?.map((item) => ({
+    text: item?.name,
+    value: item?.name,
+  }));
+
   const columns: TableColumnsType<DataType> = [
     {
       title: "Name",
       dataIndex: "name",
       showSorterTooltip: { target: "full-header" },
-      filters: [
-        {
-          text: "Joe",
-          value: "Joe",
-        },
-        {
-          text: "Jim",
-          value: "Jim",
-        },
-        {
-          text: "Submenu",
-          value: "Submenu",
-          children: [
-            {
-              text: "Green",
-              value: "Green",
-            },
-            {
-              text: "Black",
-              value: "Black",
-            },
-          ],
-        },
-      ],
+      filters: carFilterOptions,
       // specify the condition of filtering result
       // here is that finding the name started with `value`
       onFilter: (value, record) => record.name.indexOf(value as string) === 0,
@@ -56,34 +41,23 @@ const AllCars = () => {
     {
       title: "Status",
       dataIndex: "status",
-      // filters: [
-      //   {
-      //     text: "London",
-      //     value: "London",
-      //   },
-      //   {
-      //     text: "New York",
-      //     value: "New York",
-      //   },
-      // ],
-      // onFilter: (value, record) =>
-      //   record.address.indexOf(value as string) === 0,
+      filters: [
+        {
+          text: "Available",
+          value: "available",
+        },
+        {
+          text: "Booked",
+          value: "booked",
+        },
+      ],
+      // onFilter: (value, record) => record.status.indexOf(value as string) === 0,
     },
     {
       title: "Price",
       dataIndex: "pricePerHour",
-      // filters: [
-      //   {
-      //     text: "London",
-      //     value: "London",
-      //   },
-      //   {
-      //     text: "New York",
-      //     value: "New York",
-      //   },
-      // ],
-      // onFilter: (value, record) =>
-      //   record.address.indexOf(value as string) === 0,
+      sorter: (a, b) => a.pricePerHour - b.pricePerHour,
+      sortDirections: ["descend"],
     },
   ];
 
@@ -103,7 +77,13 @@ const AllCars = () => {
     sorter,
     extra
   ) => {
-    console.log("params", pagination, filters, sorter, extra);
+    if (extra?.action === "filter") {
+      const queryParams: any = [];
+      filters?.status?.forEach((item) =>
+        queryParams.push({ name: "status", value: item })
+      );
+      setParams(queryParams);
+    }
   };
 
   return (

@@ -5,10 +5,19 @@ import { baseApi } from "../../api/baseApi";
 const carManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllCar: builder.query({
-      query: () => ({
-        url: "/cars",
-        method: "GET",
-      }),
+      query: (args) => {
+        const params = new URLSearchParams();
+        if (args) {
+          args.forEach((item) => params.append(item.name, item.value));
+        }
+
+        console.log(args);
+        return {
+          url: "/cars",
+          method: "GET",
+          params: params,
+        };
+      },
       providesTags: ["cars"],
       transformResponse: (response: TResponseRedux<TCarManagement[]>) => {
         return {
