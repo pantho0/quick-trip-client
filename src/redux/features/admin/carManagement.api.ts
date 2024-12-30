@@ -8,7 +8,9 @@ const carManagementApi = baseApi.injectEndpoints({
       query: (args) => {
         const params = new URLSearchParams();
         if (args) {
-          args.forEach((item) => params.append(item.name, item.value));
+          args.forEach((item: Record<string, any>) =>
+            params.append(item.name, item.value)
+          );
         }
 
         console.log(args);

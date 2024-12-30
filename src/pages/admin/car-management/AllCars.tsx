@@ -1,7 +1,8 @@
-import { Table } from "antd";
+import { Button, Table } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
 import { useGetAllCarQuery } from "../../../redux/features/admin/carManagement.api";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface DataType {
   key: string;
@@ -19,6 +20,16 @@ const AllCars = () => {
     text: item?.name,
     value: item?.name,
   }));
+
+  const carData = cars?.data?.map(
+    ({ _id, name, color, status, pricePerHour }) => ({
+      key: _id,
+      name: name,
+      color: color,
+      status: status,
+      pricePerHour: pricePerHour,
+    })
+  );
 
   const columns: TableColumnsType<DataType> = [
     {
@@ -59,17 +70,19 @@ const AllCars = () => {
       sorter: (a, b) => a.pricePerHour - b.pricePerHour,
       sortDirections: ["descend"],
     },
-  ];
 
-  const carData = cars?.data?.map(
-    ({ _id, name, color, status, pricePerHour }) => ({
-      key: _id,
-      name: name,
-      color: color,
-      status: status,
-      pricePerHour: pricePerHour,
-    })
-  );
+    {
+      title: "Actions",
+      dataIndex: "actions",
+      render: (_, record) => (
+        <>
+          <Link to={`/admin/car-details/${record.key}`}>
+            <Button>Details</Button>{" "}
+          </Link>
+        </>
+      ),
+    },
+  ];
 
   const onChange: TableProps<DataType>["onChange"] = (
     pagination,
