@@ -1,3 +1,4 @@
+import { date } from "zod";
 import { TCarManagement } from "../../../types/carManagement.type";
 import { TResponseRedux } from "../../../types/global.types";
 import { baseApi } from "../../api/baseApi";
@@ -12,8 +13,6 @@ const carManagementApi = baseApi.injectEndpoints({
             params.append(item.name, item.value)
           );
         }
-
-        console.log(args);
         return {
           url: "/cars",
           method: "GET",
@@ -35,7 +34,17 @@ const carManagementApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["cars"],
     }),
+    getSingleCar: builder.query({
+      query: (carId) => ({
+        url: `/cars/${carId}`,
+        method: "GET",
+      }),
+      transformResponse: (response: TResponseRedux<TCarManagement>) => {
+        return response.data;
+      },
+    }),
   }),
 });
 
-export const { useGetAllCarQuery, useAddCarMutation } = carManagementApi;
+export const { useGetAllCarQuery, useAddCarMutation, useGetSingleCarQuery } =
+  carManagementApi;
