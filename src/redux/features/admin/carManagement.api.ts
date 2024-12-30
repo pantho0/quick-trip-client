@@ -11,7 +11,7 @@ const carManagementApi = baseApi.injectEndpoints({
       }),
       transformResponse: (response: TResponseRedux<TCarManagement[]>) => {
         return {
-          data: response.data,
+          data: response?.data,
         };
       },
     }),
