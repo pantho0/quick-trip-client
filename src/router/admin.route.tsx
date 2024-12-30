@@ -1,4 +1,5 @@
 import AddCar from "../pages/admin/car-management/AddCar";
+import AllBookings from "../pages/admin/car-management/AllBookings";
 import AllCars from "../pages/admin/car-management/AllCars";
 import CarDetails from "../pages/admin/car-management/CarDetails";
 import Dashboard from "../pages/Dashboard";
@@ -25,6 +26,16 @@ export const adminPaths = [
       {
         path: "car-details/:id",
         element: <CarDetails />,
+      },
+    ],
+  },
+  {
+    name: "Booking Management",
+    children: [
+      {
+        name: "All Bookings",
+        path: "all-bookings",
+        element: <AllBookings />,
       },
     ],
   },

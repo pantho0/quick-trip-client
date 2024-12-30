@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetSingleCarQuery } from "../../../redux/features/admin/carManagement.api";
-import { Card, Divider, Flex, Tag } from "antd";
+import { Card, Flex, Tag } from "antd";
 const { Meta } = Card;
 
 const CarDetails = () => {
