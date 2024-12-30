@@ -18,6 +18,7 @@ export type TMeta = {
 
 export type TResponse<T> = {
   data?: T;
+  meta?: TMeta;
   error?: TError;
   success?: boolean;
   message?: string;
