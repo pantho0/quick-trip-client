@@ -1,10 +1,9 @@
-import React from "react";
 import { Table } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
 import { useGetAllCarQuery } from "../../../redux/features/admin/carManagement.api";
 
 interface DataType {
-  key: React.Key;
+  key: string;
   name: string;
   color: string;
   status: string;
@@ -12,64 +11,63 @@ interface DataType {
 }
 
 const AllCars = () => {
-  const { data: cars } = useGetAllCarQuery(undefined);
-  console.log(cars);
+  const { data: cars, isFetching } = useGetAllCarQuery(undefined);
   const columns: TableColumnsType<DataType> = [
     {
       title: "Name",
       dataIndex: "name",
       showSorterTooltip: { target: "full-header" },
-      //   filters: [
-      //     {
-      //       text: "Joe",
-      //       value: "Joe",
-      //     },
-      //     {
-      //       text: "Jim",
-      //       value: "Jim",
-      //     },
-      //     {
-      //       text: "Submenu",
-      //       value: "Submenu",
-      //       children: [
-      //         {
-      //           text: "Green",
-      //           value: "Green",
-      //         },
-      //         {
-      //           text: "Black",
-      //           value: "Black",
-      //         },
-      //       ],
-      //     },
-      //   ],
-      //   // specify the condition of filtering result
-      //   // here is that finding the name started with `value`
-      //   onFilter: (value, record) => record.name.indexOf(value as string) === 0,
-      //   sorter: (a, b) => a.name.length - b.name.length,
-      //   sortDirections: ["descend"],
-      // },
-      // {
-      //   title: "Color",
-      //   dataIndex: "color",
-      //   defaultSortOrder: "descend",
-      //   sorter: (a, b) => a.age - b.age,
-      // },
-      // {
-      //   title: "Status",
-      //   dataIndex: "status",
-      //   filters: [
-      //     {
-      //       text: "London",
-      //       value: "London",
-      //     },
-      //     {
-      //       text: "New York",
-      //       value: "New York",
-      //     },
-      //   ],
-      //   onFilter: (value, record) =>
-      //     record.address.indexOf(value as string) === 0,
+      filters: [
+        {
+          text: "Joe",
+          value: "Joe",
+        },
+        {
+          text: "Jim",
+          value: "Jim",
+        },
+        {
+          text: "Submenu",
+          value: "Submenu",
+          children: [
+            {
+              text: "Green",
+              value: "Green",
+            },
+            {
+              text: "Black",
+              value: "Black",
+            },
+          ],
+        },
+      ],
+      // specify the condition of filtering result
+      // here is that finding the name started with `value`
+      onFilter: (value, record) => record.name.indexOf(value as string) === 0,
+      sorter: (a, b) => a.name.length - b.name.length,
+      sortDirections: ["descend"],
+    },
+    {
+      title: "Color",
+      dataIndex: "color",
+      // defaultSortOrder: "descend",
+      // sorter: (a, b) => a.age - b.age,
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      // filters: [
+      //   {
+      //     text: "London",
+      //     value: "London",
+      //   },
+      //   {
+      //     text: "New York",
+      //     value: "New York",
+      //   },
+      // ],
+      // onFilter: (value, record) =>
+      //   record.address.indexOf(value as string) === 0,
     },
     {
       title: "Price",
@@ -111,6 +109,7 @@ const AllCars = () => {
   return (
     <Table<DataType>
       columns={columns}
+      loading={isFetching}
       dataSource={carData}
       onChange={onChange}
       showSorterTooltip={{ target: "sorter-icon" }}
