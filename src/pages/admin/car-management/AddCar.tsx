@@ -7,8 +7,8 @@ import BaseCustomSelect from "../../../components/Form/BaseCustomSelect";
 import { useAddCarMutation } from "../../../redux/features/admin/carManagement.api";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { TResponse } from "../../../types/global.types";
+import { carAddSchema } from "./Cars.Contant";
 
 const isElectricOptions = [
   {
@@ -26,33 +26,27 @@ const AddCar = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Adding Car...");
-
     const carData = {
       ...data,
       status: "available",
       isDeleted: false,
+      pricePerHour: Number(data?.pricePerHour),
     };
 
     try {
-      const res = (await addCar(carData)) as TResponse;
+      const res = (await addCar(carData)) as TResponse<any>;
       if (res?.error) {
         toast.error(res?.error?.data?.message, { id: toastId, duration: 2000 });
       } else {
-        toast.success("Car Added Successfully");
+        toast.success("Car Added Successfully", {
+          id: toastId,
+          duration: 2000,
+        });
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong", { id: toastId, duration: 2000 });
     }
   };
-
-  const carAddSchema = z.object({
-    name: z.string({ required_error: "Name is required" }),
-    description: z.string({ required_error: "Description is required" }),
-    isElectric: z.boolean({ required_error: "Is Electric is required" }),
-    pricePerHour: z.number({ required_error: "Price per hour is required" }),
-    color: z.string({ required_error: "Color is required" }),
-    features: z.array(z.string({ required_error: "Features are required" })),
-  });
 
   return (
     <div>
@@ -73,7 +67,11 @@ const AddCar = () => {
               options={isElectricOptions}
             />
             <BaseCustomSelect name="features" label="Features" />
-            <BaseInput type="text" name="pricePerHour" label="Price per hour" />
+            <BaseInput
+              type="number"
+              name="pricePerHour"
+              label="Price per hour"
+            />
             <div
               style={{
                 display: "flex",

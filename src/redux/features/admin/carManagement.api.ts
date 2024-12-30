@@ -9,6 +9,7 @@ const carManagementApi = baseApi.injectEndpoints({
         url: "/cars",
         method: "GET",
       }),
+      providesTags: ["cars"],
       transformResponse: (response: TResponseRedux<TCarManagement[]>) => {
         return {
           data: response?.data,
@@ -21,6 +22,7 @@ const carManagementApi = baseApi.injectEndpoints({
         method: "POST",
         body: carData,
       }),
+      invalidatesTags: ["cars"],
     }),
   }),
 });
