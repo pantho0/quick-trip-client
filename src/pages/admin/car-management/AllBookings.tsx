@@ -1,35 +1,40 @@
-import { Table, TableColumnsType, TableProps } from "antd";
+import { Button, Table, TableColumnsType, TableProps } from "antd";
 import { useGetAllBookingsQuery } from "../../../redux/features/admin/bookingManagement.api";
+import moment from "moment";
 
-interface DataType {
+type DataType = {
   key: string;
   bookedCar: string;
-  pricePerHour: string;
+  pricePerHour: number;
   passengerName: string;
   passengerPhone: string;
   passengerEmail: string;
-  date: string;
-  startTime: string;
-  endTime: string;
-  totalCost: string;
-}
+  date: string | number;
+  startTime: string | number;
+  endTime: string | number;
+  totalCost: number;
+};
 
 const AllBookings = () => {
-  const { data: bookings } = useGetAllBookingsQuery(undefined);
+  const { data: bookings, isFetching } = useGetAllBookingsQuery(undefined);
   console.log(bookings);
 
-  const bookingData = bookings?.map((booking) => ({
-    key: booking._id,
-    bookedCar: booking.carId.name,
-    pricePerHour: booking.carId.pricePerHour,
-    passngerName: booking.user.name,
-    passengerPhone: booking.user.phone,
-    passengerEmail: booking.user.email,
-    date: booking.date,
-    startTime: booking.startTime,
-    endTime: booking.endTime,
-    totalCost: booking.totalCost,
-  }));
+  const bookingData =
+    bookings?.map((booking) => ({
+      key: booking._id,
+      bookedCar: booking.carId.name,
+      pricePerHour: booking.carId.pricePerHour,
+      passengerName: booking.user.name,
+      passengerPhone: booking.user.phone,
+      passengerEmail: booking.user.email,
+      date: moment(Number(booking.date) * 1000).format("llll"),
+      startTime: moment(Number(booking.startTime) * 1000).format("llll"),
+      endTime:
+        booking?.endTime &&
+        moment(Number(booking.endTime) * 1000).format("llll"),
+
+      totalCost: booking.totalCost,
+    })) || [];
 
   const columns: TableColumnsType<DataType> = [
     {
@@ -44,14 +49,8 @@ const AllBookings = () => {
       //   sortDirections: ["descend"],
     },
     {
-      title: "Price(Hourly)",
-      dataIndex: "pricePerHour",
-      // defaultSortOrder: "descend",
-      // sorter: (a, b) => a.age - b.age,
-    },
-    {
       title: "Passenger",
-      dataIndex: "passngerName",
+      dataIndex: "passengerName",
       //   filters: [
       //     {
       //       text: "Available",
@@ -79,16 +78,36 @@ const AllBookings = () => {
       dataIndex: "date",
     },
     {
-      title: "Journey Start Time",
+      title: "Journey Start Time (a)",
       dataIndex: "startTime",
     },
     {
-      title: "Journey End Time",
+      title: "Journey End Time (b)",
       dataIndex: "endTime",
     },
     {
-      title: "Total Bill",
+      title: "Rent(H)",
+      dataIndex: "pricePerHour",
+      // defaultSortOrder: "descend",
+      // sorter: (a, b) => a.age - b.age,
+    },
+    {
+      title: "Total Bill (a*b)",
       dataIndex: "totalCost",
+    },
+    {
+      title: "Action",
+      render: (_, record) => {
+        return (
+          <Button
+            color={"danger"}
+            disabled={record?.endTime ? true : false}
+            size="small"
+          >
+            {record?.endTime ? "Paid" : "Return"}
+          </Button>
+        );
+      },
     },
   ];
 
@@ -110,8 +129,8 @@ const AllBookings = () => {
   return (
     <Table<DataType>
       columns={columns}
-      //   loading={isFetching}
-      dataSource={bookingData}
+      loading={isFetching}
+      dataSource={bookingData && bookingData}
       onChange={onChange}
       showSorterTooltip={{ target: "sorter-icon" }}
     />

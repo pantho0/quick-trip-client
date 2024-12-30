@@ -40,11 +40,11 @@ export type TUser = {
 
 export type TBooking = {
   _id: string;
-  date: string;
+  date: string | number;
   user: TUser;
   carId: TCarManagement;
-  startTime: string;
-  endTime: string;
+  startTime: string | number;
+  endTime: string | number;
   totalCost: number;
   __v?: number;
 };
