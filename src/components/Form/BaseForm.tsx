@@ -24,11 +24,10 @@ const BaseForm = ({
   resolver,
 }: TFormProps) => {
   const formConfig: TFormConfig = {};
-
+  console.log(defaultValues);
   if (defaultValues) {
     formConfig["defaultValues"] = defaultValues;
   }
-
   if (resolver) {
     formConfig["resolver"] = resolver;
   }
