@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Flex, Space, Table } from "antd";
+import { Button, Flex, Space, Table, Tooltip } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
 import { useGetAllCarQuery } from "../../../redux/features/admin/carManagement.api";
 import { useState } from "react";
@@ -22,6 +22,9 @@ interface DataType {
 const AllCars = () => {
   const [params, setParams] = useState([]);
   const { data: cars, isFetching } = useGetAllCarQuery(params);
+  const handleDelete = (id) => {
+    console.log(id);
+  };
 
   const carFilterOptions = cars?.data?.map((item) => ({
     text: item?.name,
@@ -82,22 +85,23 @@ const AllCars = () => {
       title: "Actions",
       dataIndex: "actions",
       render: (_, record) => (
-        <Flex justify="center" gap="10px">
+        <Flex justify="center" gap="16px">
           <Link to={`/admin/car-details/${record.key}`}>
-            <Button>
-              <EyeFilled style={{ color: "green" }} />
-            </Button>{" "}
+            <Tooltip title="View">
+              <EyeFilled style={{ color: "green", fontSize: "16px" }} />
+            </Tooltip>{" "}
           </Link>
-          <Link to={`/admin/car-details/${record.key}`}>
-            <Button>
-              <EditOutlined style={{ color: "blue" }} />
-            </Button>{" "}
-          </Link>
-          <Link to={`/admin/car-details/${record.key}`}>
-            <Button>
-              <DeleteFilled style={{ color: "red" }} />
-            </Button>{" "}
-          </Link>
+          <Tooltip title="Update">
+            <EditOutlined
+              style={{ color: "blue", cursor: "pointer", fontSize: "16px" }}
+            />
+          </Tooltip>{" "}
+          <Tooltip title="Delete">
+            <DeleteFilled
+              onClick={() => handleDelete(record.key)}
+              style={{ color: "red", cursor: "pointer", fontSize: "16px" }}
+            />
+          </Tooltip>
         </Flex>
       ),
     },

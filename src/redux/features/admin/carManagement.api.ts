@@ -51,6 +51,12 @@ const carManagementApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["bookings"],
     }),
+    deleteCar: builder.mutation({
+      query: (carId) => ({
+        url: `/cars/${carId}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 

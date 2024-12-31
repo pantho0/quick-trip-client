@@ -23,6 +23,7 @@
     "react-router-dom": "6.4",
     "redux-persist": "^6.0.0",
     "sonner": "^1.7.1",
+    "sweetalert2": "^11.15.3",
     "zod": "^3.24.1"
   },
   "devDependencies": {
