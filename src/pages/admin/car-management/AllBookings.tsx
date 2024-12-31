@@ -36,11 +36,9 @@ const AllBookings = () => {
       passengerName: booking.user.name,
       passengerPhone: booking.user.phone,
       passengerEmail: booking.user.email,
-      date: moment(Number(booking.date) * 1000).format("llll"),
-      startTime: moment(Number(booking.startTime) * 1000).format("llll"),
-      endTime:
-        booking?.endTime &&
-        moment(Number(booking.endTime) * 1000).format("llll"),
+      date: moment().format("llll"),
+      startTime: moment.utc(booking.startTime).format("llll"),
+      endTime: booking?.endTime && moment.utc(booking.endTime).format("llll"),
 
       totalCost: booking.totalCost,
     })) || [];
@@ -177,6 +175,7 @@ type RangePickerProps = GetProps<typeof DatePicker.RangePicker>;
 
 const DateAndTimePicker = ({ bookingId }: { bookingId: string }) => {
   const [endTime, setEndTime] = useState("");
+  console.log({ endTime });
   const [returnCar] = useReturnCarMutation();
   const billCalculation = async () => {
     const bookingInfo = {
@@ -199,7 +198,7 @@ const DateAndTimePicker = ({ bookingId }: { bookingId: string }) => {
           value: DatePickerProps["value"] | RangePickerProps["value"],
           dateString
         ) => {
-          const time = moment(value as any).toISOString(dateString as any);
+          const time = moment(dateString).format("YYYY-MM-DDTHH:mm:ss") + "Z";
           setEndTime(time);
         }}
       />
