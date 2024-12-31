@@ -122,11 +122,13 @@ const AllCars = () => {
               <EyeFilled style={{ color: "green", fontSize: "16px" }} />
             </Tooltip>{" "}
           </Link>
-          <Tooltip title="Update">
-            <EditOutlined
-              style={{ color: "blue", cursor: "pointer", fontSize: "16px" }}
-            />
-          </Tooltip>{" "}
+          <Link to={`/admin/car-update/${record.key}`}>
+            <Tooltip title="Update">
+              <EditOutlined
+                style={{ color: "blue", cursor: "pointer", fontSize: "16px" }}
+              />
+            </Tooltip>
+          </Link>
           <Tooltip title="Delete">
             <DeleteFilled
               onClick={() => handleDelete(record.key)}

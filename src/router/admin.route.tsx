@@ -2,6 +2,7 @@ import AddCar from "../pages/admin/car-management/AddCar";
 import AllBookings from "../pages/admin/car-management/AllBookings";
 import AllCars from "../pages/admin/car-management/AllCars";
 import CarDetails from "../pages/admin/car-management/CarDetails";
+import UpdateCar from "../pages/admin/car-management/UpdateCar";
 import Dashboard from "../pages/Dashboard";
 
 export const adminPaths = [
@@ -26,6 +27,10 @@ export const adminPaths = [
       {
         path: "car-details/:id",
         element: <CarDetails />,
+      },
+      {
+        path: "car-update/:id",
+        element: <UpdateCar />,
       },
     ],
   },
