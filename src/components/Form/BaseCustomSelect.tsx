@@ -9,13 +9,16 @@ let index = 0;
 type TBaseSelectProps = {
   name: string;
   label: string;
+  defaulItems?: string[] | never[] | any;
 };
 
-const BaseCustomSelect = ({ name, label }: TBaseSelectProps) => {
+const BaseCustomSelect = ({ name, label, defaulItems }: TBaseSelectProps) => {
   const [items, setItems] = useState([]);
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState(defaulItems);
   const [nameInput, setNameInput] = useState("");
   const inputRef = useRef<InputRef>(null);
+
+  console.log({ items });
 
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNameInput(event.target.value);

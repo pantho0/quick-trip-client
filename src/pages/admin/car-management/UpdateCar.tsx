@@ -25,6 +25,7 @@ const UpdateCar = () => {
   const { id } = useParams();
   const { data: carData, isFetching } = useGetSingleCarQuery(id);
 
+  const features = carData?.features || [];
   const defaultValues = {
     name: carData?.name,
     description: carData?.description,
@@ -62,7 +63,11 @@ const UpdateCar = () => {
                   label="Electric or Not?"
                   options={isElectricOptions}
                 />
-                <BaseCustomSelect name="features" label="Features" />
+                <BaseCustomSelect
+                  name="features"
+                  label="Features"
+                  defaulItems={features}
+                />
                 <BaseInput
                   type="number"
                   name="pricePerHour"
