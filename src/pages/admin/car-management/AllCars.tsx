@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Flex, Space, Table, Tooltip } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
-import { useGetAllCarQuery } from "../../../redux/features/admin/carManagement.api";
+import {
+  useDeleteCarMutation,
+  useGetAllCarQuery,
+} from "../../../redux/features/admin/carManagement.api";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -10,6 +13,8 @@ import {
   EyeFilled,
   EyeOutlined,
 } from "@ant-design/icons";
+import Swal from "sweetalert2";
+import { toast } from "sonner";
 
 interface DataType {
   key: string;
@@ -22,8 +27,34 @@ interface DataType {
 const AllCars = () => {
   const [params, setParams] = useState([]);
   const { data: cars, isFetching } = useGetAllCarQuery(params);
-  const handleDelete = (id) => {
-    console.log(id);
+  const [deleteCar] = useDeleteCarMutation();
+  const handleDelete = async (id: string) => {
+    try {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const res = await deleteCar(id);
+          if (!res?.data?.success) {
+            toast.error(res?.data?.message);
+          } else {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const carFilterOptions = cars?.data?.map((item) => ({

@@ -56,6 +56,7 @@ const carManagementApi = baseApi.injectEndpoints({
         url: `/cars/${carId}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["cars"],
     }),
   }),
 });
@@ -65,4 +66,5 @@ export const {
   useAddCarMutation,
   useGetSingleCarQuery,
   useReturnCarMutation,
+  useDeleteCarMutation,
 } = carManagementApi;
