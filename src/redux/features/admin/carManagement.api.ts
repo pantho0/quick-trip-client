@@ -43,8 +43,19 @@ const carManagementApi = baseApi.injectEndpoints({
         return response.data;
       },
     }),
+    returnCar: builder.mutation({
+      query: (bookingInfo) => ({
+        url: "/cars/return",
+        method: "PUT",
+        body: bookingInfo,
+      }),
+    }),
   }),
 });
 
-export const { useGetAllCarQuery, useAddCarMutation, useGetSingleCarQuery } =
-  carManagementApi;
+export const {
+  useGetAllCarQuery,
+  useAddCarMutation,
+  useGetSingleCarQuery,
+  useReturnCarMutation,
+} = carManagementApi;
