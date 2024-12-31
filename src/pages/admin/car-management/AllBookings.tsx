@@ -156,7 +156,7 @@ const ReturnCarModal = ({ data }: { data: DataType }) => {
 
   return (
     <>
-      <Button className="globalButton" onClick={showModal}>
+      <Button disabled={!!data?.endTime} onClick={showModal}>
         Return Car
       </Button>
       <Modal

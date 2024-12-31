@@ -8,8 +8,7 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { carAddSchema } from "./Cars.Contant";
 import { useGetSingleCarQuery } from "../../../redux/features/admin/carManagement.api";
-
-import { MagnifyingGlass } from "react-loader-spinner";
+import Loader from "../../../components/shared/Loader";
 
 const isElectricOptions = [
   {
@@ -40,24 +39,7 @@ const UpdateCar = () => {
   };
 
   if (isFetching) {
-    return (
-      <Flex
-        justify="center"
-        align="center"
-        style={{ minHeight: "calc(100vh - 300px)" }}
-      >
-        <MagnifyingGlass
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="magnifying-glass-loading"
-          wrapperStyle={{}}
-          wrapperClass="magnifying-glass-wrapper"
-          glassColor="#c0efff"
-          color="#e15b64"
-        />
-      </Flex>
-    );
+    return <Loader />;
   }
 
   if (!isFetching) {
