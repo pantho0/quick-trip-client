@@ -19,8 +19,6 @@ const BaseCustomSelect = ({ name, label, defaulItems }: TBaseSelectProps) => {
   const [nameInput, setNameInput] = useState("");
   const inputRef = useRef<InputRef>(null);
 
-  console.log({ items });
-
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNameInput(event.target.value);
   };

@@ -51,6 +51,14 @@ const carManagementApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["bookings"],
     }),
+    updateCar: builder.mutation({
+      query: (carData) => ({
+        url: `/cars/${carData.id}`,
+        method: "PATCH",
+        body: carData,
+      }),
+      invalidatesTags: ["cars"],
+    }),
     deleteCar: builder.mutation({
       query: (carId) => ({
         url: `/cars/${carId}`,
@@ -67,4 +75,5 @@ export const {
   useGetSingleCarQuery,
   useReturnCarMutation,
   useDeleteCarMutation,
+  useUpdateCarMutation,
 } = carManagementApi;

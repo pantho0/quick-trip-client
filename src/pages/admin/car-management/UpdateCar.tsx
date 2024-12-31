@@ -7,8 +7,12 @@ import BaseCustomSelect from "../../../components/Form/BaseCustomSelect";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { carAddSchema } from "./Cars.Contant";
-import { useGetSingleCarQuery } from "../../../redux/features/admin/carManagement.api";
+import {
+  useGetSingleCarQuery,
+  useUpdateCarMutation,
+} from "../../../redux/features/admin/carManagement.api";
 import Loader from "../../../components/shared/Loader";
+import { toast } from "sonner";
 
 const isElectricOptions = [
   {
@@ -24,6 +28,7 @@ const isElectricOptions = [
 const UpdateCar = () => {
   const { id } = useParams();
   const { data: carData, isFetching } = useGetSingleCarQuery(id);
+  const [updateCar] = useUpdateCarMutation();
 
   const features = carData?.features || [];
   const defaultValues = {
@@ -36,7 +41,22 @@ const UpdateCar = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
+    const updatedCarInfo = {
+      ...data,
+      id: carData?._id,
+      pricePerHour: Number(data.pricePerHour),
+    };
+    const toastId = toast.loading("Updating Car...");
+    try {
+      const res = await updateCar(updatedCarInfo);
+      if (res?.data?.success) {
+        toast.success("Car Updated", { id: toastId, duration: 2000 });
+      } else {
+        toast.error("Failed to update car", { id: toastId, duration: 2000 });
+      }
+    } catch (error) {
+      toast.error("Something went wrong", { id: toastId, duration: 2000 });
+    }
   };
 
   if (isFetching) {
@@ -81,7 +101,7 @@ const UpdateCar = () => {
                   }}
                 >
                   <Button size="large" htmlType="submit">
-                    Add Car
+                    Update Car
                   </Button>
                 </div>
               </BaseForm>
