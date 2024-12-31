@@ -1,0 +1,16 @@
+.globalButton {
+  background-color: #ccf7bf !important;
+  color: #000 !important;
+  outline: none;
+  border: none;
+}
+
+.globalButton:hover {
+  outline: none;
+  border: 1px solid #74f34e;
+}
+
+.globalButton:focus {
+  outline: none;
+  box-shadow: none;
+}

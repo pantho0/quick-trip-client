@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Button,
   DatePicker,
@@ -12,7 +13,7 @@ import { useGetAllBookingsQuery } from "../../../redux/features/admin/bookingMan
 import moment from "moment";
 import { useState } from "react";
 import { useReturnCarMutation } from "../../../redux/features/admin/carManagement.api";
-
+import "../../../styles/globalButton.css";
 type DataType = {
   key: string;
   bookedCar: string;
@@ -121,7 +122,7 @@ const AllBookings = () => {
       filters?.status?.forEach((item) =>
         queryParams.push({ name: "status", value: item })
       );
-      setParams(queryParams);
+      // setParams(queryParams);
     }
   };
 
@@ -155,8 +156,8 @@ const ReturnCarModal = ({ data }: { data: DataType }) => {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal
+      <Button className="globalButton" onClick={showModal}>
+        Return Car
       </Button>
       <Modal
         title="Basic Modal"
@@ -195,7 +196,7 @@ const DateAndTimePicker = ({ bookingId }: { bookingId: string }) => {
       <DatePicker
         showTime
         onChange={(
-          value: DatePickerProps["value"] | RangePickerProps["value"],
+          _value: DatePickerProps["value"] | RangePickerProps["value"],
           dateString
         ) => {
           const time = moment(dateString).format("YYYY-MM-DDTHH:mm:ss") + "Z";

@@ -1,9 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Table } from "antd";
+import { Button, Flex, Space, Table } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
 import { useGetAllCarQuery } from "../../../redux/features/admin/carManagement.api";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  DeleteFilled,
+  EditOutlined,
+  EyeFilled,
+  EyeOutlined,
+} from "@ant-design/icons";
 
 interface DataType {
   key: string;
@@ -76,11 +82,23 @@ const AllCars = () => {
       title: "Actions",
       dataIndex: "actions",
       render: (_, record) => (
-        <>
+        <Flex justify="center" gap="10px">
           <Link to={`/admin/car-details/${record.key}`}>
-            <Button>Details</Button>{" "}
+            <Button>
+              <EyeFilled style={{ color: "green" }} />
+            </Button>{" "}
           </Link>
-        </>
+          <Link to={`/admin/car-details/${record.key}`}>
+            <Button>
+              <EditOutlined style={{ color: "blue" }} />
+            </Button>{" "}
+          </Link>
+          <Link to={`/admin/car-details/${record.key}`}>
+            <Button>
+              <DeleteFilled style={{ color: "red" }} />
+            </Button>{" "}
+          </Link>
+        </Flex>
       ),
     },
   ];
