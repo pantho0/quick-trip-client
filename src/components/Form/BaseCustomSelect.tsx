@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Divider, Form, Input, Select } from "antd";
@@ -13,7 +14,7 @@ type TBaseSelectProps = {
 };
 
 const BaseCustomSelect = ({ name, label, defaulItems }: TBaseSelectProps) => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<string[]>([]);
   const [selectedItems, setSelectedItems] = useState(defaulItems);
   const [nameInput, setNameInput] = useState("");
   const inputRef = useRef<InputRef>(null);
@@ -35,7 +36,7 @@ const BaseCustomSelect = ({ name, label, defaulItems }: TBaseSelectProps) => {
     }, 0);
   };
 
-  const handleSelectChange = (value) => {
+  const handleSelectChange = (value: any) => {
     setSelectedItems(value);
   };
 
