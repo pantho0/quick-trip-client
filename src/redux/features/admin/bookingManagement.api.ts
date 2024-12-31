@@ -10,6 +10,7 @@ const bookingManagementApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["bookings"],
       transformResponse: (response: TResponseRedux<TBooking[]>) => {
         return response.data;
       },

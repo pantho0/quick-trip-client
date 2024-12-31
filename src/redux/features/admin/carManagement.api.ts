@@ -49,6 +49,7 @@ const carManagementApi = baseApi.injectEndpoints({
         method: "PUT",
         body: bookingInfo,
       }),
+      invalidatesTags: ["bookings"],
     }),
   }),
 });

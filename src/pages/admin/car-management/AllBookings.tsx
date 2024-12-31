@@ -11,6 +11,7 @@ import {
 import { useGetAllBookingsQuery } from "../../../redux/features/admin/bookingManagement.api";
 import moment from "moment";
 import { useState } from "react";
+import { useReturnCarMutation } from "../../../redux/features/admin/carManagement.api";
 
 type DataType = {
   key: string;
@@ -176,8 +177,19 @@ type RangePickerProps = GetProps<typeof DatePicker.RangePicker>;
 
 const DateAndTimePicker = ({ bookingId }: { bookingId: string }) => {
   const [endTime, setEndTime] = useState("");
-  const billCalculation = () => {
-    console.log(endTime, bookingId);
+  const [returnCar] = useReturnCarMutation();
+  const billCalculation = async () => {
+    const bookingInfo = {
+      bookingId: bookingId,
+      endTime: endTime,
+    };
+    console.log(bookingInfo);
+    try {
+      const res = await returnCar(bookingInfo);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
