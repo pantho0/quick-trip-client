@@ -17,7 +17,7 @@ const CarDetails = () => {
           <img
             style={{ width: "100%", height: "200x" }}
             alt="example"
-            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+            src={data?.images}
           />
         }
       >
@@ -38,7 +38,7 @@ const CarDetails = () => {
               {data?.status.toUpperCase()}
             </Tag>{" "}
           </p>
-          <p>isElectric : {data?.isElectric}</p>
+          <p>isElectric : {data?.isElectric ? "Yes" : "No"}</p>
           <div>
             <p style={{ textAlign: "center", fontSize: "20px", lineHeight: 0 }}>
               Features

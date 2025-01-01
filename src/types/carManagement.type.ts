@@ -1,6 +1,7 @@
 export type TCarManagement = {
   _id: string;
   name: string;
+  images: string;
   description: string;
   color: string;
   isElectric: boolean;
