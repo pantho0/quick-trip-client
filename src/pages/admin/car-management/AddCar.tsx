@@ -58,7 +58,7 @@ const AddCar = () => {
           <BaseForm onSubmit={onSubmit}>
             <BaseInput type="text" name="name" label="Name" />
             <Controller
-              name="images" // Ensure this matches the field name in the form state
+              name="image" // Ensure this matches the field name in the form state
               render={({ field: { onChange, value, ...field } }) => (
                 <Form.Item>
                   <Input
