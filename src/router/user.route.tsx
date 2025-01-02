@@ -1,3 +1,4 @@
+import ProtectedRoute from "../components/layouts/ProtectedRoute";
 import Dashboard from "../pages/Dashboard";
 import MyBookings from "../pages/user/MyBookings";
 
@@ -5,7 +6,11 @@ export const userPaths = [
   {
     name: "Dashboard",
     path: "dashboard",
-    element: <Dashboard />,
+    element: (
+      <ProtectedRoute role="user">
+        <Dashboard />
+      </ProtectedRoute>
+    ),
   },
   {
     name: "Booking Management",
@@ -13,7 +18,11 @@ export const userPaths = [
       {
         name: "My Bookings",
         path: "add-car",
-        element: <MyBookings />,
+        element: (
+          <ProtectedRoute role="user">
+            <MyBookings />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

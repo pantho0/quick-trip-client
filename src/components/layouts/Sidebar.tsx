@@ -4,7 +4,10 @@ import { adminPaths } from "../../router/admin.route";
 import { navLinkGenerator } from "../../utils/navLinkGenerator";
 import { userPaths } from "../../router/user.route";
 import { useAppSelector } from "../../redux/hooks";
-import { selectUser } from "../../redux/features/auth/authSlice";
+import { selectToken } from "../../redux/features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { verifyToken } from "../../utils/verifyToken";
+import { TUser } from "../../types/global.types";
 
 const { Sider } = Layout;
 
@@ -14,7 +17,13 @@ const userRole = {
 };
 
 const Sidebar = () => {
-  const user = useAppSelector(selectUser);
+  const token = useAppSelector(selectToken);
+  const dispatch = useDispatch();
+  let user;
+
+  if (token) {
+    user = verifyToken(token) as TUser;
+  }
 
   let sidebarItems;
 

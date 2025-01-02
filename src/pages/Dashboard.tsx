@@ -1,5 +1,9 @@
+import { selectUser } from "../redux/features/auth/authSlice";
+import { useAppSelector } from "../redux/hooks";
+
 const Dashboard = () => {
-  return <div>this is dashboard</div>;
+  const user = useAppSelector(selectUser);
+  return <div>this is dashboard for {user?.role}</div>;
 };
 
 export default Dashboard;

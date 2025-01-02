@@ -1,3 +1,4 @@
+import ProtectedRoute from "../components/layouts/ProtectedRoute";
 import AddCar from "../pages/admin/car-management/AddCar";
 import AllBookings from "../pages/admin/car-management/AllBookings";
 import AllCars from "../pages/admin/car-management/AllCars";
@@ -9,7 +10,11 @@ export const adminPaths = [
   {
     name: "Dashboard",
     path: "dashboard",
-    element: <Dashboard />,
+    element: (
+      <ProtectedRoute role="admin">
+        <Dashboard />
+      </ProtectedRoute>
+    ),
   },
   {
     name: "Cars Management",
@@ -17,20 +22,36 @@ export const adminPaths = [
       {
         name: "Add Car",
         path: "add-car",
-        element: <AddCar />,
+        element: (
+          <ProtectedRoute role="admin">
+            <AddCar />
+          </ProtectedRoute>
+        ),
       },
       {
         name: "All Cars",
         path: "all-cars",
-        element: <AllCars />,
+        element: (
+          <ProtectedRoute role="admin">
+            <AllCars />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "car-details/:id",
-        element: <CarDetails />,
+        element: (
+          <ProtectedRoute role="admin">
+            <CarDetails />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "car-update/:id",
-        element: <UpdateCar />,
+        element: (
+          <ProtectedRoute role="admin">
+            <UpdateCar />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
@@ -40,7 +61,11 @@ export const adminPaths = [
       {
         name: "All Bookings",
         path: "all-bookings",
-        element: <AllBookings />,
+        element: (
+          <ProtectedRoute role="admin">
+            <AllBookings />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
