@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Flex, Space, Table, Tooltip } from "antd";
+import { Flex, Pagination, Space, Table, Tooltip } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
 import {
   useDeleteCarMutation,
@@ -7,12 +7,7 @@ import {
 } from "../../../redux/features/admin/carManagement.api";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  DeleteFilled,
-  EditOutlined,
-  EyeFilled,
-  EyeOutlined,
-} from "@ant-design/icons";
+import { DeleteFilled, EditOutlined, EyeFilled } from "@ant-design/icons";
 import Swal from "sweetalert2";
 import { toast } from "sonner";
 
@@ -26,7 +21,13 @@ interface DataType {
 
 const AllCars = () => {
   const [params, setParams] = useState([]);
-  const { data: cars, isFetching } = useGetAllCarQuery(params);
+  const [page, setPage] = useState(1);
+  const { data: cars, isFetching } = useGetAllCarQuery([
+    { name: "page", value: page },
+    { name: "limit", value: 9 },
+    { name: "sort", value: "id" },
+    ...params,
+  ]);
   const [deleteCar] = useDeleteCarMutation();
   const handleDelete = async (id: string) => {
     try {
@@ -56,6 +57,8 @@ const AllCars = () => {
       console.log(error);
     }
   };
+
+  const metaData = cars?.meta;
 
   const carFilterOptions = cars?.data?.map((item) => ({
     text: item?.name,
@@ -156,13 +159,23 @@ const AllCars = () => {
   };
 
   return (
-    <Table<DataType>
-      columns={columns}
-      loading={isFetching}
-      dataSource={carData}
-      onChange={onChange}
-      showSorterTooltip={{ target: "sorter-icon" }}
-    />
+    <>
+      <Table<DataType>
+        columns={columns}
+        loading={isFetching}
+        dataSource={carData}
+        onChange={onChange}
+        pagination={false}
+        showSorterTooltip={{ target: "sorter-icon" }}
+      />
+      <Flex justify="flex-end" style={{ margin: "20px 0px" }}>
+        <Pagination
+          onChange={(value) => setPage(value)}
+          pageSize={metaData?.limit}
+          total={metaData?.total}
+        />
+      </Flex>
+    </>
   );
 };
 

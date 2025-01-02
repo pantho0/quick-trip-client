@@ -7,6 +7,7 @@ const carManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllCar: builder.query({
       query: (args) => {
+        console.log(args);
         const params = new URLSearchParams();
         if (args) {
           args.forEach((item: Record<string, any>) =>
@@ -20,9 +21,12 @@ const carManagementApi = baseApi.injectEndpoints({
         };
       },
       providesTags: ["cars"],
-      transformResponse: (response: TResponseRedux<TCarManagement[]>) => {
+      transformResponse: (
+        response: TResponseRedux<TCarManagement[] | undefined>
+      ) => {
         return {
           data: response?.data,
+          meta: response?.meta,
         };
       },
     }),

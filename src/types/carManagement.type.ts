@@ -1,3 +1,5 @@
+import { TMeta } from "./global.types";
+
 export type TCarManagement = {
   _id: string;
   name: string;
@@ -12,4 +14,4 @@ export type TCarManagement = {
   createdAt: string;
   updatedAt: string;
   __v?: number;
-};
+} & TMeta;

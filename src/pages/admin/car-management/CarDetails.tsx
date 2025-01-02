@@ -1,17 +1,21 @@
 import { useParams } from "react-router-dom";
 import { useGetSingleCarQuery } from "../../../redux/features/admin/carManagement.api";
 import { Card, Flex, Tag } from "antd";
+import Loader from "../../../components/shared/Loader";
 const { Meta } = Card;
 
 const CarDetails = () => {
   const { id } = useParams();
-  const { data } = useGetSingleCarQuery(id);
+  const { data, isFetching } = useGetSingleCarQuery(id);
 
-  console.log(data);
+  if (isFetching) {
+    return <Loader />;
+  }
 
   return (
     <Flex justify="center" align="center">
       <Card
+        key={data?._id}
         hoverable
         cover={
           <img
@@ -46,7 +50,7 @@ const CarDetails = () => {
             <p style={{ textAlign: "center" }}>
               <br />
               {data?.features.map((f) => (
-                <Tag style={{ fontSize: "14px" }}>
+                <Tag key={f} style={{ fontSize: "14px" }}>
                   {f} <br />
                 </Tag>
               ))}
