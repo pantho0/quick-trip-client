@@ -1,4 +1,4 @@
-import { Button, Carousel, Col, Flex, Form, Image, Input, Row } from "antd";
+import { Button, Carousel, Col, Form, Image, Input, Row } from "antd";
 import tesla from "../../assets/images/tesla.jpg";
 import bmw from "../../assets/images/bmw.jpg";
 import audi from "../../assets/images/audi.jpg";
@@ -6,9 +6,6 @@ import ford from "../../assets/images/ford.jpg";
 import "../../styles/banner.css";
 
 const Banner = () => {
-  const onChange = (currentSlide: number) => {
-    console.log(currentSlide);
-  };
   return (
     <Row>
       <Col
@@ -21,7 +18,9 @@ const Banner = () => {
           <h1 className="responsive-title">
             Quick <span style={{ color: "#E74E49" }}>Trip</span>{" "}
           </h1>
-          <h4>Effortless Car Reservations for Every Destination</h4>
+          <h4 style={{ fontStyle: "italic" }}>
+            Effortless Car Reservations for Every Destination
+          </h4>
           <p>
             Quick Trip makes finding the perfect car for your journey a breeze.
             Simply select your pickup and drop-off locations, and let us connect
@@ -44,7 +43,12 @@ const Banner = () => {
       </Col>
       <Col span={24} md={{ span: 24 }} lg={{ span: 12 }}>
         <div className="custom-bannerheading">
-          <Image src={bmw} />
+          <Carousel autoplay>
+            <Image src={bmw} />
+            <Image src={tesla} />
+            <Image src={audi} />
+            <Image src={ford} />
+          </Carousel>{" "}
         </div>
       </Col>
     </Row>

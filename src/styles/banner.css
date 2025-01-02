@@ -14,11 +14,13 @@
 }
 
 .responsive-title {
+  color: #2a2c31;
   font-size: 3rem;
 }
 
 .custom-bannerheading h4 {
   font-size: 20px;
+  color: #2a2c31;
 }
 .custom-bannerheading p {
   font-size: 1rem;
