@@ -1,64 +1,107 @@
-.responsive-title {
-  color: #eb2f06;
-  font-size: 45px; /* Default for desktop */
-  line-height: 1.2;
-}
-
-.responsive-subtitle {
-  color: #e55039;
-  font-size: 20px;
-}
-
-.responsive-paragraph {
-  font-size: 16px;
-  width: 80%;
-}
-
-.responsive-form {
+.custom-bannerheading {
+  height: 500px;
+  padding: 20px;
   display: flex;
-  flex-direction: row;
-  gap: inherit;
-  align-items: center;
-  justify-items: center;
+  flex-direction: column;
   justify-content: center;
+  gap: 15px;
 }
 
-.reponsive-bannerImage {
-  width: 600px;
-  height: 450px;
-  object-fit: cover;
+.custom-bannerheading form {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-@media (max-width: 1024px) {
+.responsive-title {
+  font-size: 3rem;
+}
+
+@media only screen and (max-width: 1200px) {
   .responsive-title {
-    font-size: 36px; /* Tablet size */
-    text-align: center;
+    font-size: 2.5rem;
   }
-  .responsive-subtitle {
-    color: #e55039;
-    font-size: 16px;
+}
+
+@media only screen and (max-width: 992px) {
+  .responsive-title {
+    font-size: 2rem;
     text-align: center;
   }
 
-  .responsive-paragraph {
-    font-size: 13px;
+  .custom-bannerheading {
+    padding: 15px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .custom-bannerheading {
+    text-align: center;
+  }
+
+  .responsive-title {
+    font-size: 1.8rem;
+  }
+
+  .custom-bannerheading form {
+    display: block;
+  }
+
+  .custom-bannerheading button {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .responsive-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .custom-bannerheading h4 {
+    font-size: 1rem;
+    padding: 5px;
+  }
+  .custom-bannerheading {
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .custom-bannerheading p {
+    font-size: 0.9rem;
     text-align: justify;
   }
 
-  .responsive-form {
+  .custom-bannerheading form {
+    display: flex;
     flex-direction: column;
-    width: 100%;
-  }
-
-  .reponsive-bannerImage {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
+    align-items: center;
+    gap: 0px;
   }
 }
-@media (max-width: 768px) {
+
+@media only screen and (max-width: 320px) {
   .responsive-title {
-    font-size: 24px; /* Mobile size */
+    font-size: 1.5rem;
+    text-align: center !important;
+  }
+
+  .custom-bannerheading {
+    height: auto;
+    padding: 5px;
+  }
+
+  .custom-bannerheading p {
+    font-size: 12px;
+    text-align: justify;
+  }
+
+  .custom-bannerheading h4 {
+    font-size: 13px;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
   }
 }

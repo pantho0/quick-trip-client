@@ -11,61 +11,41 @@ const Banner = () => {
   };
   return (
     <Row>
-      <Col span={24} md={{ span: 12 }}>
-        <Flex
-          align="flex-start"
-          justify="center"
-          vertical
-          style={{ height: "100vh" }}
-        >
+      <Col
+        span={24}
+        md={{ span: 24 }}
+        lg={{ span: 12 }}
+        className="custom-bannerheading"
+      >
+        <div className="custom-bannerheading">
           <h1 className="responsive-title">
-            QuickTrip:Your Journey, Simplified
+            Quick <span style={{ color: "#E74E49" }}>Trip</span>{" "}
           </h1>
-          <h4 className="responsive-subtitle">
-            Effortless Car Reservations for Every Destination
-          </h4>
-          <p className="responsive-paragraph">
+          <h4>Effortless Car Reservations for Every Destination</h4>
+          <p>
             Quick Trip makes finding the perfect car for your journey a breeze.
             Simply select your pickup and drop-off locations, and let us connect
             you with the best options available. Wherever you're headed, Quick
             Trip ensures a smooth ride every time.
           </p>
 
-          <div
-            style={{
-              display: "flex",
-              gap: "16px",
-            }}
-          >
-            <Form layout="vertical" className="responsive-form">
-              <Form.Item name={"From"} label={"From"} style={{ flex: 1 }}>
+          <div>
+            <Form size="large" layout="vertical">
+              <Form.Item name={"From"} label={"From"}>
                 <Input />
               </Form.Item>
-              <Form.Item name={"To"} label={"To"} style={{ flex: 1 }}>
+              <Form.Item name={"To"} label={"To"}>
                 <Input />
               </Form.Item>
-              <Button>Search Car</Button>
+              <Button style={{ marginTop: "5px" }}>Search Car</Button>
             </Form>
           </div>
-        </Flex>
+        </div>
       </Col>
-      <Col span={24} md={{ span: 12 }}>
-        <Flex vertical justify="center" style={{ height: "100vh" }}>
-          <Carousel afterChange={onChange} autoplay>
-            <div>
-              <Image className="reponsive-bannerImage" src={tesla} />
-            </div>
-            <div>
-              <Image className="reponsive-bannerImage" src={bmw} />
-            </div>
-            <div>
-              <Image className="reponsive-bannerImage" src={audi} />
-            </div>
-            <div>
-              <Image className="reponsive-bannerImage" src={ford} />
-            </div>
-          </Carousel>
-        </Flex>
+      <Col span={24} md={{ span: 24 }} lg={{ span: 12 }}>
+        <div className="custom-bannerheading">
+          <Image src={bmw} />
+        </div>
       </Col>
     </Row>
   );
