@@ -1,10 +1,10 @@
 .custom-bannerheading {
   height: 500px;
-  padding: 20px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 15px;
+  gap: 14px;
 }
 
 .custom-bannerheading form {
@@ -17,21 +17,12 @@
   font-size: 3rem;
 }
 
-@media only screen and (max-width: 1200px) {
-  .responsive-title {
-    font-size: 2.5rem;
-  }
+.custom-bannerheading h4 {
+  font-size: 20px;
 }
-
-@media only screen and (max-width: 992px) {
-  .responsive-title {
-    font-size: 2rem;
-    text-align: center;
-  }
-
-  .custom-bannerheading {
-    padding: 15px;
-  }
+.custom-bannerheading p {
+  font-size: 1rem;
+  line-height: 1.8rem;
 }
 
 @media only screen and (max-width: 768px) {
@@ -53,20 +44,20 @@
 }
 
 @media only screen and (max-width: 480px) {
+  .custom-bannerheading {
+    height: auto;
+    padding: 4px;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
   .responsive-title {
     font-size: 2rem;
     text-align: center;
   }
-
   .custom-bannerheading h4 {
     font-size: 1rem;
     padding: 5px;
-  }
-  .custom-bannerheading {
-    height: auto;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
   }
 
   .custom-bannerheading p {
@@ -75,9 +66,7 @@
   }
 
   .custom-bannerheading form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
     gap: 0px;
   }
 }
@@ -89,7 +78,6 @@
   }
 
   .custom-bannerheading {
-    height: auto;
     padding: 5px;
   }
 
@@ -99,7 +87,8 @@
   }
 
   .custom-bannerheading h4 {
-    font-size: 13px;
+    font-size: 10px;
+    padding: 15px 0px;
     flex-direction: column;
     align-items: center;
     gap: 0px;
