@@ -50,7 +50,7 @@ const AvailableCars = () => {
                   </Tag>
                 ))}
               </p>
-              <Link to={"/user/add-car"}>
+              <Link to={`/user/create-booking/${car?._id}`}>
                 <Flex
                   justify="center"
                   style={{ marginTop: "10px", width: "100%" }}

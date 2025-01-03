@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button, Carousel, Col, Image, Row } from "antd";
 import tesla from "../../assets/images/tesla.jpg";
 import bmw from "../../assets/images/bmw.jpg";
@@ -24,8 +26,7 @@ const locations = [
 const Banner = () => {
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = (_data: any) => {
     navigate("/booking");
   };
   return (

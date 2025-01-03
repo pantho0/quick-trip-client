@@ -1,5 +1,6 @@
 import ProtectedRoute from "../components/layouts/ProtectedRoute";
 import Dashboard from "../pages/Dashboard";
+import CreateBooking from "../pages/user/CreateBooking";
 import MyBookings from "../pages/user/MyBookings";
 
 export const userPaths = [
@@ -21,6 +22,14 @@ export const userPaths = [
         element: (
           <ProtectedRoute role="user">
             <MyBookings />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "create-booking/:id",
+        element: (
+          <ProtectedRoute role="user">
+            <CreateBooking />
           </ProtectedRoute>
         ),
       },

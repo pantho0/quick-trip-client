@@ -31,9 +31,9 @@ const AllBookings = () => {
   const { data: bookings, isFetching } = useGetAllBookingsQuery(undefined);
   const bookingData =
     bookings?.map((booking) => ({
-      key: booking._id,
-      bookedCar: booking.carId.name,
-      pricePerHour: booking.carId.pricePerHour,
+      key: booking?._id,
+      bookedCar: booking.carId?.name,
+      pricePerHour: booking.carId?.pricePerHour,
       passengerName: booking.user.name,
       passengerPhone: booking.user.phone,
       passengerEmail: booking.user.email,
