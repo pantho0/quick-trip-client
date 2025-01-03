@@ -44,7 +44,7 @@ const Mainlayout = () => {
           style={{
             background: colorBgContainer,
             minHeight: "100vh",
-            padding: 24,
+            padding: 10,
             borderRadius: borderRadiusLG,
           }}
         >

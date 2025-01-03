@@ -1,4 +1,5 @@
 import { Carousel, Row, Col, Card, Typography, Image } from "antd";
+import "../../styles/featured.css";
 
 import bmw from "../../assets/images/bmw.jpg";
 import tesla from "../../assets/images/tesla.jpg";
@@ -29,7 +30,7 @@ const featuredCars = [
 
 const FeaturedCars = () => {
   return (
-    <div style={{ margin: "60px 0", background: "#fff" }}>
+    <div className="featured">
       <h1 style={{ textAlign: "center", color: "#2a2c31", padding: "20px 0" }}>
         --Featured Cars--
       </h1>

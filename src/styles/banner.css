@@ -6,9 +6,19 @@
   justify-content: center;
   gap: 14px;
 }
+.search-button {
+  width: 100%; /* Make the button full-width for smaller screens */
+  background-color: #e74e49;
+  color: #fff;
+}
+
+.search-button:hover {
+  background-color: #e6645f !important;
+  color: #fff !important;
+  border: none;
+}
 
 .custom-bannerheading form {
-  display: flex;
   align-items: center;
   gap: 20px;
 }
