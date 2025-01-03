@@ -15,8 +15,6 @@ import { useState } from "react";
 import Loader from "../../components/shared/Loader";
 import { useCreateBookingMutation } from "../../redux/features/admin/bookingManagement.api";
 import { toast } from "sonner";
-import { DefinitionType } from "@reduxjs/toolkit/query";
-import { SerializedError } from "@reduxjs/toolkit";
 import { TResponse } from "../../types/global.types";
 
 type RangePickerProps = GetProps<typeof DatePicker.RangePicker>;

@@ -3,6 +3,7 @@ import {
   Button,
   DatePicker,
   DatePickerProps,
+  Flex,
   GetProps,
   Modal,
   Table,
@@ -14,6 +15,8 @@ import moment from "moment";
 import { useState } from "react";
 import { useReturnCarMutation } from "../../../redux/features/admin/carManagement.api";
 import "../../../styles/globalButton.css";
+import { toast } from "sonner";
+import { TResponse } from "../../../types/global.types";
 type DataType = {
   key: string;
   bookedCar: string;
@@ -162,13 +165,16 @@ const ReturnCarModal = ({ data }: { data: DataType }) => {
         Return Car
       </Button>
       <Modal
-        title="Basic Modal"
+        title="Return Car & Create Bill"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
       >
         <p>Journey Start Time : {data?.startTime}</p>
-        <DateAndTimePicker bookingId={data?.key} />
+        <DateAndTimePicker
+          bookingId={data?.key}
+          setIsModalOpen={setIsModalOpen}
+        />
       </Modal>
     </>
   );
@@ -176,25 +182,40 @@ const ReturnCarModal = ({ data }: { data: DataType }) => {
 
 type RangePickerProps = GetProps<typeof DatePicker.RangePicker>;
 
-const DateAndTimePicker = ({ bookingId }: { bookingId: string }) => {
+const DateAndTimePicker = ({
+  bookingId,
+  setIsModalOpen,
+}: {
+  bookingId: string;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [endTime, setEndTime] = useState("");
   console.log({ endTime });
   const [returnCar] = useReturnCarMutation();
   const billCalculation = async () => {
+    const toastId = toast.loading("Calculating Bill");
     const bookingInfo = {
       bookingId: bookingId,
       endTime: endTime,
     };
     console.log(bookingInfo);
     try {
-      const res = await returnCar(bookingInfo);
-      console.log(res);
+      const res = (await returnCar(bookingInfo)) as TResponse<any>;
+      if (res?.error) {
+        toast.error(res?.error?.data?.message, { id: toastId, duration: 2000 });
+      } else {
+        toast.success("Car returned successful & bill created", {
+          id: toastId,
+          duration: 2000,
+        });
+      }
+      setIsModalOpen(false);
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <>
+    <Flex vertical gap={10}>
       <DatePicker
         showTime
         onChange={(
@@ -206,6 +227,6 @@ const DateAndTimePicker = ({ bookingId }: { bookingId: string }) => {
         }}
       />
       <Button onClick={billCalculation}>Calculate Bill</Button>
-    </>
+    </Flex>
   );
 };
