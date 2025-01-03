@@ -1,33 +1,60 @@
-import { Card, Flex } from "antd";
+import { Button, Card, Col, Flex, Row, Tag } from "antd";
 import { useGetAllCarQuery } from "../../redux/features/admin/carManagement.api";
+import { Link } from "react-router-dom";
+import "../../styles/globalButton.css";
 
 const AvailableCars = () => {
   const { data: cars, isFetching, isLoading } = useGetAllCarQuery(undefined);
-  console.log(cars);
-
   const { Meta } = Card;
 
   return (
-    <div>
-      <h1 style={{ textAlign: "center", color: "#2a2c31", padding: "20px 0" }}>
-        --Available Cars--
-      </h1>
-      <Flex gap="middle" align="start">
-        <Card
-          loading={isFetching && isLoading}
-          hoverable
-          style={{ width: 240 }}
-          cover={
-            <img
-              alt="example"
-              src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-            />
-          }
+    <>
+      <div>
+        <h1
+          style={{ textAlign: "center", color: "#2a2c31", padding: "20px 0" }}
         >
-          <Meta title="Europe Street beat" description="www.instagram.com" />
-        </Card>
-      </Flex>
-    </div>
+          --Available Cars--
+        </h1>
+      </div>
+      <Row gutter={[16, 16]}>
+        {cars?.data?.map((car) => (
+          <Col key={car._id} xs={24} sm={12} md={8} lg={6}>
+            <Card
+              loading={isFetching && isLoading}
+              hoverable
+              style={{ width: "100%" }}
+              cover={<img alt="example" src={car?.images} />}
+            >
+              <Meta
+                title={car?.name}
+                description={`${car?.description.slice(0, 55)}...`}
+              />
+              <p style={{ marginTop: "3px" }}>
+                Hourly Price : ${car?.pricePerHour}
+              </p>
+              <p style={{ marginTop: "3px" }}>
+                Features :<br />
+                {car?.features?.slice(0, 3)?.map((f) => (
+                  <Tag color="green" style={{ margin: "2px" }} key={f}>
+                    {f}
+                  </Tag>
+                ))}
+              </p>
+              <Link to={"/user/add-car"}>
+                <Flex
+                  justify="center"
+                  style={{ marginTop: "10px", width: "100%" }}
+                >
+                  <Button className="globalButton" style={{ width: "100%" }}>
+                    Book Now
+                  </Button>
+                </Flex>
+              </Link>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </>
   );
 };
 

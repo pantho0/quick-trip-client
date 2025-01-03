@@ -1,16 +1,11 @@
 .globalButton {
-  background-color: #ccf7bf !important;
-  color: #000 !important;
-  outline: none;
-  border: none;
+  width: 100%; /* Make the button full-width for smaller screens */
+  background-color: #e74e49;
+  color: #fff;
 }
 
 .globalButton:hover {
-  outline: none;
-  border: 1px solid #74f34e;
-}
-
-.globalButton:focus {
-  outline: none;
-  box-shadow: none;
+  background-color: #e6645f !important;
+  color: #fff !important;
+  border: none;
 }
