@@ -28,7 +28,9 @@ type DataType = {
 };
 
 const AllBookings = () => {
-  const { data: bookings, isFetching } = useGetAllBookingsQuery(undefined);
+  const { data: bookings, isFetching } = useGetAllBookingsQuery([
+    { name: "sort", value: "-createdAt" },
+  ]);
   const bookingData =
     bookings?.map((booking) => ({
       key: booking?._id,

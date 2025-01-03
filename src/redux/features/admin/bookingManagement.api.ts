@@ -16,13 +16,11 @@ const bookingManagementApi = baseApi.injectEndpoints({
       },
     }),
     createBooking: builder.mutation({
-      query: (bookingData) => {
-        return {
-          url: "/bookings",
-          method: "POST",
-          body: bookingData,
-        };
-      },
+      query: (bookingData) => ({
+        url: "/bookings",
+        method: "POST",
+        body: bookingData,
+      }),
       invalidatesTags: ["bookings"],
     }),
   }),

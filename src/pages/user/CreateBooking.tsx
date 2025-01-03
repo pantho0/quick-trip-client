@@ -15,6 +15,9 @@ import { useState } from "react";
 import Loader from "../../components/shared/Loader";
 import { useCreateBookingMutation } from "../../redux/features/admin/bookingManagement.api";
 import { toast } from "sonner";
+import { DefinitionType } from "@reduxjs/toolkit/query";
+import { SerializedError } from "@reduxjs/toolkit";
+import { TResponse } from "../../types/global.types";
 
 type RangePickerProps = GetProps<typeof DatePicker.RangePicker>;
 
@@ -22,7 +25,7 @@ const CreateBooking = () => {
   const { id } = useParams();
   const [startDateAndTime, setStartDateAndTime] = useState("");
   const { data: car, isLoading, isFetching } = useGetSingleCarQuery(id);
-  const [bookNow, { error }] = useCreateBookingMutation();
+  const [bookNow] = useCreateBookingMutation();
 
   const confirmBooking = async () => {
     const toastId = toast.loading("Booking");
@@ -32,15 +35,17 @@ const CreateBooking = () => {
       date: currentDate,
       startTime: startDateAndTime,
     };
-
-    console.log(bookingData);
-
     try {
-      await bookNow(bookingData);
-      if (!error?.data?.success) {
-        toast.error(error?.data?.message, { id: toastId, duration: 2000 });
+      const res = (await bookNow(bookingData)) as TResponse<any>;
+
+      if (res?.error) {
+        toast.error(res?.error?.data?.message, { id: toastId, duration: 2000 });
       } else {
-        toast.success("Booking Successfull", { id: toastId, duration: 2000 });
+        console.log(res);
+        toast.success("Booking Successful", {
+          id: toastId,
+          duration: 2000,
+        });
       }
     } catch (error) {
       toast.error("Something Went Wrong", { id: toastId, duration: 2000 });

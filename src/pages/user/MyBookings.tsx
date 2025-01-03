@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Table, TableColumnsType, TableProps } from "antd";
+import { Table, TableColumnsType, TableProps } from "antd";
 import { useGetMyBookingsQuery } from "../../redux/features/user/getMyBooking.api";
 import moment from "moment";
 
@@ -16,8 +16,8 @@ type DataType =
   | [];
 
 const MyBookings = () => {
-  const { data: bookings } = useGetMyBookingsQuery(undefined);
-  console.log(bookings);
+  const { data: bookings, isFetching } = useGetMyBookingsQuery(undefined);
+
   const bookingData =
     bookings?.map((booking) => ({
       key: booking?._id,
@@ -67,12 +67,6 @@ const MyBookings = () => {
       title: "Total Bill (a*b)",
       dataIndex: "totalCost",
     },
-    {
-      title: "Action",
-      render: (_, record: DataType) => {
-        return <Button>hello</Button>;
-      },
-    },
   ];
 
   const onChange: TableProps<DataType>["onChange"] = (
@@ -92,6 +86,7 @@ const MyBookings = () => {
 
   return (
     <Table<DataType>
+      loading={isFetching}
       columns={columns}
       dataSource={bookingData}
       onChange={onChange}
