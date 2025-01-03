@@ -1,28 +1,38 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Table, TableColumnsType, TableProps } from "antd";
 import { useGetMyBookingsQuery } from "../../redux/features/user/getMyBooking.api";
+import moment from "moment";
 
-type DataType = {
-  key: string;
-  bookedCar: string;
-  pricePerHour: number;
-  passengerName: string;
-  passengerPhone: string;
-  passengerEmail: string;
-  date: string | number;
-  startTime: string | number;
-  endTime: string | number;
-  totalCost: number;
-};
+type DataType =
+  | {
+      key: string;
+      bookedCarName: string;
+      pricePerHour: number;
+      bookedDate: string | number;
+      startTime: string | number;
+      endTime: string | number;
+      totalCost: number;
+    }
+  | [];
 
 const MyBookings = () => {
-  const { data } = useGetMyBookingsQuery(undefined);
-  console.log(data);
+  const { data: bookings } = useGetMyBookingsQuery(undefined);
+  console.log(bookings);
+  const bookingData =
+    bookings?.map((booking) => ({
+      key: booking?._id,
+      bookedCarName: booking.carId?.name,
+      pricePerHour: booking.carId?.pricePerHour,
+      bookedDate: moment().format("llll"),
+      startTime: moment.utc(booking?.startTime).format("llll"),
+      endTime: booking?.endTime && moment.utc(booking?.endTime).format("llll"),
+      totalCost: booking?.totalCost || 0,
+    })) || [];
 
   const columns: TableColumnsType<DataType> = [
     {
       title: "Booked Car",
-      dataIndex: "bookedCar",
+      dataIndex: "bookedCarName",
       //   showSorterTooltip: { target: "full-header" },
       //   filters: carFilterOptions,
       //   // specify the condition of filtering result
@@ -32,33 +42,12 @@ const MyBookings = () => {
       //   sortDirections: ["descend"],
     },
     {
-      title: "Passenger",
-      dataIndex: "passengerName",
-      //   filters: [
-      //     {
-      //       text: "Available",
-      //       value: "available",
-      //     },
-      //     {
-      //       text: "Booked",
-      //       value: "booked",
-      //     },
-      //   ],
-      // onFilter: (value, record) => record.status.indexOf(value as string) === 0,
+      title: "Price(Hourly)",
+      dataIndex: "pricePerHour",
     },
     {
-      title: "Phone",
-      dataIndex: "passengerPhone",
-      //   sorter: (a, b) => a.pricePerHour - b.pricePerHour,
-      //   sortDirections: ["descend"],
-    },
-    {
-      title: "Email",
-      dataIndex: "passengerEmail",
-    },
-    {
-      title: "Booking Time",
-      dataIndex: "date",
+      title: "Booked Date",
+      dataIndex: "bookedDate",
     },
     {
       title: "Journey Start Time (a)",
@@ -104,7 +93,7 @@ const MyBookings = () => {
   return (
     <Table<DataType>
       columns={columns}
-      // dataSource={[]}
+      dataSource={bookingData}
       onChange={onChange}
       showSorterTooltip={{ target: "sorter-icon" }}
     />
