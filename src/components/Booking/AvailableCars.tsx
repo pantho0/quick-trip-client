@@ -33,11 +33,17 @@ const AvailableCars = () => {
               loading={isFetching && isLoading}
               hoverable
               style={{ width: "100%" }}
-              cover={<img alt="example" src={car?.images} />}
+              cover={
+                <img
+                  alt="example"
+                  style={{ objectFit: "fill" }}
+                  src={car?.images}
+                />
+              }
             >
               <Meta
                 title={car?.name}
-                description={`${car?.description.slice(0, 55)}...`}
+                description={`${car?.description.slice(0, 50)}...`}
               />
               <p style={{ marginTop: "3px" }}>
                 Hourly Price : ${car?.pricePerHour}
