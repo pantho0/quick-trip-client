@@ -1,5 +1,7 @@
+import AvailableCars from "../components/Booking/AvailableCars";
+
 const Booking = () => {
-  return <div>Booking</div>;
+  return <AvailableCars />;
 };
 
 export default Booking;
