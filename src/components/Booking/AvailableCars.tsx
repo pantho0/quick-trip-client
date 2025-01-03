@@ -2,16 +2,26 @@ import { Button, Card, Col, Flex, Row, Tag } from "antd";
 import { useGetAllCarQuery } from "../../redux/features/admin/carManagement.api";
 import { Link } from "react-router-dom";
 import "../../styles/globalButton.css";
+import Loader from "../shared/Loader";
 
 const AvailableCars = () => {
   const { data: cars, isFetching, isLoading } = useGetAllCarQuery(undefined);
   const { Meta } = Card;
 
+  if (isFetching && isLoading) {
+    return <Loader />;
+  }
+
   return (
     <>
       <div>
         <h1
-          style={{ textAlign: "center", color: "#2a2c31", padding: "20px 0" }}
+          style={{
+            textAlign: "center",
+            color: "#2a2c31",
+            padding: "20px 0",
+            marginBottom: "20px",
+          }}
         >
           --Available Cars--
         </h1>
@@ -45,8 +55,14 @@ const AvailableCars = () => {
                   justify="center"
                   style={{ marginTop: "10px", width: "100%" }}
                 >
-                  <Button className="globalButton" style={{ width: "100%" }}>
-                    Book Now
+                  <Button
+                    disabled={car?.status === "booked"}
+                    className={`${
+                      car?.status === "available" ? "globalButton" : ""
+                    } `}
+                    style={{ width: "100%" }}
+                  >
+                    {`${car?.status === "available" ? "Book Now" : "Booked  "}`}
                   </Button>
                 </Flex>
               </Link>
