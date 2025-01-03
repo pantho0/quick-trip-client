@@ -3,7 +3,7 @@ import { useGetAllCarQuery } from "../../redux/features/admin/carManagement.api"
 import { Link } from "react-router-dom";
 import "../../styles/globalButton.css";
 import Loader from "../shared/Loader";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const AvailableCars = () => {
   const [page, setPage] = useState(1);
