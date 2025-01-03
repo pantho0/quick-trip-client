@@ -3,7 +3,7 @@ import { useGetAllCarQuery } from "../../redux/features/admin/carManagement.api"
 import { Link } from "react-router-dom";
 import "../../styles/globalButton.css";
 import Loader from "../shared/Loader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const AvailableCars = () => {
   const [page, setPage] = useState(1);
@@ -17,7 +17,7 @@ const AvailableCars = () => {
       value: page,
     },
   ]);
-  console.log(cars);
+
   const { Meta } = Card;
 
   if (isFetching && isLoading) {
