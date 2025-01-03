@@ -12,19 +12,44 @@ import {
 } from "antd";
 import moment from "moment";
 import { useState } from "react";
+import Loader from "../../components/shared/Loader";
+import { useCreateBookingMutation } from "../../redux/features/admin/bookingManagement.api";
+import { toast } from "sonner";
 
 type RangePickerProps = GetProps<typeof DatePicker.RangePicker>;
 
 const CreateBooking = () => {
   const { id } = useParams();
-  const [endTime, setEndTime] = useState("");
+  const [startDateAndTime, setStartDateAndTime] = useState("");
   const { data: car, isLoading, isFetching } = useGetSingleCarQuery(id);
+  const [bookNow, { error }] = useCreateBookingMutation();
 
-  console.log(car);
+  const confirmBooking = async () => {
+    const toastId = toast.loading("Booking");
+    const currentDate = moment().format("YYYY-MM-DDTHH:mm:ss[Z]");
+    const bookingData = {
+      carId: car?._id,
+      date: currentDate,
+      startTime: startDateAndTime,
+    };
 
-  const onSubmit = (data) => {
-    console.log(data);
+    console.log(bookingData);
+
+    try {
+      await bookNow(bookingData);
+      if (!error?.data?.success) {
+        toast.error(error?.data?.message, { id: toastId, duration: 2000 });
+      } else {
+        toast.success("Booking Successfull", { id: toastId, duration: 2000 });
+      }
+    } catch (error) {
+      toast.error("Something Went Wrong", { id: toastId, duration: 2000 });
+    }
   };
+
+  if (isFetching && isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -52,10 +77,20 @@ const CreateBooking = () => {
               ) => {
                 const time =
                   moment(dateString).format("YYYY-MM-DDTHH:mm:ss") + "Z";
-                setEndTime(time);
+                setStartDateAndTime(time);
               }}
             />
-            <Button className="globalButton">Confirm Booking</Button>
+            <Button
+              disabled={car?.status === "booked"}
+              onClick={confirmBooking}
+              className="globalButton"
+            >
+              {`${
+                car?.status === "booked"
+                  ? "Car is already booked"
+                  : "Confirm Booking"
+              }`}
+            </Button>
           </Flex>
         </Col>
       </Row>
