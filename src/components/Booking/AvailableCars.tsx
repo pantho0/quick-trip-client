@@ -1,11 +1,23 @@
-import { Button, Card, Col, Flex, Row, Tag } from "antd";
+import { Button, Card, Col, Flex, Pagination, Row, Tag } from "antd";
 import { useGetAllCarQuery } from "../../redux/features/admin/carManagement.api";
 import { Link } from "react-router-dom";
 import "../../styles/globalButton.css";
 import Loader from "../shared/Loader";
+import { useState } from "react";
 
 const AvailableCars = () => {
-  const { data: cars, isFetching, isLoading } = useGetAllCarQuery(undefined);
+  const [page, setPage] = useState(1);
+  const {
+    data: cars,
+    isFetching,
+    isLoading,
+  } = useGetAllCarQuery([
+    {
+      name: "page",
+      value: page,
+    },
+  ]);
+  console.log(cars);
   const { Meta } = Card;
 
   if (isFetching && isLoading) {
@@ -76,6 +88,13 @@ const AvailableCars = () => {
           </Col>
         ))}
       </Row>
+      <Flex justify="flex-end" style={{ marginTop: "20px" }}>
+        <Pagination
+          onChange={(value) => setPage(value)}
+          pageSize={cars?.meta?.limit}
+          total={cars?.meta?.total}
+        />
+      </Flex>
     </>
   );
 };
