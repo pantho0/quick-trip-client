@@ -1,0 +1,12 @@
+.hamburger-menu {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
+  }
+  .hamburger-menu {
+    display: block !important;
+  }
+}
