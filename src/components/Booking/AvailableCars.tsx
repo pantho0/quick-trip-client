@@ -16,6 +16,10 @@ const AvailableCars = () => {
       name: "page",
       value: page,
     },
+    {
+      name: "sort",
+      value: "-_id",
+    },
   ]);
 
   const { Meta } = Card;
