@@ -33,12 +33,21 @@ const Mainlayout = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          padding: "0 24px",
         }}
       >
         <div className="demo-logo" style={{ color: "white " }}>
           Logo
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            flexGrow: 1,
+            justifyContent: "flex-end",
+          }}
+        >
           <MenuOutlined
             style={{
               color: "wheat",
@@ -55,6 +64,7 @@ const Mainlayout = () => {
             defaultSelectedKeys={["1"]}
             items={items}
             className="desktop-menu"
+            style={{ flexGrow: 1, justifyContent: "flex-end", minWidth: 0 }}
           />
           <Link className="desktop-menu" to={"/login"}>
             <Button>Log in</Button>
