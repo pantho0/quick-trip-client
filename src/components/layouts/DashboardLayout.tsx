@@ -3,8 +3,9 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { useAppDispatch } from "../../redux/hooks";
 import { logout } from "../../redux/features/auth/authSlice";
+import "./layout.css";
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 const DashboardLayout = () => {
   const dispatch = useAppDispatch();
@@ -29,7 +30,12 @@ const DashboardLayout = () => {
               padding: "20px",
             }}
           >
-            <Button onClick={() => signOut()}>Logout</Button>
+            <Button
+              className="dashboard-logout-button"
+              onClick={() => signOut()}
+            >
+              Logout
+            </Button>
           </div>
         </Header>
         <Content style={{ margin: "24px 16px 0" }}>
@@ -44,9 +50,6 @@ const DashboardLayout = () => {
             <Outlet />
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
       </Layout>
     </Layout>
   );

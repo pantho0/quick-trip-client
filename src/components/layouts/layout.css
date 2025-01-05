@@ -2,11 +2,34 @@
   display: none !important;
 }
 
+.dashboard-hamburger {
+  display: none;
+}
+
+.dashboard-logout-button {
+  display: block;
+}
+
+.sidebar-logout-button {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .desktop-menu {
     display: none;
   }
   .hamburger-menu {
     display: block !important;
+  }
+  .dashboard-hamburger {
+    display: block !important;
+  }
+
+  .dashboard-logout-button {
+    display: none;
+  }
+
+  .sidebar-logout-button {
+    display: block;
   }
 }
