@@ -12,6 +12,10 @@
   color: #fff;
 }
 
+.custom-banner-padding {
+  padding: 0px 45px;
+}
+
 .search-button:hover {
   background-color: #e6645f !important;
   color: #fff !important;
@@ -25,22 +29,26 @@
 
 .responsive-title {
   color: #2a2c31;
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 .custom-bannerheading h4 {
-  font-size: 20px;
+  font-size: 16px;
   color: #2a2c31;
 }
 .custom-bannerheading p {
-  font-size: 1rem;
-  line-height: 1.8rem;
+  font-size: 14px;
+  line-height: 25px;
 }
 
 @media only screen and (max-width: 768px) {
   .custom-bannerheading {
     height: auto;
     text-align: center;
+  }
+
+  .custom-banner-padding {
+    padding: 0px 10px;
   }
 
   .responsive-title {

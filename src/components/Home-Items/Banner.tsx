@@ -30,15 +30,13 @@ const Banner = () => {
     navigate("/booking");
   };
   return (
-    <Row>
+    <Row style={{ backgroundColor: "#F9F9F9", borderRadius: "20px" }}>
       <Col span={24} md={{ span: 24 }} lg={{ span: 12 }}>
-        <div className="custom-bannerheading">
+        <div className="custom-bannerheading custom-banner-padding">
           <h1 className="responsive-title">
             Quick <span style={{ color: "#E74E49" }}>Trip</span>{" "}
           </h1>
-          <h4 style={{ fontStyle: "italic" }}>
-            Effortless Car Reservations for Every Destination
-          </h4>
+          <h4>Effortless Car Reservations for Every Destination</h4>
           <p>
             Quick Trip makes finding the perfect car for your journey a breeze.
             Simply select your pickup and drop-off locations, and let us connect

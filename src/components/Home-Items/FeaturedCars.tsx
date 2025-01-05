@@ -32,7 +32,7 @@ const FeaturedCars = () => {
   return (
     <div className="featured">
       <h1 style={{ textAlign: "center", color: "#2a2c31", padding: "20px 0" }}>
-        --Featured Cars--
+        Featured Cars
       </h1>
       <div style={{ padding: "20px 0" }}>
         <Carousel autoplay>
