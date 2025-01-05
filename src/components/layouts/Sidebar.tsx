@@ -10,6 +10,7 @@ import { logout, selectToken } from "../../redux/features/auth/authSlice";
 import { verifyToken } from "../../utils/verifyToken";
 import "./layout.css";
 import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const { Sider } = Layout;
 
@@ -65,25 +66,27 @@ const Sidebar = () => {
           // console.log(broken);
         }}
         collapsed={collapsed}
-        onCollapse={(collapsed, type) => {
+        onCollapse={(collapsed, _type) => {
           setCollapsed(collapsed);
         }}
         style={{ height: "100vh", position: "sticky", top: 0, left: 0 }}
       >
-        <div
-          className="demo-logo-vertical"
-          style={{
-            color: "#fff",
-            fontSize: "20px",
-            textAlign: "center",
-            padding: "20px",
-            fontWeight: "bold",
-            borderBottom: "1px  solid",
-            borderBottomStyle: "dashed",
-          }}
-        >
-          QuickTrip
-        </div>
+        <Link to="/">
+          <div
+            className="demo-logo-vertical"
+            style={{
+              color: "#fff",
+              fontSize: "20px",
+              textAlign: "center",
+              padding: "20px",
+              fontWeight: "bold",
+              borderBottom: "1px  solid",
+              borderBottomStyle: "dashed",
+            }}
+          >
+            QuickTrip
+          </div>
+        </Link>
 
         <Menu
           theme="dark"

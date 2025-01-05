@@ -36,9 +36,14 @@ const Mainlayout = () => {
           padding: "0 24px",
         }}
       >
-        <div className="demo-logo" style={{ color: "white " }}>
-          Logo
-        </div>
+        <Link to="/">
+          <div
+            className="demo-logo"
+            style={{ color: "white ", fontSize: "25px", fontWeight: "bold" }}
+          >
+            QuickTrip
+          </div>
+        </Link>
         <div
           style={{
             display: "flex",
