@@ -11,10 +11,9 @@ export type TRoute = {
   element?: ReactNode;
 };
 
-export type TNavLinkItem =
-  | {
-      key: string;
-      label: React.ReactNode;
-      children?: TNavLinkItem[];
-    }
-  | undefined;
+export type TNavLinkItem = {
+  key: string;
+  label: React.ReactNode;
+  icon?: React.ReactNode;
+  children?: TNavLinkItem[];
+};
