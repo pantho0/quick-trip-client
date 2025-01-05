@@ -34,7 +34,7 @@ const Banner = () => {
       <Col span={24} md={{ span: 24 }} lg={{ span: 12 }}>
         <div className="custom-bannerheading custom-banner-padding">
           <h1 className="responsive-title">
-            Quick <span style={{ color: "#E74E49" }}>Trip</span>{" "}
+            Quick <span style={{ color: "#059862" }}>Trip</span>{" "}
           </h1>
           <h4>Effortless Car Reservations for Every Destination</h4>
           <p>
@@ -54,6 +54,7 @@ const Banner = () => {
                 </Col>
                 <Col xs={24} sm={24} md={24} lg={24}>
                   <Button
+                    type="primary"
                     htmlType="submit"
                     size="large"
                     className="search-button"

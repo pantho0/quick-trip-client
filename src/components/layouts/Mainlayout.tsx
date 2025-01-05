@@ -34,15 +34,13 @@ const Mainlayout = () => {
           alignItems: "center",
           justifyContent: "space-between",
           padding: "0 24px",
+          background: colorBgContainer,
         }}
       >
         <Link to="/">
-          <div
-            className="demo-logo"
-            style={{ color: "white ", fontSize: "25px", fontWeight: "bold" }}
-          >
-            QuickTrip
-          </div>
+          <h1 className="responsive-logo">
+            Quick <span style={{ color: "#059862" }}>Trip</span>{" "}
+          </h1>
         </Link>
         <div
           style={{
@@ -64,12 +62,17 @@ const Mainlayout = () => {
           />
 
           <Menu
-            theme="dark"
+            theme="light"
             mode="horizontal"
             defaultSelectedKeys={["1"]}
             items={items}
             className="desktop-menu"
-            style={{ flexGrow: 1, justifyContent: "flex-end", minWidth: 0 }}
+            style={{
+              flexGrow: 1,
+              justifyContent: "flex-end",
+              minWidth: 0,
+              borderBottom: "0px",
+            }}
           />
           <Link className="desktop-menu" to={"/login"}>
             <Button>Log in</Button>
@@ -79,43 +82,45 @@ const Mainlayout = () => {
           </Link>
         </div>
       </Header>
-      <Drawer
-        style={{ backgroundColor: "#001529" }}
-        placement="left"
-        onClose={onClose}
-        open={visible}
-        width={250}
-      >
-        <Menu
-          mode="inline"
-          theme="dark"
-          defaultSelectedKeys={["1"]}
-          items={items}
-          onClick={onClose}
-        />
-        <div style={{ width: "100%", marginTop: "20px" }}>
-          <Link className="hamburger-menu" to={"/login"}>
-            <Button style={{ width: "100%", marginBottom: "15px" }}>
-              Log in
-            </Button>
-          </Link>
-          <Link className="hamburger-menu" to="/signup">
-            <Button style={{ width: "100%" }}>Sign Up</Button>
-          </Link>
-        </div>
-      </Drawer>
-      <Content style={{ padding: "0 48px" }}>
-        <div
-          style={{
-            background: colorBgContainer,
-            minHeight: "100vh",
-            padding: 10,
-            borderRadius: borderRadiusLG,
-          }}
+      <div style={{ padding: "5px 0px" }}>
+        <Drawer
+          style={{ backgroundColor: "#001529" }}
+          placement="left"
+          onClose={onClose}
+          open={visible}
+          width={250}
         >
-          <Outlet />
-        </div>
-      </Content>
+          <Menu
+            mode="inline"
+            theme="dark"
+            defaultSelectedKeys={["1"]}
+            items={items}
+            onClick={onClose}
+          />
+          <div style={{ width: "100%", marginTop: "20px" }}>
+            <Link className="hamburger-menu" to={"/login"}>
+              <Button style={{ width: "100%", marginBottom: "15px" }}>
+                Log in
+              </Button>
+            </Link>
+            <Link className="hamburger-menu" to="/signup">
+              <Button style={{ width: "100%" }}>Sign Up</Button>
+            </Link>
+          </div>
+        </Drawer>
+        <Content style={{ padding: "0 48px" }}>
+          <div
+            style={{
+              background: colorBgContainer,
+              minHeight: "100vh",
+              padding: 10,
+              borderRadius: borderRadiusLG,
+            }}
+          >
+            <Outlet />
+          </div>
+        </Content>
+      </div>
       <FooterSection />
     </Layout>
   );

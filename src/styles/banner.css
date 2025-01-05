@@ -8,8 +8,8 @@
 }
 .search-button {
   width: 100%; /* Make the button full-width for smaller screens */
-  background-color: #e74e49;
   color: #fff;
+  box-shadow: none;
 }
 
 .custom-banner-padding {
@@ -17,9 +17,9 @@
 }
 
 .search-button:hover {
-  background-color: #e6645f !important;
+  /* background-color: #e6645f !important; */
   color: #fff !important;
-  border: none;
+  box-shadow: none;
 }
 
 .custom-bannerheading form {

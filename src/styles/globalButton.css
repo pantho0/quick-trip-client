@@ -1,11 +1,11 @@
 .globalButton {
   width: 100%; /* Make the button full-width for smaller screens */
-  background-color: #e74e49;
   color: #fff;
+  box-shadow: none;
 }
 
 .globalButton:hover {
-  background-color: #e6645f !important;
+  box-shadow: none;
   color: #fff !important;
   border: none;
 }

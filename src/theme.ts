@@ -6,7 +6,7 @@ const theme = {
     colorError: "#ff4d4f",
     colorInfo: "#1890ff",
     colorText: "#333",
-    colorBgContainer: "#fff",
+    colorBgContainer: "#F9F9F9",
     colorTextSecondary: "#666",
     colorTextTertiary: "#999",
     colorFill: "#f5f5f5",

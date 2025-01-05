@@ -74,6 +74,7 @@ const AvailableCars = () => {
                   style={{ marginTop: "10px", width: "100%" }}
                 >
                   <Button
+                    type="primary"
                     disabled={car?.status === "booked"}
                     className={`${
                       car?.status === "available" ? "globalButton" : ""
