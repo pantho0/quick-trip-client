@@ -8,20 +8,20 @@ import {
 const WhyChooseUs = () => {
   const features = [
     {
-      icon: <CarOutlined style={{ fontSize: "40px", color: "#eb2f06" }} />,
+      icon: <CarOutlined style={{ fontSize: "40px", color: "#059862" }} />,
       title: "Wide Selection of Cars",
       description:
         "Choose from a variety of vehicles to suit your travel needs.",
     },
     {
       icon: (
-        <ClockCircleOutlined style={{ fontSize: "40px", color: "#e55039" }} />
+        <ClockCircleOutlined style={{ fontSize: "40px", color: "#059862" }} />
       ),
       title: "24/7 Availability",
       description: "Book anytime, anywhere with our round-the-clock service.",
     },
     {
-      icon: <SafetyOutlined style={{ fontSize: "40px", color: "#ff6b6b" }} />,
+      icon: <SafetyOutlined style={{ fontSize: "40px", color: "#059862" }} />,
       title: "Safe & Reliable",
       description:
         "Your safety is our priority with trusted vehicles and drivers.",

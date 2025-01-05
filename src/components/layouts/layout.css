@@ -2,6 +2,10 @@
   display: none !important;
 }
 
+.siderBg {
+  background-color: #f9f9f9 !important;
+}
+
 .responsive-logo {
   color: #2a2c31;
   font-size: 2.3rem;

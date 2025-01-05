@@ -15,7 +15,12 @@ const FooterSection = () => {
         textAlign: "center",
       }}
     >
-      <Row justify="center" gutter={[16, 16]}>
+      <Row
+        justify="center"
+        align="middle"
+        gutter={[16, 16]}
+        style={{ padding: "30px 0px" }}
+      >
         {/* Social Media Links */}
         <Col xs={24} sm={12} md={6}>
           <Space size="large">

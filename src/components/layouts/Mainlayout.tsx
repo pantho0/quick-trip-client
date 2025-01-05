@@ -53,7 +53,10 @@ const Mainlayout = () => {
         >
           <MenuOutlined
             style={{
-              color: "white",
+              color: "#059862",
+              background: "black",
+              padding: "4px",
+              borderRadius: "5px",
               fontSize: "24px",
               display: "none",
             }}
@@ -83,16 +86,10 @@ const Mainlayout = () => {
         </div>
       </Header>
       <div style={{ padding: "5px 0px" }}>
-        <Drawer
-          style={{ backgroundColor: "#001529" }}
-          placement="left"
-          onClose={onClose}
-          open={visible}
-          width={250}
-        >
+        <Drawer placement="left" onClose={onClose} open={visible} width={250}>
           <Menu
             mode="inline"
-            theme="dark"
+            style={{ background: "#F5F5F5", boxShadow: "none", border: "none" }}
             defaultSelectedKeys={["1"]}
             items={items}
             onClick={onClose}

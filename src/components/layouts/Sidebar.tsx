@@ -11,6 +11,7 @@ import { verifyToken } from "../../utils/verifyToken";
 import "./layout.css";
 import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import "./layout.css";
 
 const { Sider } = Layout;
 
@@ -49,7 +50,7 @@ const Sidebar = () => {
   }
 
   return (
-    <>
+    <div>
       <Button
         className="dashboard-hamburger"
         type="primary"
@@ -59,6 +60,7 @@ const Sidebar = () => {
         {collapsed ? <MenuOutlined /> : <CloseOutlined />}
       </Button>
       <Sider
+        className="siderBg"
         breakpoint="lg"
         collapsedWidth="0"
         trigger={null}
@@ -69,27 +71,31 @@ const Sidebar = () => {
         onCollapse={(collapsed, _type) => {
           setCollapsed(collapsed);
         }}
-        style={{ height: "100vh", position: "sticky", top: 0, left: 0 }}
+        style={{
+          height: "100vh",
+          position: "sticky",
+          top: 0,
+          left: 0,
+        }}
       >
         <Link to="/">
           <div
-            className="demo-logo-vertical"
+            // className="demo-logo-vertical"
+            className="responsive-logo"
             style={{
-              color: "#fff",
-              fontSize: "20px",
               textAlign: "center",
               padding: "20px",
               fontWeight: "bold",
-              borderBottom: "1px  solid",
+              borderBottom: "2px solid #059862",
               borderBottomStyle: "dashed",
             }}
           >
-            QuickTrip
+            Quick<span style={{ color: "#059862" }}>Trip</span>
           </div>
         </Link>
 
         <Menu
-          theme="dark"
+          theme="light"
           mode="inline"
           defaultSelectedKeys={["1"]}
           items={sidebarItems}
@@ -105,7 +111,7 @@ const Sidebar = () => {
           Logout
         </Button>
       </Sider>
-    </>
+    </div>
   );
 };
 

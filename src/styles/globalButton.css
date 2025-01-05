@@ -9,3 +9,8 @@
   color: #fff !important;
   border: none;
 }
+
+.ant-select-item-option:hover {
+  background-color: #059862 !important; /* Custom hover background color */
+  color: white;
+}
