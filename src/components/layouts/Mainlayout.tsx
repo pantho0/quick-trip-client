@@ -55,7 +55,7 @@ const Mainlayout = () => {
         >
           <MenuOutlined
             style={{
-              color: "wheat",
+              color: "white",
               fontSize: "24px",
               display: "none",
             }}
@@ -81,7 +81,6 @@ const Mainlayout = () => {
       </Header>
       <Drawer
         style={{ backgroundColor: "#001529" }}
-        title="Menu"
         placement="left"
         onClose={onClose}
         open={visible}

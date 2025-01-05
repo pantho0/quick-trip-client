@@ -31,12 +31,7 @@ const Banner = () => {
   };
   return (
     <Row>
-      <Col
-        span={24}
-        md={{ span: 24 }}
-        lg={{ span: 12 }}
-        className="custom-bannerheading"
-      >
+      <Col span={24} md={{ span: 24 }} lg={{ span: 12 }}>
         <div className="custom-bannerheading">
           <h1 className="responsive-title">
             Quick <span style={{ color: "#E74E49" }}>Trip</span>{" "}
@@ -74,13 +69,13 @@ const Banner = () => {
         </div>
       </Col>
       <Col span={24} md={{ span: 24 }} lg={{ span: 12 }}>
-        <div className="custom-bannerheading">
+        <div className="custom-bannerheading ">
           <Carousel autoplay>
             <Image src={bmw} />
             <Image src={tesla} />
             <Image src={audi} />
             <Image src={ford} />
-          </Carousel>{" "}
+          </Carousel>
         </div>
       </Col>
     </Row>

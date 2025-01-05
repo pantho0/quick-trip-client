@@ -1,10 +1,10 @@
 .custom-bannerheading {
-  height: 500px;
+  height: calc(100vh - 100px);
   padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 14px;
+  gap: 8px;
 }
 .search-button {
   width: 100%; /* Make the button full-width for smaller screens */
@@ -39,6 +39,7 @@
 
 @media only screen and (max-width: 768px) {
   .custom-bannerheading {
+    height: auto;
     text-align: center;
   }
 
