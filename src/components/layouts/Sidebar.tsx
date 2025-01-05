@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Button, Layout, Menu } from "antd";
+import { Button, Divider, Layout, Menu } from "antd";
 import { adminPaths } from "../../router/admin.route";
 import { navLinkGenerator } from "../../utils/navLinkGenerator";
 import { userPaths } from "../../router/user.route";
@@ -86,14 +86,12 @@ const Sidebar = () => {
               textAlign: "center",
               padding: "20px",
               fontWeight: "bold",
-              borderBottom: "2px solid #059862",
-              borderBottomStyle: "dashed",
             }}
           >
             Quick<span style={{ color: "#059862" }}>Trip</span>
           </div>
         </Link>
-
+        <Divider dashed style={{ background: "#059874" }} />
         <Menu
           theme="light"
           mode="inline"

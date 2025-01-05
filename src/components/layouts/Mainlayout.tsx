@@ -6,6 +6,8 @@ import FooterSection from "../shared/FooterSection";
 import { useState } from "react";
 import { MenuOutlined } from "@ant-design/icons";
 import "./layout.css";
+import { useAppSelector } from "../../redux/hooks";
+import { selectUser } from "../../redux/features/auth/authSlice";
 
 const { Header, Content } = Layout;
 
@@ -13,6 +15,8 @@ const items = navLinkGenerator(globalPaths);
 
 const Mainlayout = () => {
   const [visible, setVisible] = useState(false);
+  const user = useAppSelector(selectUser);
+  console.log(user);
 
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -77,12 +81,22 @@ const Mainlayout = () => {
               borderBottom: "0px",
             }}
           />
-          <Link className="desktop-menu" to={"/login"}>
-            <Button>Log in</Button>
-          </Link>
-          <Link className="desktop-menu" to="/signup">
-            <Button>Sign Up</Button>
-          </Link>
+          {user?.role ? (
+            <>
+              <Link className="desktop-menu" to={`/${user?.role}/dashboard`}>
+                <Button>Dashboard</Button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link className="desktop-menu" to={"/login"}>
+                <Button>Log in</Button>
+              </Link>
+              <Link className="desktop-menu" to="/signup">
+                <Button>Sign Up</Button>
+              </Link>
+            </>
+          )}
         </div>
       </Header>
       <div style={{ padding: "5px 0px" }}>
@@ -94,16 +108,26 @@ const Mainlayout = () => {
             items={items}
             onClick={onClose}
           />
-          <div style={{ width: "100%", marginTop: "20px" }}>
-            <Link className="hamburger-menu" to={"/login"}>
-              <Button style={{ width: "100%", marginBottom: "15px" }}>
-                Log in
-              </Button>
-            </Link>
-            <Link className="hamburger-menu" to="/signup">
-              <Button style={{ width: "100%" }}>Sign Up</Button>
-            </Link>
-          </div>
+          {user?.role ? (
+            <div style={{ width: "100%", marginTop: "20px" }}>
+              <Link className="hamburger-menu" to={`/${user?.role}/dashboard`}>
+                <Button style={{ width: "100%", marginBottom: "15px" }}>
+                  Dashboard
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <div style={{ width: "100%", marginTop: "20px" }}>
+              <Link className="hamburger-menu" to={"/login"}>
+                <Button style={{ width: "100%", marginBottom: "15px" }}>
+                  Log in
+                </Button>
+              </Link>
+              <Link className="hamburger-menu" to="/signup">
+                <Button style={{ width: "100%" }}>Sign Up</Button>
+              </Link>
+            </div>
+          )}
         </Drawer>
         <Content style={{ padding: "0 48px" }}>
           <div
