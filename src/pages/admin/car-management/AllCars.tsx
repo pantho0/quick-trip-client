@@ -25,7 +25,6 @@ const AllCars = () => {
   const { data: cars, isFetching } = useGetAllCarQuery([
     { name: "page", value: page },
     { name: "limit", value: 9 },
-    { name: "sort", value: "id" },
     ...params,
   ]);
   const [deleteCar] = useDeleteCarMutation();

@@ -13,7 +13,7 @@ const CarDetails = () => {
   }
 
   return (
-    <Flex justify="center" align="center">
+    <Flex justify="center" align="center" style={{ minHeight: "100vh" }}>
       <Card
         key={data?._id}
         hoverable

@@ -35,6 +35,10 @@ const AddCar = () => {
     formData.append("file", data?.image);
     formData.append("data", JSON.stringify(carData));
 
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
     try {
       const res = (await addCar(formData)) as TResponse<any>;
       if (res?.error) {

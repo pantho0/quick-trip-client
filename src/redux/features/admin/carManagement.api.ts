@@ -56,11 +56,17 @@ const carManagementApi = baseApi.injectEndpoints({
       invalidatesTags: ["bookings"],
     }),
     updateCar: builder.mutation({
-      query: (carData) => ({
-        url: `/cars/${carData.id}`,
-        method: "PATCH",
-        body: carData,
-      }),
+      query: ({ id, carData }) => {
+        console.log("inside", id);
+        for (const [key, value] of carData.entries()) {
+          console.log(key, value);
+        }
+        return {
+          url: `/cars/${id}`,
+          method: "PATCH",
+          body: carData,
+        };
+      },
       invalidatesTags: ["cars"],
     }),
     deleteCar: builder.mutation({

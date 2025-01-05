@@ -1,12 +1,10 @@
-import { Button, Col, Flex } from "antd";
+import { Button, Col, Flex, Form, Input } from "antd";
 import { useParams } from "react-router-dom";
 import BaseForm from "../../../components/Form/BaseForm";
 import BaseInput from "../../../components/Form/BaseInput";
 import BaseSelect from "../../../components/Form/BaseSelect";
 import BaseCustomSelect from "../../../components/Form/BaseCustomSelect";
-import { FieldValues, SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { carAddSchema } from "./Cars.Contant";
+import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
 import {
   useGetSingleCarQuery,
   useUpdateCarMutation,
@@ -41,14 +39,21 @@ const UpdateCar = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const toastId = toast.loading("Updating Car...");
     const updatedCarInfo = {
       ...data,
-      id: carData?._id,
-      pricePerHour: Number(data.pricePerHour),
+      status: "available",
+      isDeleted: false,
+      pricePerHour: Number(data?.pricePerHour),
     };
-    const toastId = toast.loading("Updating Car...");
+
+    console.log(data?.image);
+    const formData = new FormData();
+    formData.append("file", data?.image);
+    formData.append("data", JSON.stringify(updatedCarInfo));
+
     try {
-      const res = await updateCar(updatedCarInfo);
+      const res = await updateCar({ id: id, carData: formData });
       if (res?.data?.success) {
         toast.success("Car Updated", { id: toastId, duration: 2000 });
       } else {
@@ -70,12 +75,25 @@ const UpdateCar = () => {
         <Flex justify="center" align="center">
           <Col span={6}>
             {defaultValues && (
-              <BaseForm
-                onSubmit={onSubmit}
-                defaultValues={defaultValues}
-                resolver={zodResolver(carAddSchema)}
-              >
+              <BaseForm onSubmit={onSubmit} defaultValues={defaultValues}>
                 <BaseInput type="text" name="name" label="Name" />
+                <Controller
+                  name="image" // Ensure this matches the field name in the form state
+                  render={({ field: { onChange, value, ...field } }) => (
+                    <Form.Item>
+                      <Input
+                        {...field}
+                        type="file"
+                        value={value?.fileName}
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          console.log("Selected file:", file); // Debugging log
+                          onChange(file);
+                        }}
+                      />
+                    </Form.Item>
+                  )}
+                />
                 <BaseInput type="text" name="description" label="Description" />
                 <BaseInput type="text" name="color" label="Color" />
                 <BaseSelect

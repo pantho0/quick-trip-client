@@ -17,7 +17,6 @@ const baseQuery = fetchBaseQuery({
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
     if (token) {
-      console.log("i am from base", token);
       headers.set("authorization", token);
     }
     return headers;
