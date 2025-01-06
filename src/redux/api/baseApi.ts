@@ -11,6 +11,7 @@ import { logout, setUser } from "../features/auth/authSlice";
 import { toast } from "sonner";
 
 const baseQuery = fetchBaseQuery({
+  // baseUrl: "https://car-rental-reservation-backend-alpha.vercel.app/api",
   baseUrl: "http://localhost:5000/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
@@ -27,10 +28,16 @@ const baseQueryWithRefreshToken: BaseQueryFn<
   BaseQueryApi,
   DefinitionType
 > = async (args, api, extraOptions): Promise<any> => {
-  let result = await baseQuery(args, api, extraOptions);
+  let result: any = await baseQuery(args, api, extraOptions);
+
+  console.log(JSON.stringify(result));
+
+  if (result?.error?.status === 400) {
+    toast.error(result.error?.data?.message);
+  }
 
   if (result?.error?.status === 404) {
-    toast.error(result?.error?.data?.message);
+    toast.error(result.error?.data?.message);
   }
 
   if (result?.error?.status === 401) {
