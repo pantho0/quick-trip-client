@@ -11,8 +11,8 @@ import { logout, setUser } from "../features/auth/authSlice";
 import { toast } from "sonner";
 
 const baseQuery = fetchBaseQuery({
-  // baseUrl: "https://car-rental-reservation-backend-alpha.vercel.app/api",
-  baseUrl: "http://localhost:5000/api",
+  baseUrl: "https://car-rental-reservation-backend-alpha.vercel.app/api",
+  // baseUrl: "http://localhost:5000/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
