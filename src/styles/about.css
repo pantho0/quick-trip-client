@@ -1,0 +1,37 @@
+.about-container {
+  padding: 20px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    padding: 10px;
+  }
+}
+
+.ant-card {
+  border-radius: 10px;
+}
+
+.ant-image {
+  border-radius: 10px;
+}
+
+.ant-typography {
+  font-size: 16px;
+}
+
+.ant-title {
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
+  .ant-typography {
+    font-size: 14px;
+  }
+
+  .ant-title {
+    font-size: 20px;
+  }
+}
