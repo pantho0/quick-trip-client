@@ -56,7 +56,17 @@ const AboutUs = () => {
         ].map((member, index) => (
           <Col key={index} xs={24} sm={12} md={8} lg={6}>
             <Card
-              cover={<img alt={member.name} src={member.image} />}
+              cover={
+                <img
+                  style={{
+                    borderRadius: "100%",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                  alt={member.name}
+                  src={member.image}
+                />
+              }
               bordered={false}
             >
               <Title level={4}>{member.name}</Title>
