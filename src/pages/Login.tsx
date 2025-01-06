@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Row } from "antd";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";

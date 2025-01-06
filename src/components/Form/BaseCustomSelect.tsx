@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Divider, Form, Input, Select } from "antd";

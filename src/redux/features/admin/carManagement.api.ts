@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TCarManagement } from "../../../types/carManagement.type";
 import { TResponseRedux } from "../../../types/global.types";
 import { baseApi } from "../../api/baseApi";

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Table, TableColumnsType, TableProps } from "antd";
 import { useGetMyBookingsQuery } from "../../redux/features/user/getMyBooking.api";
 import moment from "moment";

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Flex, Pagination, Table, Tooltip } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
 import {

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button, Carousel, Col, Image, Row } from "antd";
 import tesla from "../../assets/images/tesla.jpg";
