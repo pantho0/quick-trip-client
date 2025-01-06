@@ -87,7 +87,7 @@ const AboutUs = () => {
           style={{
             textAlign: "center",
             padding: "20px",
-            backgroundColor: "#fff",
+
             borderRadius: "8px",
           }}
         >
