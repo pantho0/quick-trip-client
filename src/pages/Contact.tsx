@@ -1,4 +1,3 @@
-import React from "react";
 import { Row, Col, Form, Input, Button, Typography } from "antd";
 import Lottie from "lottie-react";
 import contactForm from "../assets/animations/contactForm.json";
@@ -6,7 +5,7 @@ import contactForm from "../assets/animations/contactForm.json";
 const { Title, Paragraph } = Typography;
 
 const Contact = () => {
-  const onFinish = (values) => {
+  const onFinish = (values: any) => {
     console.log("Form Submitted:", values);
   };
 

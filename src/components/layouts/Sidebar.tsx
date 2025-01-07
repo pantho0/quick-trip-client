@@ -36,7 +36,7 @@ const Sidebar = () => {
     user = verifyToken(token) as TUser;
   }
 
-  let sidebarItems;
+  let sidebarItems: any;
 
   switch (user!.role) {
     case userRole.ADMIN:

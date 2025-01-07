@@ -11,7 +11,7 @@ import { selectUser } from "../../redux/features/auth/authSlice";
 
 const { Header, Content } = Layout;
 
-const items = navLinkGenerator(globalPaths);
+const items: any = navLinkGenerator(globalPaths);
 
 const Mainlayout = () => {
   const [visible, setVisible] = useState(false);
