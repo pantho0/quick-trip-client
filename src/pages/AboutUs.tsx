@@ -1,15 +1,17 @@
 import { Row, Col, Card, Button, Typography, Input } from "antd";
-import {
-  MailOutlined,
-  PhoneOutlined,
-  EnvironmentOutlined,
-} from "@ant-design/icons";
+import { } from "@ant-design/icons";
 
 const { Title, Paragraph } = Typography;
 
 const AboutUs = () => {
   return (
-    <div style={{ padding: "30px", backgroundColor: "#f9f9f9" }}>
+    <div
+      style={{
+        padding: "30px",
+        backgroundColor: "#1a1a1a",
+        minHeight: "100vh",
+      }}
+    >
       {/* About Section */}
       <Row justify="center" style={{ marginBottom: "30px" }}>
         <Col
@@ -20,8 +22,10 @@ const AboutUs = () => {
           xl={12}
           style={{ textAlign: "center" }}
         >
-          <Title level={2}>About Us</Title>
-          <Paragraph>
+          <Title level={2} style={{ color: "#fff", marginBottom: 24 }}>
+            About Us
+          </Title>
+          <Paragraph style={{ color: "#b0b0b0" }}>
             Welcome to our Car Rental Reservation System! We aim to make your
             journey smooth and stress-free by providing top-quality vehicles and
             seamless online booking. Whether you’re traveling for business or
@@ -57,99 +61,105 @@ const AboutUs = () => {
           <Col key={index} xs={24} sm={12} md={8} lg={6}>
             <Card
               cover={
-                <img
-                  style={{
-                    borderRadius: "100%",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                  alt={member.name}
-                  src={member.image}
-                />
+                <div style={{ padding: "20px" }}>
+                  <img
+                    style={{
+                      borderRadius: "100%",
+                      width: "150px",
+                      height: "150px",
+                      objectFit: "cover",
+                      margin: "0 auto",
+                      display: "block"
+                    }}
+                    alt={member.name}
+                    src={member.image}
+                  />
+                </div>
               }
-              bordered={false}
+              style={{
+                background: "#2a2a2a",
+                borderRadius: "10px",
+                border: "1px solid #444",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+                height: "100%"
+              }}
+              bodyStyle={{ textAlign: "center" }}
             >
-              <Title level={4}>{member.name}</Title>
-              <Paragraph>{member.role}</Paragraph>
+              <Title level={4} style={{ color: "#059862", marginBottom: 8 }}>
+                {member.name}
+              </Title>
+              <Paragraph style={{ color: "#b0b0b0", marginBottom: 0 }}>{member.role}</Paragraph>
             </Card>
           </Col>
         ))}
       </Row>
 
-      {/* Hiring Section */}
-      <Row justify="center" style={{ margin: "50px 0" }}>
-        <Col
-          xs={22}
-          sm={20}
-          md={16}
-          lg={12}
-          xl={10}
-          style={{
-            textAlign: "center",
-            padding: "20px",
-
-            borderRadius: "8px",
-          }}
-        >
-          <Title level={3}>We’re Hiring!</Title>
-          <Paragraph>
-            Interested in working with us? Join our team today.
-          </Paragraph>
-          <Button type="primary" size="large">
-            Apply Now
-          </Button>
+      {/* Hiring and Newsletter Sections */}
+      <Row gutter={[24, 24]} style={{ margin: "50px 0" }}>
+        {/* Hiring Section */}
+        <Col xs={24} md={12}>
+          <div
+            style={{
+              textAlign: "center",
+              padding: "30px",
+              backgroundColor: "#2a2a2a",
+              borderRadius: "10px",
+              height: "100%",
+              border: "1px solid #444",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            <Title level={3} style={{ color: "#059862", marginBottom: 16 }}>
+              We're Hiring!
+            </Title>
+            <Paragraph style={{ color: "#b0b0b0", marginBottom: 24 }}>
+              Interested in working with us? Join our team today.
+            </Paragraph>
+            <Button
+              type="primary"
+              size="large"
+              style={{ 
+                backgroundColor: "#059862", 
+                borderColor: "#059862",
+                width: "100%",
+                maxWidth: "200px"
+              }}
+            >
+              Apply Now
+            </Button>
+          </div>
         </Col>
-      </Row>
 
-      {/* Newsletter Section */}
-      <Row justify="center">
-        <Col
-          xs={22}
-          sm={20}
-          md={16}
-          lg={12}
-          xl={10}
-          style={{
-            textAlign: "center",
-            padding: "20px",
-            backgroundColor: "#fff",
-            borderRadius: "8px",
-          }}
-        >
-          <Title level={3}>Subscribe to Our Newsletter</Title>
-          <Paragraph>
-            Stay updated with the latest news and offers from us.
-          </Paragraph>
-          <Input.Search
-            placeholder="Enter your email address"
-            enterButton="Sign Up"
-            size="large"
-            style={{ maxWidth: "400px", width: "100%" }}
-          />
-        </Col>
-      </Row>
-
-      {/* Contact Section */}
-      <Row justify="center" style={{ marginTop: "50px" }}>
-        <Col
-          xs={22}
-          sm={20}
-          md={16}
-          lg={14}
-          xl={12}
-          style={{ textAlign: "center" }}
-        >
-          <Title level={4}>Contact Us</Title>
-          <Paragraph>
-            <MailOutlined style={{ marginRight: "8px" }} /> info@carrental.com
-          </Paragraph>
-          <Paragraph>
-            <PhoneOutlined style={{ marginRight: "8px" }} /> +123 456 7890
-          </Paragraph>
-          <Paragraph>
-            <EnvironmentOutlined style={{ marginRight: "8px" }} /> 123 Main
-            Street, Anytown, USA
-          </Paragraph>
+        {/* Newsletter Section */}
+        <Col xs={24} md={12}>
+          <div
+            style={{
+              textAlign: "center",
+              padding: "30px",
+              backgroundColor: "#2a2a2a",
+              borderRadius: "10px",
+              height: "100%",
+              border: "1px solid #444",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            <Title level={3} style={{ color: "#fff", marginBottom: 16 }}>
+              Subscribe to Our Newsletter
+            </Title>
+            <Paragraph style={{ color: "#b0b0b0", marginBottom: 24 }}>
+              Stay updated with the latest news and offers from us.
+            </Paragraph>
+            <Input.Search
+              placeholder="Enter your email address"
+              enterButton="Sign Up"
+              size="large"
+              style={{ 
+                maxWidth: "400px", 
+                width: "100%",
+                margin: "0 auto"
+              }}
+            />
+          </div>
         </Col>
       </Row>
     </div>

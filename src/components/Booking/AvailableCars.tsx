@@ -30,17 +30,19 @@ const AvailableCars = () => {
   }
 
   return (
-    <>
+    <div style={{ backgroundColor: "#1a1a1a", minHeight: "100vh", padding: "20px 0" }}>
       <div>
         <h1
           style={{
             textAlign: "center",
-            color: "#2a2c31",
+            color: "#e0e0e0",
             padding: "20px 0",
             marginBottom: "20px",
+            fontSize: "2.5rem",
+            fontWeight: 600
           }}
         >
-          --Available Cars--
+          Available Cars
         </h1>
       </div>
       <Row gutter={[16, 16]}>
@@ -50,51 +52,78 @@ const AvailableCars = () => {
               className="ant-card-body"
               loading={isFetching && isLoading}
               hoverable
-              style={{ width: "100%", minHeight: "500px" }}
+              style={{
+                width: "100%",
+                minHeight: "500px",
+                backgroundColor: "#2a2a2a",
+                border: "1px solid #444",
+                borderRadius: "10px",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+              }}
+              bodyStyle={{ padding: "16px" }}
               cover={
                 <img
-                  alt="example"
+                  alt={car?.name}
                   style={{
                     objectFit: "cover",
                     width: "100%",
                     height: "200px",
+                    borderTopLeftRadius: "10px",
+                    borderTopRightRadius: "10px"
                   }}
                   src={car?.images}
                 />
               }
             >
-              <div className="card-content">
+              <div className="card-content" style={{ color: "#b0b0b0" }}>
                 <Meta
-                  title={car?.name}
-                  description={`${car?.description.slice(0, 50)}...`}
+                  title={<span style={{ color: "#fff", fontSize: "1.2rem" }}>{car?.name}</span>}
+                  description={
+                    <span style={{ color: "#b0b0b0" }}>
+                      {`${car?.description.slice(0, 50)}...`}
+                    </span>
+                  }
                 />
-                <p style={{ marginTop: "3px" }}>
-                  Hourly Price : ${car?.pricePerHour}
+                <p style={{ marginTop: "10px", color: "#059862" }}>
+                  <strong>${car?.pricePerHour}</strong> / hour
                 </p>
-                <p style={{ marginTop: "3px" }}>
-                  Features :<br />
-                  {car?.features?.slice(0, 3)?.map((f) => (
-                    <Tag color="green" style={{ margin: "2px" }} key={f}>
-                      <li>{f}</li>
-                    </Tag>
-                  ))}
-                </p>
-                <Link to={`/user/create-booking/${car?._id}`}>
+                <div style={{ marginTop: "10px" }}>
+                  <p style={{ marginBottom: "5px" }}><strong>Features:</strong></p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+                    {car?.features?.slice(0, 3)?.map((f) => (
+                      <Tag 
+                        color="#059862" 
+                        style={{ 
+                          margin: 0,
+                          backgroundColor: "rgba(5, 152, 98, 0.1)",
+                          color: "#059862",
+                          border: "1px solid #059862"
+                        }} 
+                        key={f}
+                      >
+                        {f}
+                      </Tag>
+                    ))}
+                  </div>
+                </div>
+                <Link to={`/user/create-booking/${car?._id}`} style={{ textDecoration: "none" }}>
                   <Flex
                     justify="center"
-                    style={{ marginTop: "10px", width: "100%" }}
+                    style={{ marginTop: "20px", width: "100%" }}
                   >
                     <Button
                       type="primary"
                       disabled={car?.status === "booked"}
-                      className={`${
-                        car?.status === "available" ? "globalButton" : ""
-                      } `}
-                      style={{ width: "100%" }}
+                      style={{
+                        width: "100%",
+                        backgroundColor: car?.status === "available" ? "#059862" : "#666",
+                        borderColor: car?.status === "available" ? "#059862" : "#666",
+                        height: "40px",
+                        fontSize: "1rem",
+                        fontWeight: 500,
+                      }}
                     >
-                      {`${
-                        car?.status === "available" ? "Book Now" : "Booked  "
-                      }`}
+                      {car?.status === "available" ? "Book Now" : "Already Booked"}
                     </Button>
                   </Flex>
                 </Link>
@@ -103,14 +132,38 @@ const AvailableCars = () => {
           </Col>
         ))}
       </Row>
-      <Flex justify="flex-end" style={{ marginTop: "20px" }}>
+      <Flex justify="center" style={{ marginTop: "40px", padding: "0 20px" }}>
         <Pagination
           onChange={(value) => setPage(value)}
           pageSize={cars?.meta?.limit}
           total={cars?.meta?.total}
+          itemRender={(page, type, originalElement) => {
+            if (type === 'page') {
+              return (
+                <span style={{
+                  color: page === page ? '#fff' : '#b0b0b0',
+                  backgroundColor: page === page ? '#059862' : 'transparent',
+                  border: page === page ? '1px solid #059862' : '1px solid #444',
+                  padding: '0 12px',
+                  height: '32px',
+                  minWidth: '32px',
+                  lineHeight: '30px',
+                  borderRadius: '4px',
+                  margin: '0 4px',
+                  display: 'inline-block',
+                  textAlign: 'center',
+                  cursor: 'pointer'
+                }}>
+                  {page}
+                </span>
+              );
+            }
+            return originalElement;
+          }}
+          style={{ color: '#fff' }}
         />
       </Flex>
-    </>
+    </div>
   );
 };
 
