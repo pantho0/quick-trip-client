@@ -5,16 +5,17 @@ type TSelectProps = {
   name: string;
   label: string;
   options: { value: string | boolean; label: string }[];
+  className?: string;
 };
 
-const BaseSelect = ({ name, label, options }: TSelectProps) => {
+const BaseSelect = ({ name, label, options, className }: TSelectProps) => {
   return (
     <div>
       <Controller
         name={name}
         render={({ field, fieldState: { error } }) => (
           <Form.Item label={label}>
-            <Select {...field} size="large" options={options} />
+            <Select {...field} size="large" options={options} className={className} />
             {error && <small style={{ color: "red" }}>{error?.message}</small>}
           </Form.Item>
         )}
