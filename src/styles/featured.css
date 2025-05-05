@@ -1,6 +1,35 @@
 .featured {
-  margin: 20px 0px;
-  background-color: #f9f9f9;
+  margin: 20px 0;
+  background-color: #1a1a1a;
   padding: 20px;
-  border-radius: 20px;
+}
+
+.featured-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Carousel dots */
+.ant-carousel .slick-dots li button {
+  background: #444;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+  background: #059862;
+}
+
+/* Carousel arrows */
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next {
+  color: #e0e0e0;
+  font-size: 20px;
+}
+
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-next:hover {
+  color: #059862;
 }

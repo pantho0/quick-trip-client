@@ -27,13 +27,13 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <div style={{ padding: "50px 20px", backgroundColor: "#f9f9f9" }}>
+    <div style={{ padding: "50px 20px", backgroundColor: "#1a1a1a" }}>
       <h2
         style={{
           textAlign: "center",
           fontSize: "32px",
           marginBottom: "30px",
-          color: "#333",
+          color: "#e0e0e0",
         }}
       >
         What Our Customers Say
@@ -55,21 +55,27 @@ const Testimonials = () => {
                 <Card
                   style={{
                     borderRadius: "12px",
-                    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                    backgroundColor: "#2a2a2a",
+                    border: "1px solid #444",
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
                     padding: "20px",
                     textAlign: "center",
+                    height: "100%",
                   }}
                 >
                   <Avatar
                     src={testimonial.avatar || <UserOutlined />}
                     size={64}
-                    style={{ marginBottom: "20px" }}
+                    style={{
+                      marginBottom: "20px",
+                      border: "2px solid #059862",
+                    }}
                   />
                   <h3
                     style={{
                       fontSize: "22px",
                       marginBottom: "10px",
-                      color: "#333",
+                      color: "#059862",
                     }}
                   >
                     {testimonial.name}
@@ -78,12 +84,12 @@ const Testimonials = () => {
                     style={{
                       fontSize: "14px",
                       fontStyle: "italic",
-                      color: "#888",
+                      color: "#b0b0b0",
                     }}
                   >
                     {testimonial.location}
                   </p>
-                  <p style={{ fontSize: "16px", color: "#555" }}>
+                  <p style={{ fontSize: "16px", color: "#b0b0b0" }}>
                     {testimonial.feedback}
                   </p>
                 </Card>

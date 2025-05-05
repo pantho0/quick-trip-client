@@ -29,13 +29,13 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <div style={{ padding: "50px 20px", backgroundColor: "#f9f9f9" }}>
+    <div style={{ padding: "50px 20px", backgroundColor: "#1a1a1a" }}>
       <h2
         style={{
           textAlign: "center",
           fontSize: "32px",
           marginBottom: "30px",
-          color: "#333",
+          color: "#e0e0e0",
         }}
       >
         Why Choose QuickTrip?
@@ -47,17 +47,20 @@ const WhyChooseUs = () => {
               style={{
                 textAlign: "center",
                 borderRadius: "12px",
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                backgroundColor: "#2a2a2a",
+                border: "1px solid #444",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+                height: "100%",
               }}
               bordered={false}
             >
               <div>{feature.icon}</div>
               <h3
-                style={{ fontSize: "22px", marginTop: "20px", color: "#333" }}
+                style={{ fontSize: "22px", marginTop: "20px", color: "#e0e0e0" }}
               >
                 {feature.title}
               </h3>
-              <p style={{ fontSize: "16px", color: "#555" }}>
+              <p style={{ fontSize: "16px", color: "#b0b0b0" }}>
                 {feature.description}
               </p>
             </Card>
