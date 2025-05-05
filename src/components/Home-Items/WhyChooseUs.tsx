@@ -1,4 +1,5 @@
 import { Row, Col, Card } from "antd";
+import { motion } from "framer-motion";
 import {
   CarOutlined,
   ClockCircleOutlined,
@@ -28,9 +29,41 @@ const WhyChooseUs = () => {
     },
   ];
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    show: { 
+      y: 0, 
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <div style={{ padding: "50px 20px", backgroundColor: "#1a1a1a" }}>
-      <h2
+    <motion.div 
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={container}
+      style={{ padding: "50px 20px", backgroundColor: "#1a1a1a" }}
+    >
+      <motion.h2
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
         style={{
           textAlign: "center",
           fontSize: "32px",
@@ -39,35 +72,35 @@ const WhyChooseUs = () => {
         }}
       >
         Why Choose QuickTrip?
-      </h2>
+      </motion.h2>
       <Row gutter={[24, 24]} justify="center">
         {features.map((feature, index) => (
           <Col xs={24} sm={12} md={8} key={index}>
-            <Card
-              style={{
-                textAlign: "center",
-                borderRadius: "12px",
-                backgroundColor: "#2a2a2a",
-                border: "1px solid #444",
-                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
-                height: "100%",
-              }}
-              bordered={false}
-            >
-              <div>{feature.icon}</div>
-              <h3
-                style={{ fontSize: "22px", marginTop: "20px", color: "#e0e0e0" }}
+            <motion.div variants={item}>
+              <Card
+                style={{
+                  textAlign: "center",
+                  borderRadius: "12px",
+                  backgroundColor: "#2a2a2a",
+                  border: "1px solid #444",
+                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+                  height: "100%",
+                }}
+                bordered={false}
               >
-                {feature.title}
-              </h3>
-              <p style={{ fontSize: "16px", color: "#b0b0b0" }}>
-                {feature.description}
-              </p>
-            </Card>
+                <div>{feature.icon}</div>
+                <h3 style={{ fontSize: "22px", marginTop: "20px", color: "#e0e0e0" }}>
+                  {feature.title}
+                </h3>
+                <p style={{ color: "#b0b0b0", marginTop: "10px" }}>
+                  {feature.description}
+                </p>
+              </Card>
+            </motion.div>
           </Col>
         ))}
       </Row>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,4 +1,5 @@
 import { Carousel, Row, Col, Card, Typography, Image } from "antd";
+import { motion } from "framer-motion";
 import "../../styles/featured.css";
 
 import bmw from "../../assets/images/bmw.jpg";
@@ -31,14 +32,50 @@ const featuredCars = [
   },
 ];
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  show: { 
+    y: 0, 
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
 const FeaturedCars = () => {
   return (
-    <div className="featured">
-      <h1 style={{ textAlign: "center", color: "#e0e0e0", padding: "20px 0" }}>
+    <motion.div 
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={container}
+      className="featured"
+      style={{ backgroundColor: "#1a1a1a" }}
+    >
+      <motion.h1 
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        style={{ textAlign: "center", color: "#e0e0e0", padding: "20px 0" }}
+      >
         Featured Cars
-      </h1>
+      </motion.h1>
       <div style={{ padding: "20px 0" }}>
-        <Carousel autoplay>
+        <motion.div variants={item}>
+          <Carousel autoplay>
           {featuredCars.map((car, index) => (
             <div key={index}>
               <Row
@@ -101,9 +138,10 @@ const FeaturedCars = () => {
               </Row>
             </div>
           ))}
-        </Carousel>
+          </Carousel>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

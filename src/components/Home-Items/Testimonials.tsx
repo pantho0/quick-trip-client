@@ -1,4 +1,5 @@
 import { Row, Col, Card, Carousel, Avatar } from "antd";
+import { motion } from "framer-motion";
 import { UserOutlined } from "@ant-design/icons";
 
 const testimonials = [
@@ -25,10 +26,42 @@ const testimonials = [
   },
 ];
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  show: { 
+    y: 0, 
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
 const Testimonials = () => {
   return (
-    <div style={{ padding: "50px 20px", backgroundColor: "#1a1a1a" }}>
-      <h2
+    <motion.div 
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={container}
+      style={{ padding: "50px 20px", backgroundColor: "#1a1a1a" }}
+    >
+      <motion.h2
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
         style={{
           textAlign: "center",
           fontSize: "32px",
@@ -37,8 +70,9 @@ const Testimonials = () => {
         }}
       >
         What Our Customers Say
-      </h2>
-      <Carousel autoplay>
+      </motion.h2>
+      <motion.div variants={item}>
+        <Carousel autoplay>
         {testimonials.map((testimonial, index) => (
           <div
             key={index}
@@ -97,8 +131,9 @@ const Testimonials = () => {
             </Row>
           </div>
         ))}
-      </Carousel>
-    </div>
+        </Carousel>
+      </motion.div>
+    </motion.div>
   );
 };
 
