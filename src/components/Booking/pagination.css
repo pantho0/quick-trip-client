@@ -1,0 +1,31 @@
+.ant-pagination-item {
+  background-color: transparent !important;
+  border-color: #444 !important;
+}
+
+.ant-pagination-item a {
+  color: #b0b0b0 !important;
+}
+
+.ant-pagination-item-active {
+  background-color: #059862 !important;
+  border-color: #059862 !important;
+}
+
+.ant-pagination-item-active a {
+  color: #fff !important;
+}
+
+.ant-pagination-item-link {
+  background-color: transparent !important;
+  border-color: #444 !important;
+  color: #b0b0b0 !important;
+}
+
+.ant-pagination-item:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.ant-pagination-item-active:hover {
+  background-color: #059862 !important;
+}

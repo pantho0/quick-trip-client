@@ -5,6 +5,7 @@ import "../../styles/globalButton.css";
 import Loader from "../shared/Loader";
 import { useState } from "react";
 import "./availableCar.css";
+import "./pagination.css";
 
 const AvailableCars = () => {
   const [page, setPage] = useState(1);
@@ -134,33 +135,11 @@ const AvailableCars = () => {
       </Row>
       <Flex justify="center" style={{ marginTop: "40px", padding: "0 20px" }}>
         <Pagination
+          current={page}
           onChange={(value) => setPage(value)}
           pageSize={cars?.meta?.limit}
           total={cars?.meta?.total}
-          itemRender={(page, type, originalElement) => {
-            if (type === 'page') {
-              return (
-                <span style={{
-                  color: page === page ? '#fff' : '#b0b0b0',
-                  backgroundColor: page === page ? '#059862' : 'transparent',
-                  border: page === page ? '1px solid #059862' : '1px solid #444',
-                  padding: '0 12px',
-                  height: '32px',
-                  minWidth: '32px',
-                  lineHeight: '30px',
-                  borderRadius: '4px',
-                  margin: '0 4px',
-                  display: 'inline-block',
-                  textAlign: 'center',
-                  cursor: 'pointer'
-                }}>
-                  {page}
-                </span>
-              );
-            }
-            return originalElement;
-          }}
-          style={{ color: '#fff' }}
+          className="custom-pagination"
         />
       </Flex>
     </div>
