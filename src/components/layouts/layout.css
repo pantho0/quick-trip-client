@@ -41,4 +41,17 @@
   .sidebar-logout-button {
     display: block;
   }
+
+  /* Reduce side padding for mobile */
+  .ant-layout-header {
+    padding: 0 16px !important;
+  }
+
+  .ant-layout-content {
+    padding: 0 16px !important;
+  }
+
+  .ant-card {
+    margin: 0 8px;
+  }
 }

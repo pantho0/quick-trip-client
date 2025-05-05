@@ -16,8 +16,8 @@ const FooterSection = () => {
         borderTop: "1px solid #333",
       }}
     >
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
-        <Row gutter={[40, 40]} justify="space-between" style={{ width: '100%' }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 16px" }}>
+        <Row gutter={[0, 32]} justify={{ xs: 'start', sm: 'space-between' }} style={{ width: '100%' }}>
           {/* Social Media Links */}
           <Col xs={24} sm={12} md={5} style={{ display: 'flex', justifyContent: 'center' }}>
             <Space size="middle" align="center">
@@ -60,8 +60,8 @@ const FooterSection = () => {
           </Col>
 
           {/* Company Links */}
-          <Col xs={24} sm={12} md={5} style={{ display: 'flex', justifyContent: 'center' }}>
-            <Space direction="vertical" size="small" align="start">
+          <Col xs={24} sm={12} md={5} style={{ marginBottom: '24px', padding: '0 16px' }}>
+            <Space direction="vertical" size="small" style={{ width: '100%' }} align="start">
               <h4 style={{ color: "#ffffff", marginBottom: '10px' }}>Company</h4>
               <a href="/about-us" style={{ color: "#b0b0b0", display: 'block', marginBottom: '8px' }}>
                 About Us
@@ -79,8 +79,8 @@ const FooterSection = () => {
           </Col>
 
           {/* Legal Links */}
-          <Col xs={24} sm={12} md={5} style={{ display: 'flex', justifyContent: 'center' }}>
-            <Space direction="vertical" size="small" align="start">
+          <Col xs={24} sm={12} md={5} style={{ marginBottom: '24px', padding: '0 16px' }}>
+            <Space direction="vertical" size="small" style={{ width: '100%' }} align="start">
               <h4 style={{ color: "#ffffff", marginBottom: '10px' }}>Legal</h4>
               <a href="/privacy-policy" style={{ color: "#b0b0b0", display: 'block', marginBottom: '8px' }}>
                 Privacy Policy
@@ -98,7 +98,7 @@ const FooterSection = () => {
           </Col>
 
           {/* Contact Information */}
-          <Col xs={24} sm={24} md={5} style={{ display: 'flex', justifyContent: 'center' }}>
+          <Col xs={24} sm={24} md={5} style={{ marginBottom: '24px', padding: '0 16px' }}>
             <Space direction="vertical" size="small" align="center">
               <p style={{ margin: 0, color: "#e0e0e0" }}>Contact Us:</p>
               <p style={{ margin: 0, color: "#b0b0b0" }}>
