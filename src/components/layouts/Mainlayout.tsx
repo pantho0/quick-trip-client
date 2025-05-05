@@ -1,4 +1,4 @@
-import { Button, Drawer, Layout, Menu, theme } from "antd";
+import { Button, Drawer, Layout, Menu } from "antd";
 import { Link, Outlet } from "react-router-dom";
 import { navLinkGenerator } from "../../utils/navLinkGenerator";
 import { globalPaths } from "../../router/global.routes";
@@ -18,9 +18,7 @@ const Mainlayout = () => {
   const user = useAppSelector(selectUser);
   console.log(user);
 
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+
 
   const showDrawer = () => {
     setVisible(true);
@@ -37,12 +35,18 @@ const Mainlayout = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 24px",
-          background: colorBgContainer,
+          padding: "0 48px",
+          background: "#1a1a1a",
+          height: "80px",
+          lineHeight: "80px",
+          position: "sticky",
+          top: 0,
+          zIndex: 1,
+          borderBottom: "1px solid #333"
         }}
       >
         <Link to="/">
-          <h1 className="responsive-logo">
+          <h1 className="responsive-logo" style={{ color: "white" }}>
             Quick <span style={{ color: "#059862" }}>Trip</span>{" "}
           </h1>
         </Link>
@@ -69,7 +73,7 @@ const Mainlayout = () => {
           />
 
           <Menu
-            theme="light"
+            theme="dark"
             mode="horizontal"
             defaultSelectedKeys={["1"]}
             items={items}
@@ -79,6 +83,7 @@ const Mainlayout = () => {
               justifyContent: "flex-end",
               minWidth: 0,
               borderBottom: "0px",
+              background: "transparent"
             }}
           />
           {user?.role ? (
@@ -99,7 +104,7 @@ const Mainlayout = () => {
           )}
         </div>
       </Header>
-      <div style={{ padding: "5px 0px" }}>
+      <div style={{ background: "#1a1a1a", minHeight: "100vh" }}>
         <Drawer placement="left" onClose={onClose} open={visible} width={250}>
           <Menu
             mode="inline"
@@ -129,15 +134,8 @@ const Mainlayout = () => {
             </div>
           )}
         </Drawer>
-        <Content style={{ padding: "0 48px" }}>
-          <div
-            style={{
-              background: colorBgContainer,
-              minHeight: "100vh",
-              padding: 10,
-              borderRadius: borderRadiusLG,
-            }}
-          >
+        <Content style={{ padding: "0 48px", margin: "24px 0", background: "#1a1a1a" }}>
+          <div style={{ minHeight: "calc(100vh - 184px)" }}>
             <Outlet />
           </div>
         </Content>

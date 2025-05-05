@@ -34,7 +34,8 @@ const Banner = () => {
       style={{
         borderRadius: "20px",
         overflow: "hidden",
-        minHeight: "500px"
+        minHeight: "500px",
+        background: "#1a1a1a"
       }}
       gutter={[24, 24]}
       align="middle"
@@ -50,13 +51,13 @@ const Banner = () => {
             level={1}
             style={{ color: "#059862", fontWeight: 700, marginBottom: 16 }}
           >
-            Quick <span style={{ color: "#000" }}>Trip</span>
+            Quick <span style={{ color: "#fff" }}>Trip</span>
           </Title>
-          <Title level={3} style={{ color: "#666", marginBottom: 24 }}>
+          <Title level={3} style={{ color: "#e0e0e0", marginBottom: 24 }}>
             Effortless Car Reservations for Every Destination
           </Title>
 
-          <Text style={{ color: "#666", marginBottom: 32 }}>
+          <Text style={{ color: "#b0b0b0", marginBottom: 32 }}>
             Quick Trip makes finding the perfect car for your journey a breeze.
             Simply select your pickup and drop-off locations, and let us connect
             you with the best options available. Wherever you're headed, Quick
@@ -71,7 +72,7 @@ const Banner = () => {
                     name="from"
                     label="Pickup Location"
                     options={locations}
-                    className="base-select"
+                    className="base-select dark-select"
                   />
                 </Col>
                 <Col xs={24} sm={12} md={12}>
@@ -79,7 +80,7 @@ const Banner = () => {
                     name="to"
                     label="Drop-off Location"
                     options={locations}
-                    className="base-select"
+                    className="base-select dark-select"
                   />
                 </Col>
               </Row>
