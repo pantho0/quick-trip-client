@@ -35,12 +35,17 @@ const Banner = () => {
         borderRadius: "20px",
         overflow: "hidden",
         minHeight: "500px",
-        background: "#1a1a1a"
+        background: "#1a1a1a",
       }}
       gutter={[24, 24]}
       align="middle"
     >
-      <Col span={24} md={24} lg={12} style={{ display: 'flex', alignItems: 'center' }}>
+      <Col
+        span={24}
+        md={24}
+        lg={12}
+        style={{ display: "flex", alignItems: "center" }}
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -49,15 +54,15 @@ const Banner = () => {
         >
           <Title
             level={1}
-            style={{ color: "#059862", fontWeight: 700, marginBottom: 16 }}
+            style={{ color: "#059862", fontWeight: 700, marginBottom: "0.2em" }}
           >
             Quick <span style={{ color: "#fff" }}>Trip</span>
           </Title>
-          <Title level={3} style={{ color: "#e0e0e0", marginBottom: 24 }}>
+          <Title level={3} style={{ color: "#e0e0e0" }}>
             Effortless Car Reservations for Every Destination
           </Title>
 
-          <Text style={{ color: "#b0b0b0", marginBottom: 32 }}>
+          <Text style={{ color: "#b0b0b0", marginBottom: "1em" }}>
             Quick Trip makes finding the perfect car for your journey a breeze.
             Simply select your pickup and drop-off locations, and let us connect
             you with the best options available. Wherever you're headed, Quick
@@ -103,7 +108,12 @@ const Banner = () => {
         </motion.div>
       </Col>
 
-      <Col span={24} md={24} lg={12} style={{ display: 'flex', alignItems: 'center' }}>
+      <Col
+        span={24}
+        md={24}
+        lg={12}
+        style={{ display: "flex", alignItems: "center" }}
+      >
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}

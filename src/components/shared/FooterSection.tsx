@@ -10,89 +10,116 @@ const FooterSection = () => {
   return (
     <footer
       style={{
-        backgroundColor: "#f5f5f5",
-        padding: "20px 0",
-        textAlign: "center",
+        backgroundColor: "#1a1a1a",
+        color: "#e0e0e0",
+        padding: "50px 0 20px",
+        borderTop: "1px solid #333",
       }}
     >
-      <Row
-        justify="center"
-        align="middle"
-        gutter={[16, 16]}
-        style={{ padding: "30px 0px" }}
-      >
-        {/* Social Media Links */}
-        <Col xs={24} sm={12} md={6}>
-          <Space size="large">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FacebookOutlined
-                style={{ fontSize: "24px", color: "#3b5998" }}
-              />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <TwitterOutlined style={{ fontSize: "24px", color: "#1DA1F2" }} />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <InstagramOutlined
-                style={{ fontSize: "24px", color: "#E4405F" }}
-              />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <LinkedinOutlined
-                style={{ fontSize: "24px", color: "#0077b5" }}
-              />
-            </a>
-          </Space>
-        </Col>
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
+        <Row gutter={[40, 40]} justify="space-between" style={{ width: '100%' }}>
+          {/* Social Media Links */}
+          <Col xs={24} sm={12} md={5} style={{ display: 'flex', justifyContent: 'center' }}>
+            <Space size="middle" align="center">
+              {[
+                { icon: <FacebookOutlined />, color: "#3b5998" },
+                { icon: <TwitterOutlined />, color: "#1DA1F2" },
+                { icon: <InstagramOutlined />, color: "#E4405F" },
+                { icon: <LinkedinOutlined />, color: "#0077b5" },
+              ].map((social, index) => (
+                <a
+                  key={index}
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "36px",
+                    height: "36px",
+                    borderRadius: "50%",
+                    backgroundColor: social.color,
+                    color: "#fff",
+                    transition: "all 0.3s",
+                    fontSize: "18px",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.opacity = "0.8";
+                    e.currentTarget.style.transform = "scale(1.1)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.opacity = "1";
+                    e.currentTarget.style.transform = "scale(1)";
+                  }}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </Space>
+          </Col>
 
-        {/* Privacy Policy and Terms */}
-        <Col xs={24} sm={12} md={6}>
-          <Space direction="vertical" size="small">
-            <a href="/privacy-policy" style={{ color: "#555" }}>
-              Privacy Policy
-            </a>
-            <a href="/terms-of-service" style={{ color: "#555" }}>
-              Terms of Service
-            </a>
-          </Space>
-        </Col>
+          {/* Company Links */}
+          <Col xs={24} sm={12} md={5} style={{ display: 'flex', justifyContent: 'center' }}>
+            <Space direction="vertical" size="small" align="start">
+              <h4 style={{ color: "#ffffff", marginBottom: '10px' }}>Company</h4>
+              <a href="/about-us" style={{ color: "#b0b0b0", display: 'block', marginBottom: '8px' }}>
+                About Us
+              </a>
+              <a href="/careers" style={{ color: "#b0b0b0", display: 'block', marginBottom: '8px' }}>
+                Careers
+              </a>
+              <a href="/blog" style={{ color: "#b0b0b0", display: 'block', marginBottom: '8px' }}>
+                Blog
+              </a>
+              <a href="/press" style={{ color: "#b0b0b0", display: 'block' }}>
+                Press
+              </a>
+            </Space>
+          </Col>
 
-        {/* Contact Information */}
-        <Col xs={24} sm={24} md={6}>
-          <Space direction="vertical" size="small">
-            <p style={{ margin: 0, color: "#555" }}>Contact Us:</p>
-            <p style={{ margin: 0, color: "#555" }}>
-              Email: support@quicktrip.com
+          {/* Legal Links */}
+          <Col xs={24} sm={12} md={5} style={{ display: 'flex', justifyContent: 'center' }}>
+            <Space direction="vertical" size="small" align="start">
+              <h4 style={{ color: "#ffffff", marginBottom: '10px' }}>Legal</h4>
+              <a href="/privacy-policy" style={{ color: "#b0b0b0", display: 'block', marginBottom: '8px' }}>
+                Privacy Policy
+              </a>
+              <a href="/terms-of-service" style={{ color: "#b0b0b0", display: 'block', marginBottom: '8px' }}>
+                Terms of Service
+              </a>
+              <a href="/cookie-policy" style={{ color: "#b0b0b0", display: 'block', marginBottom: '8px' }}>
+                Cookie Policy
+              </a>
+              <a href="/gdpr" style={{ color: "#b0b0b0", display: 'block' }}>
+                GDPR
+              </a>
+            </Space>
+          </Col>
+
+          {/* Contact Information */}
+          <Col xs={24} sm={24} md={5} style={{ display: 'flex', justifyContent: 'center' }}>
+            <Space direction="vertical" size="small" align="center">
+              <p style={{ margin: 0, color: "#e0e0e0" }}>Contact Us:</p>
+              <p style={{ margin: 0, color: "#b0b0b0" }}>
+                Email: support@quicktrip.com
+              </p>
+              <p style={{ margin: 0, color: "#b0b0b0" }}>
+                Phone: +1-800-555-1234
+              </p>
+            </Space>
+          </Col>
+        </Row>
+
+        {/* Footer Bottom */}
+        <Row justify="center" style={{ marginTop: "20px" }}>
+          <Col>
+            <p style={{ margin: 0, color: "#888", fontSize: "14px" }}>
+              &copy; {new Date().getFullYear()} QuickTrip. All rights reserved.
             </p>
-            <p style={{ margin: 0, color: "#555" }}>Phone: +1-800-555-1234</p>
-          </Space>
-        </Col>
-      </Row>
-
-      {/* Footer Bottom */}
-      <Row justify="center" style={{ marginTop: "20px" }}>
-        <Col>
-          <p style={{ margin: 0, color: "#888" }}>
-            &copy; {new Date().getFullYear()} QuickTrip. All rights reserved.
-          </p>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </div>
     </footer>
   );
 };
