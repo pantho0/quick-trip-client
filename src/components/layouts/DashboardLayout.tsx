@@ -1,4 +1,4 @@
-import { Button, Layout, theme } from "antd";
+import { Button, Layout } from "antd";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { useAppDispatch } from "../../redux/hooks";
@@ -14,37 +14,41 @@ const DashboardLayout = () => {
     dispatch(logout());
   };
 
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+
   return (
     <Layout>
       <Sidebar />
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }}>
-          <div
-            style={{
-              width: "full",
-              display: "flex",
-              justifyContent: "flex-end",
-              padding: "20px",
-            }}
+        <Header style={{ 
+          padding: 0, 
+          background: '#1a1a1a',
+          borderBottom: '1px solid #444',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          paddingRight: '24px',
+          height: '64px',
+          lineHeight: '64px'
+        }}>
+          <Button
+            type="primary"
+            className="dashboard-logout-button"
+            onClick={signOut}
           >
-            <Button
-              className="dashboard-logout-button"
-              onClick={() => signOut()}
-            >
-              Logout
-            </Button>
-          </div>
+            Logout
+          </Button>
         </Header>
-        <Content style={{ margin: "24px 16px 0" }}>
+        <Content style={{ 
+          margin: '24px 16px 0',
+          background: '#1a1a1a'
+        }}>
           <div
             style={{
               padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
+              minHeight: 'calc(100vh - 112px)',
+              background: '#1a1a1a',
+              borderRadius: 8,
+              color: '#b0b0b0'
             }}
           >
             <Outlet />

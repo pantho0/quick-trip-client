@@ -94,18 +94,24 @@ const Sidebar = () => {
         </Link>
         <Divider dashed style={{ background: "#059874" }} />
         <Menu
-          theme="light"
+          theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]}
           items={sidebarItems}
+          style={{
+            background: '#1a1a1a',
+            borderRight: 0,
+          }}
         />
         <Button
+          type="primary"
           className="sidebar-logout-button"
           style={{
-            width: "100%",
-            marginTop: "20px",
+            width: "calc(100% - 32px)",
+            margin: "20px 16px",
+            height: "40px"
           }}
-          onClick={() => signOut()}
+          onClick={signOut}
         >
           Logout
         </Button>
