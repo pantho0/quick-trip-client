@@ -30,9 +30,12 @@ const AvailableCars = () => {
 
   useEffect(() => {
     if (isSuccess && !isFetching && !isLoading && topRef.current) {
-      const yOffset = -80; // Adjust this value based on your header height
-      const y = topRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      const yOffset = -80;
+      const y =
+        topRef.current.getBoundingClientRect().top +
+        window.pageYOffset +
+        yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
   }, [isSuccess, isFetching, isLoading, page]);
 
@@ -50,7 +53,7 @@ const AvailableCars = () => {
         padding: "20px 0",
       }}
     >
-      <div ref={topRef} style={{ position: 'absolute', top: '-100px' }} />
+      <div ref={topRef} style={{ position: "absolute", top: "-100px" }} />
       <div>
         <h1
           style={{
