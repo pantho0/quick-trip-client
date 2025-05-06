@@ -97,7 +97,7 @@ const AllCars = () => {
       title: "Status",
       dataIndex: "status",
       render: (status: string) => (
-        <Tag color={status === 'available' ? 'success' : 'error'}>
+        <Tag color={status === "available" ? "success" : "error"}>
           {status.charAt(0).toUpperCase() + status.slice(1)}
         </Tag>
       ),
@@ -173,9 +173,9 @@ const AllCars = () => {
         pagination={false}
         showSorterTooltip={{ target: "sorter-icon" }}
         className="custom-table"
-        rowClassName={() => 'custom-table-row'}
+        rowClassName={() => "custom-table-row"}
         rowKey="key"
-        style={{ background: '#1a1a1a' }}
+        style={{ background: "#1a1a1a" }}
         bordered={false}
       />
       <Flex justify="flex-end" style={{ margin: "20px 0px" }}>
