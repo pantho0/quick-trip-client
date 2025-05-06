@@ -1,4 +1,4 @@
-import { Flex, Pagination, Table, Tooltip } from "antd";
+import { Flex, Pagination, Table, Tooltip, Tag } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
 import {
   useDeleteCarMutation,
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { DeleteFilled, EditOutlined, EyeFilled } from "@ant-design/icons";
 import Swal from "sweetalert2";
 import { toast } from "sonner";
+import "./AllCars.css";
 
 interface DataType {
   key: string;
@@ -95,6 +96,11 @@ const AllCars = () => {
     {
       title: "Status",
       dataIndex: "status",
+      render: (status: string) => (
+        <Tag color={status === 'available' ? 'success' : 'error'}>
+          {status.charAt(0).toUpperCase() + status.slice(1)}
+        </Tag>
+      ),
       filters: [
         {
           text: "Available",
@@ -166,6 +172,11 @@ const AllCars = () => {
         onChange={onChange}
         pagination={false}
         showSorterTooltip={{ target: "sorter-icon" }}
+        className="custom-table"
+        rowClassName={() => 'custom-table-row'}
+        rowKey="key"
+        style={{ background: '#1a1a1a' }}
+        bordered={false}
       />
       <Flex justify="flex-end" style={{ margin: "20px 0px" }}>
         <Pagination
