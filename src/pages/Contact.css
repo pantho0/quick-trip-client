@@ -1,0 +1,46 @@
+/* Style for input placeholders */
+.custom-input::placeholder {
+  color: #666 !important;
+  opacity: 1 !important;
+}
+
+/* Style for textarea placeholders */
+.custom-textarea::placeholder {
+  color: #666 !important;
+  opacity: 1 !important;
+}
+
+/* Style for input focus */
+.custom-input:focus,
+.custom-textarea:focus {
+  border-color: #059862 !important;
+  box-shadow: 0 0 0 2px rgba(5, 152, 98, 0.2) !important;
+}
+
+/* Style for input hover */
+.custom-input:hover,
+.custom-textarea:hover {
+  border-color: #666 !important;
+}
+
+/* Style for input text color */
+.ant-input,
+.ant-input-textarea {
+  color: #fff !important;
+}
+
+/* Style for input background */
+.ant-input,
+.ant-input-textarea {
+  background-color: #1a1a1a !important;
+  border-color: #444 !important;
+}
+
+/* Style for input focus */
+.ant-input:focus,
+.ant-input-focused,
+.ant-input-textarea:focus,
+.ant-input-textarea-focused {
+  border-color: #059862 !important;
+  box-shadow: 0 0 0 2px rgba(5, 152, 98, 0.2) !important;
+}

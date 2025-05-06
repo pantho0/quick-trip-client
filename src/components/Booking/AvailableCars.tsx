@@ -3,16 +3,20 @@ import { useGetAllCarQuery } from "../../redux/features/admin/carManagement.api"
 import { Link } from "react-router-dom";
 import "../../styles/globalButton.css";
 import Loader from "../shared/Loader";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./availableCar.css";
 import "./pagination.css";
 
 const AvailableCars = () => {
   const [page, setPage] = useState(1);
+
+  const topRef = useRef<HTMLDivElement>(null);
+
   const {
     data: cars,
     isFetching,
     isLoading,
+    isSuccess,
   } = useGetAllCarQuery([
     {
       name: "page",
@@ -24,6 +28,14 @@ const AvailableCars = () => {
     },
   ]);
 
+  useEffect(() => {
+    if (isSuccess && !isFetching && !isLoading && topRef.current) {
+      const yOffset = -80; // Adjust this value based on your header height
+      const y = topRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }, [isSuccess, isFetching, isLoading, page]);
+
   const { Meta } = Card;
 
   if (isFetching && isLoading) {
@@ -31,7 +43,14 @@ const AvailableCars = () => {
   }
 
   return (
-    <div style={{ backgroundColor: "#1a1a1a", minHeight: "100vh", padding: "20px 0" }}>
+    <div
+      style={{
+        backgroundColor: "#1a1a1a",
+        minHeight: "100vh",
+        padding: "20px 0",
+      }}
+    >
+      <div ref={topRef} style={{ position: 'absolute', top: '-100px' }} />
       <div>
         <h1
           style={{
@@ -40,7 +59,7 @@ const AvailableCars = () => {
             padding: "20px 0",
             marginBottom: "20px",
             fontSize: "2.5rem",
-            fontWeight: 600
+            fontWeight: 600,
           }}
         >
           Available Cars
@@ -70,7 +89,7 @@ const AvailableCars = () => {
                     width: "100%",
                     height: "200px",
                     borderTopLeftRadius: "10px",
-                    borderTopRightRadius: "10px"
+                    borderTopRightRadius: "10px",
                   }}
                   src={car?.images}
                 />
@@ -78,7 +97,11 @@ const AvailableCars = () => {
             >
               <div className="card-content" style={{ color: "#b0b0b0" }}>
                 <Meta
-                  title={<span style={{ color: "#fff", fontSize: "1.2rem" }}>{car?.name}</span>}
+                  title={
+                    <span style={{ color: "#fff", fontSize: "1.2rem" }}>
+                      {car?.name}
+                    </span>
+                  }
                   description={
                     <span style={{ color: "#b0b0b0" }}>
                       {`${car?.description.slice(0, 50)}...`}
@@ -89,17 +112,21 @@ const AvailableCars = () => {
                   <strong>${car?.pricePerHour}</strong> / hour
                 </p>
                 <div style={{ marginTop: "10px" }}>
-                  <p style={{ marginBottom: "5px" }}><strong>Features:</strong></p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+                  <p style={{ marginBottom: "5px" }}>
+                    <strong>Features:</strong>
+                  </p>
+                  <div
+                    style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}
+                  >
                     {car?.features?.slice(0, 3)?.map((f) => (
-                      <Tag 
-                        color="#059862" 
-                        style={{ 
+                      <Tag
+                        color="#059862"
+                        style={{
                           margin: 0,
                           backgroundColor: "rgba(5, 152, 98, 0.1)",
                           color: "#059862",
-                          border: "1px solid #059862"
-                        }} 
+                          border: "1px solid #059862",
+                        }}
                         key={f}
                       >
                         {f}
@@ -107,7 +134,10 @@ const AvailableCars = () => {
                     ))}
                   </div>
                 </div>
-                <Link to={`/user/create-booking/${car?._id}`} style={{ textDecoration: "none" }}>
+                <Link
+                  to={`/user/create-booking/${car?._id}`}
+                  style={{ textDecoration: "none" }}
+                >
                   <Flex
                     justify="center"
                     style={{ marginTop: "20px", width: "100%" }}
@@ -117,14 +147,18 @@ const AvailableCars = () => {
                       disabled={car?.status === "booked"}
                       style={{
                         width: "100%",
-                        backgroundColor: car?.status === "available" ? "#059862" : "#666",
-                        borderColor: car?.status === "available" ? "#059862" : "#666",
+                        backgroundColor:
+                          car?.status === "available" ? "#059862" : "#666",
+                        borderColor:
+                          car?.status === "available" ? "#059862" : "#666",
                         height: "40px",
                         fontSize: "1rem",
                         fontWeight: 500,
                       }}
                     >
-                      {car?.status === "available" ? "Book Now" : "Already Booked"}
+                      {car?.status === "available"
+                        ? "Book Now"
+                        : "Already Booked"}
                     </Button>
                   </Flex>
                 </Link>
