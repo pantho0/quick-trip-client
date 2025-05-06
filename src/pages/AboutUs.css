@@ -1,0 +1,26 @@
+.newsletter-input .ant-input {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  color: #b0b0b0;
+}
+
+.newsletter-input .ant-input::placeholder {
+  color: #666;
+}
+
+.newsletter-input .ant-input:hover,
+.newsletter-input .ant-input:focus {
+  border-color: #059862;
+  box-shadow: 0 0 0 2px rgba(5, 152, 98, 0.2);
+}
+
+.newsletter-input .ant-input-group-addon .ant-btn {
+  background-color: #059862;
+  border-color: #059862;
+  color: white;
+}
+
+.newsletter-input .ant-input-group-addon .ant-btn:hover {
+  background-color: #048a58;
+  border-color: #048a58;
+}

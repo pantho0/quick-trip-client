@@ -1,11 +1,42 @@
 import { Row, Col, Card, Button, Typography, Input } from "antd";
 import { } from "@ant-design/icons";
+import { motion } from "framer-motion";
+import "./AboutUs.css";
 
 const { Title, Paragraph } = Typography;
 
+// Animation variants
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+};
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
+const scaleUp = {
+  hidden: { opacity: 0, scale: 0.9 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
+};
+
 const AboutUs = () => {
   return (
-    <div
+    <motion.div
+      initial="hidden"
+      animate="show"
+      variants={container}
       style={{
         padding: "30px",
         backgroundColor: "#1a1a1a",
@@ -13,6 +44,7 @@ const AboutUs = () => {
       }}
     >
       {/* About Section */}
+      <motion.div variants={fadeInUp}>
       <Row justify="center" style={{ marginBottom: "30px" }}>
         <Col
           xs={22}
@@ -33,8 +65,10 @@ const AboutUs = () => {
           </Paragraph>
         </Col>
       </Row>
+      </motion.div>
 
       {/* Our Team Section */}
+      <motion.div variants={container}>
       <Row justify="center" gutter={[16, 16]}>
         {[
           {
@@ -59,6 +93,7 @@ const AboutUs = () => {
           },
         ].map((member, index) => (
           <Col key={index} xs={24} sm={12} md={8} lg={6}>
+            <motion.div variants={item} whileHover={{ y: -5 }}>
             <Card
               cover={
                 <div style={{ padding: "20px" }}>
@@ -90,14 +125,18 @@ const AboutUs = () => {
               </Title>
               <Paragraph style={{ color: "#b0b0b0", marginBottom: 0 }}>{member.role}</Paragraph>
             </Card>
+            </motion.div>
           </Col>
         ))}
       </Row>
+      </motion.div>
 
       {/* Hiring and Newsletter Sections */}
+      <motion.div variants={container}>
       <Row gutter={[24, 24]} style={{ margin: "50px 0" }}>
         {/* Hiring Section */}
         <Col xs={24} md={12}>
+          <motion.div variants={scaleUp} whileHover={{ scale: 1.02 }}>
           <div
             style={{
               textAlign: "center",
@@ -128,10 +167,12 @@ const AboutUs = () => {
               Apply Now
             </Button>
           </div>
+          </motion.div>
         </Col>
 
         {/* Newsletter Section */}
         <Col xs={24} md={12}>
+          <motion.div variants={scaleUp} whileHover={{ scale: 1.02 }}>
           <div
             style={{
               textAlign: "center",
@@ -158,11 +199,14 @@ const AboutUs = () => {
                 width: "100%",
                 margin: "0 auto"
               }}
+              className="newsletter-input"
             />
           </div>
+          </motion.div>
         </Col>
       </Row>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
