@@ -10,9 +10,17 @@ type TBaseSelectProps = {
   name: string;
   label: string;
   defaulItems?: string[] | never[] | any;
+  className?: string;
+  dropdownClassName?: string;
 };
 
-const BaseCustomSelect = ({ name, label, defaulItems }: TBaseSelectProps) => {
+const BaseCustomSelect = ({ 
+  name, 
+  label, 
+  defaulItems, 
+  className = '',
+  dropdownClassName = '' 
+}: TBaseSelectProps) => {
   const [items, setItems] = useState<string[]>([]);
   const [selectedItems, setSelectedItems] = useState(defaulItems);
   const [nameInput, setNameInput] = useState("");
@@ -50,9 +58,11 @@ const BaseCustomSelect = ({ name, label, defaulItems }: TBaseSelectProps) => {
               handleSelectChange(value);
               field.onChange(value);
             }}
+            className={className}
+            popupClassName={dropdownClassName}
             style={{ width: "100%" }}
             size="large"
-            placeholder="custom dropdown render"
+            placeholder="Select features"
             dropdownRender={(menu) => (
               <>
                 {menu}

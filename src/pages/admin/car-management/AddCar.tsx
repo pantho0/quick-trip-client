@@ -7,6 +7,7 @@ import BaseCustomSelect from "../../../components/Form/BaseCustomSelect";
 import { useAddCarMutation } from "../../../redux/features/admin/carManagement.api";
 import { toast } from "sonner";
 import { TResponse } from "../../../types/global.types";
+import styles from "./AddCar.module.css";
 
 const isElectricOptions = [
   {
@@ -87,7 +88,14 @@ const AddCar = () => {
               label="Electric or Not?"
               options={isElectricOptions}
             />
-            <BaseCustomSelect name="features" label="Features" />
+            <div style={{ marginBottom: '24px' }}>
+              <BaseCustomSelect 
+                name="features" 
+                label="Features"
+                className={styles.customFeaturesDropdown}
+                dropdownClassName={styles.customFeaturesDropdownMenu}
+              />
+            </div>
             <BaseInput
               type="number"
               name="pricePerHour"

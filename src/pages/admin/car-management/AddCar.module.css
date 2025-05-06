@@ -1,0 +1,67 @@
+/* Style the dropdown menu that appears when clicking the select */
+.customFeaturesDropdownMenu :global(.ant-select-dropdown) {
+  background-color: #1a1a1a !important; /* Dark background color */
+  border-radius: 8px !important;
+  border: 1px solid #333 !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Style the dropdown menu items */
+.customFeaturesDropdownMenu :global(.ant-select-item) {
+  color: #e0e0e0 !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Style the selected item in the dropdown */
+.customFeaturesDropdownMenu
+  :global(
+    .ant-select-item-option-selected:not(.ant-select-item-option-disabled)
+  ) {
+  background-color: #10b981 !important; /* Site's green color */
+  color: #ffffff !important;
+}
+
+/* Style the hover state of dropdown items */
+.customFeaturesDropdownMenu :global(.ant-select-item:hover) {
+  background-color: #2d2d2d !important; /* Slightly lighter than background */
+}
+
+/* Style the input field's placeholder text */
+:global(.ant-select-selection-placeholder) {
+  color: #8c8c8c !important;
+}
+
+/* Style the search input inside dropdown */
+.customFeaturesDropdownMenu
+  :global(
+    .ant-select-item-option-active:not(.ant-select-item-option-disabled)
+  ) {
+  background-color: #2d2d2d !important;
+}
+
+/* Style the checkmark for selected items */
+.customFeaturesDropdownMenu
+  :global(.ant-select-item-option-selected .ant-select-item-option-state) {
+  color: #ffffff !important; /* White checkmark for better visibility on green */
+}
+
+/* Style for selected tags in the input */
+:global(.ant-select-outlined.ant-select-multiple .ant-select-selection-item) {
+  background-color: #10b981 !important; /* Site's green color */
+  color: #ffffff !important;
+  border-color: #10b981 !important;
+}
+
+/* Hover state for selected tags */
+:global(.ant-select-outlined.ant-select-multiple .ant-select-selection-item:hover) {
+  background-color: #0d9e6f !important; /* Slightly darker green on hover */
+}
+
+/* Close icon in the tag */
+:global(.ant-select-outlined.ant-select-multiple .ant-select-selection-item-remove) {
+  color: #ffffff !important;
+}
+
+:global(.ant-select-outlined.ant-select-multiple .ant-select-selection-item-remove:hover) {
+  color: #e0e0e0 !important;
+}
