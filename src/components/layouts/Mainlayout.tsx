@@ -18,8 +18,6 @@ const Mainlayout = () => {
   const user = useAppSelector(selectUser);
   console.log(user);
 
-
-
   const showDrawer = () => {
     setVisible(true);
   };
@@ -42,7 +40,8 @@ const Mainlayout = () => {
           position: "sticky",
           top: 0,
           zIndex: 1,
-          borderBottom: "1px solid #333"
+          borderBottom: "1px solid #444",
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
         }}
       >
         <Link to="/">
@@ -83,7 +82,7 @@ const Mainlayout = () => {
               justifyContent: "flex-end",
               minWidth: 0,
               borderBottom: "0px",
-              background: "transparent"
+              background: "transparent",
             }}
           />
           {user?.role ? (
@@ -134,7 +133,9 @@ const Mainlayout = () => {
             </div>
           )}
         </Drawer>
-        <Content style={{ padding: "0 48px", margin: "24px 0", background: "#1a1a1a" }}>
+        <Content
+          style={{ padding: "0 48px", margin: "24px 0", background: "#1a1a1a" }}
+        >
           <div style={{ minHeight: "calc(100vh - 184px)" }}>
             <Outlet />
           </div>

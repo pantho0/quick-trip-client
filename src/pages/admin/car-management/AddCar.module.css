@@ -1,37 +1,315 @@
-/* Style the dropdown menu that appears when clicking the select */
+/* Container styles */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 10px;
+  box-sizing: border-box;
+  background-color: #1a1a1a;
+  min-height: 100vh;
+}
+
+/* Card styles */
+.formCard {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  transition: all 0.3s ease;
+  margin: 0 5px;
+}
+
+.formCard:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Title styles */
+.title {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 24px;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #059862;
+  border-radius: 3px;
+}
+
+/* Form styles */
+.form {
+  width: 100%;
+  padding: 0 10px 20px;
+}
+
+/* Form item styles */
+.formItem {
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.formItem :global(.ant-form-item-label > label) {
+  color: #b0b0b0;
+  font-weight: 500;
+}
+
+.formItem :global(.ant-input),
+.formItem :global(.ant-select-selector) {
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #2a2a2a;
+  color: #fff;
+  transition: all 0.3s;
+  height: 42px;
+  padding: 8px 12px;
+}
+
+.formItem :global(.ant-input:hover),
+.formItem :global(.ant-select-selector:hover) {
+  border-color: #059862;
+}
+
+.formItem :global(.ant-input:focus),
+.formItem :global(.ant-select-focused .ant-select-selector) {
+  border-color: #059862;
+  box-shadow: 0 0 0 2px rgba(5, 152, 98, 0.2);
+}
+
+/* Button styles */
+.submitButton {
+  background-color: #059862;
+  border-color: #059862;
+  height: 42px;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 6px;
+  margin-top: 16px;
+  transition: all 0.3s;
+}
+
+.submitButton:hover,
+.submitButton:focus {
+  background-color: #048454;
+  border-color: #048454;
+  transform: translateY(-2px);
+}
+
+/* Upload styles */
+.uploadButton {
+  width: 100%;
+  height: 42px;
+  border-radius: 6px;
+  border: 1px dashed #444;
+  background: #2a2a2a;
+  color: #b0b0b0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.uploadButton:hover {
+  border-color: #059862;
+  color: #059862;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 12px 0;
+  }
+
+  .formCard {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  .form {
+    padding: 0 12px 16px;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+}
+
+/* Full width items */
+.fullWidth {
+  width: 100%;
+}
+
+/* Responsive button container */
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+/* Submit button */
+.submitButton {
+  width: 100%;
+  max-width: 200px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+}
+
+/* File input styles */
+.fileInputContainer {
+  width: 100%;
+}
+
+.fileInputLabel {
+  display: block;
+  padding: 12px 16px;
+  background: #1a1a1a;
+  border: 1px dashed #444;
+  border-radius: 4px;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-break: break-word;
+}
+
+.fileInputLabel:hover {
+  background: #333;
+  border-color: #10b981;
+}
+
+.fileInput {
+  display: none;
+}
+
+/* Button styles */
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.submitButton {
+  background: #10b981;
+  border: none;
+  padding: 0 24px;
+  height: 48px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.submitButton:hover {
+  background: #0d9e6f;
+  transform: translateY(-1px);
+}
+
+/* Responsive styles */
+@media (min-width: 480px) {
+  .container {
+    padding: 20px 10px;
+  }
+
+  .formContainer {
+    padding: 20px 15px;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .formGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .submitButton {
+    width: auto;
+    padding: 0 32px;
+  }
+
+  .form {
+    padding: 0 15px 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1400px;
+    padding: 30px 15px;
+  }
+
+  .formContainer {
+    padding: 25px;
+  }
+
+  .formGrid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+/* Dropdown styles */
 .customFeaturesDropdownMenu :global(.ant-select-dropdown) {
-  background-color: #1a1a1a !important; /* Dark background color */
+  background-color: #1a1a1a !important;
   border-radius: 8px !important;
   border: 1px solid #333 !important;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3) !important;
 }
 
-/* Style the dropdown menu items */
 .customFeaturesDropdownMenu :global(.ant-select-item) {
   color: #e0e0e0 !important;
   transition: all 0.2s ease !important;
 }
 
-/* Style the selected item in the dropdown */
 .customFeaturesDropdownMenu
   :global(
     .ant-select-item-option-selected:not(.ant-select-item-option-disabled)
   ) {
-  background-color: #10b981 !important; /* Site's green color */
+  background-color: #10b981 !important;
   color: #ffffff !important;
 }
 
-/* Style the hover state of dropdown items */
 .customFeaturesDropdownMenu :global(.ant-select-item:hover) {
-  background-color: #2d2d2d !important; /* Slightly lighter than background */
+  background-color: #2d2d2d !important;
 }
 
-/* Style the input field's placeholder text */
 :global(.ant-select-selection-placeholder) {
   color: #8c8c8c !important;
 }
 
-/* Style the search input inside dropdown */
 .customFeaturesDropdownMenu
   :global(
     .ant-select-item-option-active:not(.ant-select-item-option-disabled)
@@ -39,15 +317,13 @@
   background-color: #2d2d2d !important;
 }
 
-/* Style the checkmark for selected items */
 .customFeaturesDropdownMenu
   :global(.ant-select-item-option-selected .ant-select-item-option-state) {
-  color: #ffffff !important; /* White checkmark for better visibility on green */
+  color: #ffffff !important;
 }
 
-/* Style for selected tags in the input */
 :global(.ant-select-outlined.ant-select-multiple .ant-select-selection-item) {
-  background-color: #10b981 !important; /* Site's green color */
+  background-color: #10b981 !important;
   color: #ffffff !important;
   border-color: #10b981 !important;
 }

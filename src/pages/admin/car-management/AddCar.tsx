@@ -1,4 +1,5 @@
-import { Button, Col, Flex, Form, Input } from "antd";
+import { Button, Card, Col, Form, Input, Row, Typography, Upload } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import BaseForm from "../../../components/Form/BaseForm";
 import BaseInput from "../../../components/Form/BaseInput";
 import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
@@ -8,6 +9,8 @@ import { useAddCarMutation } from "../../../redux/features/admin/carManagement.a
 import { toast } from "sonner";
 import { TResponse } from "../../../types/global.types";
 import styles from "./AddCar.module.css";
+
+const { Title } = Typography;
 
 const isElectricOptions = [
   {
@@ -56,65 +59,96 @@ const AddCar = () => {
   };
 
   return (
-    <div>
-      <h2 style={{ textAlign: "center", padding: "20px" }}>Add a new car</h2>
-      <Flex justify="center" align="center">
-        <Col span={6}>
-          <BaseForm onSubmit={onSubmit}>
-            <BaseInput type="text" name="name" label="Name" />
-            <Controller
-              name="image" // Ensure this matches the field name in the form state
-              render={({ field: { onChange, value, ...field } }) => (
-                <Form.Item>
-                  <Input
-                    {...field}
-                    type="file"
-                    value={value?.fileName}
-                    onChange={
-                      (e) => onChange(e.target.files?.[0]) // Update the form state
-                    }
-                  />
-                </Form.Item>
-              )}
-            />
-            <BaseInput
-              type="description"
-              name="description"
-              label="Description"
-            />
-            <BaseInput type="text" name="color" label="Color" />
-            <BaseSelect
-              name="isElectric"
-              label="Electric or Not?"
-              options={isElectricOptions}
-            />
-            <div style={{ marginBottom: '24px' }}>
-              <BaseCustomSelect 
-                name="features" 
-                label="Features"
-                className={styles.customFeaturesDropdown}
-                dropdownClassName={styles.customFeaturesDropdownMenu}
-              />
-            </div>
-            <BaseInput
-              type="number"
-              name="pricePerHour"
-              label="Price per hour"
-            />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+    <div className={styles.container}>
+      <Row justify="center">
+        <Col xs={24} sm={22} md={20} lg={18} xl={16}>
+          <Card className={styles.formCard}>
+            <Title level={2} className={styles.title}>
+              Add a New Car
+            </Title>
+            <BaseForm
+              onSubmit={onSubmit}
+              layout="vertical"
+              className={styles.form}
             >
-              <Button size="large" htmlType="submit">
-                Add Car
-              </Button>
-            </div>
-          </BaseForm>
+              <Row gutter={[16, 16]}>
+                <Col xs={24} md={12} className={styles.fullWidth}>
+                  <BaseInput type="text" name="name" label="Name" />
+                </Col>
+                <Col xs={24} md={12} className={styles.fullWidth}>
+                  <BaseInput type="text" name="color" label="Color" />
+                </Col>
+                <Col xs={24} md={12} className={styles.fullWidth}>
+                  <Controller
+                    name="image"
+                    render={({ field: { onChange } }) => (
+                      <Form.Item label="Car Image" className={styles.formItem}>
+                        <Upload
+                          listType="picture"
+                          maxCount={1}
+                          beforeUpload={(file) => {
+                            onChange(file);
+                            return false;
+                          }}
+                          onRemove={() => onChange(undefined)}
+                        >
+                          <Button
+                            icon={<UploadOutlined />}
+                            block
+                            className={styles.uploadButton}
+                          >
+                            Click to Upload
+                          </Button>
+                        </Upload>
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+                <Col xs={24} md={12} className={styles.fullWidth}>
+                  <BaseSelect
+                    name="isElectric"
+                    label="Electric or Not?"
+                    options={isElectricOptions}
+                  />
+                </Col>
+                <Col xs={24} md={24} className={styles.fullWidth}>
+                  <BaseInput
+                    type="number"
+                    name="pricePerHour"
+                    label="Price per hour"
+                  />
+                </Col>
+                <Col xs={24} className={styles.fullWidth}>
+                  <BaseCustomSelect
+                    name="features"
+                    label="Features"
+                    className={styles.customFeaturesDropdown}
+                    dropdownClassName={styles.customFeaturesDropdownMenu}
+                  />
+                </Col>
+                <Col xs={24} className={styles.fullWidth}>
+                  <BaseInput
+                    type="description"
+                    name="description"
+                    label="Description"
+                  />
+                </Col>
+                <Col xs={24} className={styles.fullWidth} style={{ marginTop: 16 }}>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    size="large"
+                    block
+                    className={styles.submitButton}
+                  >
+                    Add Car
+                  </Button>
+                </Col>
+              </Row>
+            </BaseForm>
+          </Card>
         </Col>
-      </Flex>
+      </Row>
     </div>
   );
 };

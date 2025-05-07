@@ -53,7 +53,14 @@ const AvailableCars = () => {
         padding: "20px 0",
       }}
     >
-      <div ref={topRef} style={{ position: "absolute", top: "-100px" }} />
+      <div
+        ref={topRef}
+        style={{
+          position: "absolute",
+          top: "-100px",
+          backgroundColor: "transparent",
+        }}
+      />
       <div>
         <h1
           style={{
