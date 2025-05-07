@@ -47,12 +47,6 @@
   border-radius: 3px;
 }
 
-/* Form styles */
-.form {
-  width: 100%;
-  padding: 0 10px 20px;
-}
-
 /* Form item styles */
 .formItem {
   margin-bottom: 16px;
@@ -122,6 +116,28 @@
 .uploadButton:hover {
   border-color: #059862;
   color: #059862;
+}
+
+/* Make sure the upload component takes full width */
+.formItem :global(.ant-upload) {
+  width: 100%;
+  display: block;
+}
+
+.formItem :global(.ant-upload-select) {
+  width: 100%;
+}
+
+.formItem :global(.ant-upload-wrapper) {
+  width: 100%;
+}
+
+.formItem :global(.ant-upload-list) {
+  width: 100%;
+}
+
+.formItem :global(.ant-upload-list-item) {
+  width: 100%;
 }
 
 /* Responsive adjustments */
@@ -329,15 +345,22 @@
 }
 
 /* Hover state for selected tags */
-:global(.ant-select-outlined.ant-select-multiple .ant-select-selection-item:hover) {
+:global(
+    .ant-select-outlined.ant-select-multiple .ant-select-selection-item:hover
+  ) {
   background-color: #0d9e6f !important; /* Slightly darker green on hover */
 }
 
 /* Close icon in the tag */
-:global(.ant-select-outlined.ant-select-multiple .ant-select-selection-item-remove) {
+:global(
+    .ant-select-outlined.ant-select-multiple .ant-select-selection-item-remove
+  ) {
   color: #ffffff !important;
 }
 
-:global(.ant-select-outlined.ant-select-multiple .ant-select-selection-item-remove:hover) {
+:global(
+    .ant-select-outlined.ant-select-multiple
+      .ant-select-selection-item-remove:hover
+  ) {
   color: #e0e0e0 !important;
 }

@@ -61,16 +61,12 @@ const AddCar = () => {
   return (
     <div className={styles.container}>
       <Row justify="center">
-        <Col xs={24} sm={22} md={20} lg={18} xl={16}>
+        <Col xs={24} sm={24} md={24} lg={24} xl={24}>
           <Card className={styles.formCard}>
             <Title level={2} className={styles.title}>
               Add a New Car
             </Title>
-            <BaseForm
-              onSubmit={onSubmit}
-              layout="vertical"
-              className={styles.form}
-            >
+            <BaseForm onSubmit={onSubmit}>
               <Row gutter={[16, 16]}>
                 <Col xs={24} md={12} className={styles.fullWidth}>
                   <BaseInput type="text" name="name" label="Name" />
@@ -86,6 +82,7 @@ const AddCar = () => {
                         <Upload
                           listType="picture"
                           maxCount={1}
+                          style={{ width: "100%" }}
                           beforeUpload={(file) => {
                             onChange(file);
                             return false;
@@ -133,7 +130,11 @@ const AddCar = () => {
                     label="Description"
                   />
                 </Col>
-                <Col xs={24} className={styles.fullWidth} style={{ marginTop: 16 }}>
+                <Col
+                  xs={24}
+                  className={styles.fullWidth}
+                  style={{ marginTop: 16 }}
+                >
                   <Button
                     type="primary"
                     htmlType="submit"
