@@ -33,9 +33,18 @@
   transition: all 0.3s ease;
 }
 
-/* Striped rows */
+/* Striped rows - enhance the zebra effect */
+.ant-table-tbody > tr:nth-child(odd) > td {
+  background: #1a1a1a;
+}
+
 .ant-table-tbody > tr:nth-child(even) > td {
-  background: #1f1f1f;
+  background: #252525; /* Slightly lighter than the odd rows for better contrast */
+}
+
+/* Make sure hover still works with the zebra effect */
+.ant-table-tbody > tr:hover > td {
+  background: #2a2a2a !important;
 }
 
 /* Hover effect */

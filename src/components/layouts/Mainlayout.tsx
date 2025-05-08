@@ -104,10 +104,25 @@ const Mainlayout = () => {
         </div>
       </Header>
       <div style={{ background: "#1a1a1a", minHeight: "100vh" }}>
-        <Drawer placement="left" onClose={onClose} open={visible} width={250}>
+        <Drawer
+          placement="left"
+          onClose={onClose}
+          open={visible}
+          width={250}
+          styles={{
+            body: { background: "#1a1a1a", padding: 0 },
+            content: { background: "#1a1a1a" },
+            wrapper: { background: "#1a1a1a" },
+          }}
+        >
           <Menu
             mode="inline"
-            style={{ background: "#F5F5F5", boxShadow: "none", border: "none" }}
+            style={{
+              background: "#1a1a1a",
+              boxShadow: "none",
+              border: "none",
+              color: "#b0b0b0",
+            }}
             defaultSelectedKeys={["1"]}
             items={items}
             onClick={onClose}
