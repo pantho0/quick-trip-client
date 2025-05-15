@@ -3,6 +3,7 @@ import App from "../App";
 import { globalPaths } from "./global.routes";
 import { routeGenerator } from "../utils/routeGenerator";
 import Login from "../pages/Login";
+import Signup from "../pages/Signup";
 import DashboardLayout from "../components/layouts/DashboardLayout";
 import { adminPaths } from "./admin.route";
 import { userPaths } from "./user.route";
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
   },
 ]);
 

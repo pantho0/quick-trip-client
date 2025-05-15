@@ -1,10 +1,11 @@
 import { Form, Input } from "antd";
 import { Controller } from "react-hook-form";
+import { ReactNode } from "react";
 
 type TInputProps = {
   type: string;
   name: string;
-  label?: string;
+  label?: string | ReactNode;
 };
 
 const BaseInput = ({ type, name, label }: TInputProps) => {

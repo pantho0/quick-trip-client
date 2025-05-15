@@ -1,0 +1,181 @@
+/* Login and Signup page styles */
+.login-container {
+  min-height: 100vh;
+  background: #1a1a1a;
+  background-image: radial-gradient(rgba(5, 152, 98, 0.1) 1px, transparent 1px),
+    radial-gradient(rgba(5, 152, 98, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  background: #2a2a2a;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Logo styles */
+.login-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.logo-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #059862, #048454);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(5, 152, 98, 0.3);
+}
+
+.logo-text {
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.login-title {
+  margin-bottom: 8px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.login-subtitle {
+  color: #b0b0b0;
+}
+
+.login-form-item {
+  margin-bottom: 16px;
+}
+
+.login-input .ant-input {
+  background-color: #333 !important;
+  border-color: #444 !important;
+  color: white !important;
+  border-radius: 6px;
+}
+
+.login-input .ant-input:focus,
+.login-input .ant-input-focused {
+  border-color: #059862 !important;
+  box-shadow: 0 0 0 2px rgba(5, 152, 98, 0.2) !important;
+}
+
+.login-input .ant-input:hover {
+  border-color: #059862 !important;
+}
+
+.login-button {
+  height: 48px;
+  border-radius: 6px;
+  background: #059862;
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.login-button:hover {
+  background: #048454 !important;
+  transform: translateY(-2px);
+}
+
+.login-divider {
+  border-color: #444;
+  margin: 16px 0;
+}
+
+.login-link {
+  color: #059862;
+}
+
+.login-link:hover {
+  color: #048454;
+  text-decoration: underline;
+}
+
+/* Social login buttons */
+.social-login {
+  margin-top: 8px;
+}
+
+.social-button {
+  border-radius: 6px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.social-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.google-button {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.google-button:hover {
+  background-color: #f5f5f5;
+  color: #333;
+  border-color: #ddd;
+}
+
+.facebook-button {
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  width: 120px;
+}
+
+.facebook-button:hover {
+  background-color: #166fe5;
+  color: white;
+}
+
+.apple-button {
+  background-color: #000;
+  color: white;
+  border: none;
+  width: 120px;
+}
+
+.apple-button:hover {
+  background-color: #333;
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .login-card {
+    padding: 16px;
+  }
+
+  .login-title {
+    font-size: 20px;
+  }
+
+  .facebook-button,
+  .apple-button {
+    width: 100px;
+  }
+}
