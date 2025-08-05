@@ -1,4 +1,5 @@
 import { Button, Card, Col, Flex, Pagination, Row, Tag } from "antd";
+import { motion } from "framer-motion";
 import { useGetAllCarQuery } from "../../redux/features/admin/carManagement.api";
 import { Link } from "react-router-dom";
 import "../../styles/globalButton.css";
@@ -46,7 +47,10 @@ const AvailableCars = () => {
   }
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
       style={{
         backgroundColor: "#1a1a1a",
         minHeight: "100vh",
@@ -75,22 +79,29 @@ const AvailableCars = () => {
           Available Cars
         </h1>
       </div>
-      <Row gutter={[16, 16]}>
+      <Row gutter={[16, 16]} align="stretch">
         {cars?.data?.map((car) => (
           <Col key={car._id} xs={24} sm={12} md={8} lg={6}>
-            <Card
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <Card
               className="ant-card-body"
               loading={isFetching && isLoading}
               hoverable
               style={{
                 width: "100%",
-                minHeight: "500px",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
                 backgroundColor: "#2a2a2a",
                 border: "1px solid #444",
                 borderRadius: "10px",
                 boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
               }}
-              bodyStyle={{ padding: "16px" }}
+              bodyStyle={{ padding: "16px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}
               cover={
                 <img
                   alt={car?.name}
@@ -105,7 +116,7 @@ const AvailableCars = () => {
                 />
               }
             >
-              <div className="card-content" style={{ color: "#b0b0b0" }}>
+              <div className="card-content" style={{ color: "#b0b0b0", flex: 1, display: "flex", flexDirection: "column" }}>
                 <Meta
                   title={
                     <span style={{ color: "#fff", fontSize: "1.2rem" }}>
@@ -174,6 +185,7 @@ const AvailableCars = () => {
                 </Link>
               </div>
             </Card>
+            </motion.div>
           </Col>
         ))}
       </Row>
@@ -186,7 +198,7 @@ const AvailableCars = () => {
           className="custom-pagination"
         />
       </Flex>
-    </div>
+    </motion.div>
   );
 };
 

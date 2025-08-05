@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useGetSingleCarQuery } from "../../../redux/features/admin/carManagement.api";
-import { Card, Flex, Tag } from "antd";
+import { Card, Flex, Tag, Typography, Space, Divider } from "antd";
 import Loader from "../../../components/shared/Loader";
-const { Meta } = Card;
+const { Title, Text } = Typography;
 
 const CarDetails = () => {
   const { id } = useParams();
@@ -13,50 +13,79 @@ const CarDetails = () => {
   }
 
   return (
-    <Flex justify="center" align="center" style={{ minHeight: "100vh" }}>
+    <Flex
+      justify="center"
+      align="center"
+      style={{ minHeight: "100vh", padding: "20px" }}
+    >
       <Card
-        key={data?._id}
         hoverable
+        style={{ width: 600, borderRadius: "10px", overflow: "hidden" }}
         cover={
           <img
-            style={{ width: "100%", height: "200x" }}
-            alt="example"
+            alt={data?.name}
             src={data?.images}
+            style={{ width: "100%", height: "300px", objectFit: "cover" }}
           />
         }
       >
-        <Meta title={data?.name} description={data?.description} />
-        <div
-          style={{
-            border: "2px solid #f0f0f0",
-            borderRadius: "15px",
-            padding: "10px",
-            margin: "15px",
-            fontSize: "14px",
-          }}
-        >
-          <p>Hourly Price : {data?.pricePerHour}</p>
-          <p>
-            Current Status :{" "}
-            <Tag color={data?.status === "available" ? "green" : "yellow"}>
-              {data?.status.toUpperCase()}
-            </Tag>{" "}
-          </p>
-          <p>isElectric : {data?.isElectric ? "Yes" : "No"}</p>
+        <Space direction="vertical" size={[0, 16]} style={{ width: "100%" }}>
+          <Title level={3} style={{ margin: 0, color: "white" }}>
+            {data?.name}
+          </Title>
+          <Text style={{ color: "white" }}>{data?.description}</Text>
+
+          <Divider style={{ color: "white" }} orientation="center">
+            Details
+          </Divider>
           <div>
-            <p style={{ textAlign: "center", fontSize: "20px", lineHeight: 0 }}>
-              Features
-            </p>
-            <p style={{ textAlign: "center" }}>
-              <br />
-              {data?.features.map((f) => (
-                <Tag key={f} style={{ fontSize: "14px" }}>
-                  {f} <br />
-                </Tag>
-              ))}
-            </p>
+            <Flex
+              justify="space-between"
+              align="center"
+              style={{ marginBottom: "8px" }}
+            >
+              <Text strong style={{ color: "white" }}>
+                Hourly Price:
+              </Text>
+              <Text style={{ color: "white" }}>${data?.pricePerHour}</Text>
+            </Flex>
+            <Flex
+              justify="space-between"
+              align="center"
+              style={{ marginBottom: "8px" }}
+            >
+              <Text strong style={{ color: "white" }}>
+                Current Status:
+              </Text>
+              <Tag color={data?.status === "available" ? "green" : "yellow"}>
+                {data?.status?.toUpperCase()}
+              </Tag>
+            </Flex>
+            <Flex
+              justify="space-between"
+              align="center"
+              style={{ marginBottom: "8px" }}
+            >
+              <Text strong style={{ color: "white" }}>
+                Electric:
+              </Text>
+              <Text style={{ color: "white" }}>
+                {data?.isElectric ? "Yes" : "No"}
+              </Text>
+            </Flex>
           </div>
-        </div>
+
+          <Divider style={{ color: "white" }} orientation="center">
+            Features
+          </Divider>
+          <Space wrap size={[8, 8]}>
+            {data?.features?.map((f) => (
+              <Tag key={f} color="blue">
+                {f}
+              </Tag>
+            ))}
+          </Space>
+        </Space>
       </Card>
     </Flex>
   );

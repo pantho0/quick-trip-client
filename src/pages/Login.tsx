@@ -54,7 +54,7 @@ const Login = () => {
 
   return (
     <Row justify="center" align="middle" className="login-container">
-      <Col xs={22} sm={16} md={12} lg={8} xl={6}>
+      <Col xs={22} sm={18} md={14} lg={10} xl={8}>
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
